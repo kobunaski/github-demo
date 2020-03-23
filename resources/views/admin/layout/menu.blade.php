@@ -28,10 +28,8 @@
                     <li>
                         <a class="has-arrow" href="all-staff.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Staff</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="All Staff" href="all-staff.html"><span class="mini-sub-pro">All staff</span></a></li>
-                            <li><a title="Add Staff" href="add-staff.html"><span class="mini-sub-pro">Add staff</span></a></li>
-                            <li><a title="Edit Staff" href="edit-staff.html"><span class="mini-sub-pro">Edit staff</span></a></li>
-                            <li><a title="Students Staff" href="staff-profile.html"><span class="mini-sub-pro">staff Profile</span></a></li>
+                            <li><a title="All Students" href="admin/staff/list"><span class="mini-sub-pro">All Staff</span></a></li>
+                            <li><a title="Add Students" href="admin/staff/add"><span class="mini-sub-pro">Add Staff</span></a></li>
                         </ul>
                     </li>
                     <li>
