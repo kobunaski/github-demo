@@ -17,7 +17,7 @@
                                 <h2>Slot: {{$slt->id}}</h2>
                             </div>
 
-                            <h2>congdt</h2>
+                            <h2>congtest</h2>
 
                             <div class="product-buttons">
                                 <a type="button" class="button-default cart-btn" href="admin/slot/delete/{{$slt->id}}">Delete slot</a>
