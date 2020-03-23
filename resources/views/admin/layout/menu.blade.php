@@ -40,6 +40,41 @@
                         </ul>
                     </li>
                     <li>
+                        <a class="has-arrow" href="all-staff.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Course</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Students" href="admin/course/list"><span class="mini-sub-pro">All Course</span></a></li>
+                            <li><a title="Add Students" href="admin/course/add"><span class="mini-sub-pro">Add Course</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="all-staff.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Email</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Students" href="admin/email/list"><span class="mini-sub-pro">All email</span></a></li>
+                            <li><a title="Add Students" href="admin/email/add"><span class="mini-sub-pro">Add email</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="all-staff.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Role</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Students" href="admin/role/list"><span class="mini-sub-pro">All Role</span></a></li>
+                            <li><a title="Add Students" href="admin/role/add"><span class="mini-sub-pro">Add Role</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="all-staff.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Room</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Students" href="admin/room/list"><span class="mini-sub-pro">All Room</span></a></li>
+                            <li><a title="Add Students" href="admin/room/add"><span class="mini-sub-pro">Add Room</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="all-staff.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Subject</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Students" href="admin/subject/list"><span class="mini-sub-pro">All Subject</span></a></li>
+                            <li><a title="Add Students" href="admin/subject/add"><span class="mini-sub-pro">Add Subject</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a class="has-arrow" href="admin/news/list" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">News</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="All Courses" href="admin/news/list"><span class="mini-sub-pro">All News</span></a></li>
@@ -72,6 +107,7 @@
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="All Courses" href="admin/scheduleslot/list"><span class="mini-sub-pro">All Schedule</span></a></li>
                             <li><a title="Add Courses" href="admin/scheduleslot/add"><span class="mini-sub-pro">Add Schedule</span></a></li>
+                        </ul>
                             </li>
                     <li>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
@@ -100,7 +136,6 @@
                             <li><a title="Compose Mail" href="mailbox-compose.html"><span class="mini-sub-pro">Compose Mail</span></a></li>
                         </ul>
                     </li>
-
                 </ul>
             </nav>
         </div>
