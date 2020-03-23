@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class schedule extends Model
+class uploaddoc extends Model
 {
     //
     public $timestamps = false;
     //
-    protected $table = 'schedule';
-
+    protected $table = 'uploaddoc';
 }

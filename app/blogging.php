@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class blogging extends Model
 {
     //
-    protected $table = "blogging";
+    public $timestamps = false;
+    //
+    protected $table = 'blogging';
 }

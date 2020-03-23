@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class schedule extends Model
+class slot extends Model
 {
     //
     public $timestamps = false;
     //
-    protected $table = 'schedule';
+    protected $table = 'slot';
 
 }

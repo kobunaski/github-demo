@@ -84,4 +84,78 @@ Route::group(['prefix' => 'admin'], function(){
 
         Route::get('delete/{id}', 'SubjectController@getDelete');
     });
+    Route::group (['prefix'=>'news'],function(){
+        //admin/news/list
+        Route::get('list', 'NewsController@getList');
+
+        Route::get('edit/{id}', 'NewsController@getEdit');
+        Route::post('edit/{id}', 'NewsController@postEdit');
+
+        Route::get('add', 'NewsController@getAdd');
+        Route::post('add', 'NewsController@postAdd');
+
+        Route::get('delete/{id}', 'NewsController@getDelete');
+    });
+
+    Route::group (['prefix'=>'student'],function(){
+        //admin/news/list
+        Route::get('list', 'StudentController@getList');
+
+        Route::get('edit/{id}', 'StudentController@getEdit');
+        Route::post('edit/{id}', 'StudentController@postEdit');
+
+        Route::get('add', 'StudentController@getAdd');
+        Route::post('add', 'StudentController@postAdd');
+
+        Route::get('delete/{id}', 'StudentController@getDelete');
+    });
+
+    Route::group (['prefix'=>'slot'],function(){
+        //admin/news/list
+        Route::get('list', 'SlotController@getList');
+
+        Route::get('add', 'SlotController@getAdd');
+        Route::post('add', 'SlotController@postAdd');
+
+        Route::get('delete/{id}', 'SlotController@getDelete');
+    });
+
+    Route::group (['prefix'=>'schedule'],function(){
+        //admin/schedule/list
+        Route::get('list', 'ScheduleController@getList');
+
+        Route::get('edit/{id}', 'ScheduleController@getEdit');
+        Route::post('edit/{id}', 'ScheduleController@postEdit');
+
+        Route::get('add', 'ScheduleController@getAdd');
+        Route::post('add', 'ScheduleController@postAdd');
+
+        Route::get('delete/{id}', 'ScheduleController@getDelete');
+    });
+
+    Route::group (['prefix'=>'scheduleslot'],function(){
+        //admin/schedule/list
+        Route::get('list', 'ScheduleslotController@getList');
+
+        Route::get('edit/{id}', 'ScheduleslotController@getEdit');
+        Route::post('edit/{id}', 'ScheduleslotController@postEdit');
+
+        Route::get('add', 'ScheduleslotController@getAdd');
+        Route::post('add', 'ScheduleslotController@postAdd');
+
+        Route::get('delete/{id}', 'ScheduleslotController@getDelete');
+    });
+
+    Route::group (['prefix'=>'blogging'],function(){
+        //admin/blogging/list
+        Route::get('list', 'BloggingController@getList');
+
+        Route::get('edit/{id}', 'BloggingController@getEdit');
+        Route::post('edit/{id}', 'BloggingController@postEdit');
+
+        Route::get('add', 'BloggingController@getAdd');
+        Route::post('add', 'BloggingController@postAdd');
+
+        Route::get('delete/{id}', 'BloggingController@getDelete');
+    });
 });

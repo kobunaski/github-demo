@@ -15,11 +15,6 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a title="Landing Page" href="schedule.html" aria-expanded="false">
-                            <span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
-                            <span class="mini-click-non">Schedules</span></a>
-                    </li>
 
                     <li>
                         <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Professors</span></a>
@@ -42,13 +37,44 @@
                     <li>
                         <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="All Students" href="all-students.html"><span class="mini-sub-pro">All Students</span></a></li>
-                            <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Add Student</span></a></li>
-                            <li><a title="Edit Students" href="edit-student.html"><span class="mini-sub-pro">Edit Student</span></a></li>
-                            <li><a title="Students Profile" href="student-profile.html"><span class="mini-sub-pro">Student Profile</span></a></li>
+                            <li><a title="All Students" href="admin/student/list"><span class="mini-sub-pro">All Students</span></a></li>
+                            <li><a title="Add Students" href="admin/student/add"><span class="mini-sub-pro">Add Student</span></a></li>
                         </ul>
                     </li>
-
+                    <li>
+                        <a class="has-arrow" href="admin/news/list" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">News</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="admin/news/list"><span class="mini-sub-pro">All News</span></a></li>
+                            <li><a title="Add Courses" href="admin/news/add"><span class="mini-sub-pro">Add News</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="admin/blogging/list" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Blogging</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="admin/blogging/list"><span class="mini-sub-pro">All blogging</span></a></li>
+                            <li><a title="Add Courses" href="admin/blogging/add"><span class="mini-sub-pro">Add blogging</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="admin/schedule/list" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Time Start-End</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="admin/schedule/list"><span class="mini-sub-pro">All Time Start-End</span></a></li>
+                            <li><a title="Add Courses" href="admin/schedule/add"><span class="mini-sub-pro">Add Time Start-End</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="admin/slot/list" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Slot</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="admin/slot/list"><span class="mini-sub-pro">All slot</span></a></li>
+                            <li><a title="Add Courses" href="admin/slot/add"><span class="mini-sub-pro">Add slot</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="admin/scheduleslot/list" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Schedule</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="admin/scheduleslot/list"><span class="mini-sub-pro">All Schedule</span></a></li>
+                            <li><a title="Add Courses" href="admin/scheduleslot/add"><span class="mini-sub-pro">Add Schedule</span></a></li>
+                            </li>
                     <li>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
                         <ul class="submenu-angle" aria-expanded="false">

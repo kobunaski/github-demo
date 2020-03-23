@@ -4,11 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class schedule extends Model
+class news extends Model
 {
-    //
     public $timestamps = false;
     //
-    protected $table = 'schedule';
-
+    protected $table = 'news';
 }
