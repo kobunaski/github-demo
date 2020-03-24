@@ -50,11 +50,14 @@ class StaffController extends Controller
         ]);
         $Staff = staff::all();
         $staff = new staff;
-
         $count = $Staff -> count();
-        $array = $Staff[$count - 1] -> id + 1;
-
-        $staff -> id = $array;
+        if ($count == 0)
+        {
+            $staff -> id = 1;
+        }else{
+            $array = $Staff[$count - 1] -> id + 1;
+            $staff -> id = $array;
+        }
         echo $staff -> fullName = $request -> fullName;
         echo $staff -> phone = $request -> phone;
         echo $staff -> address = $request -> address;

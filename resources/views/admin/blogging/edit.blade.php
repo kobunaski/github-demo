@@ -40,8 +40,9 @@
                                                                 @foreach($subject as $rl)
                                                                     @if($blogging -> idSubject == $rl -> id)
                                                                         <option value={{$rl -> id}} selected>{{$rl -> nameSubject}}</option>
-                                                                    @endif
+                                                                    @else
                                                                         <option value={{$rl -> id}}>{{$rl -> nameSubject}}</option>
+                                                                    @endif
                                                                 @endforeach
                                                             </select>
                                                         </div>

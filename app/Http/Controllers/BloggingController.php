@@ -34,7 +34,7 @@ class BloggingController extends Controller
 
         $blogging -> save();
 
-        return redirect('admin/blogging/edit/'.$id)-> with('notificate','Update successfully');
+        return redirect('admin/blogging/list/')-> with('notificate','Update successfully');
     }
 
     public function getAdd(){

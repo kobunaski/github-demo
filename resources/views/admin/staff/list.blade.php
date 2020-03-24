@@ -30,7 +30,13 @@
                                 <h2>{{$rl->fullName}}</h2>
                             </div>
                             <div class="course-des">
-                                <p><span><i class="fa fa-clock"></i></span> <b>Role Name: </b>{{$role[($rl -> idRole) - 1] -> roleName}}</p>
+                                <p><span><i class="fa fa-clock"></i></span> <b>Role: </b>
+                                    @foreach($role as $ro)
+                                        @if($rl -> idRole == $ro -> id)
+                                            {{$ro -> roleName}}
+                                        @endif
+                                    @endforeach
+                                </p>
                                 <p><span><i class="fa fa-clock"></i></span> <b>Salary: </b>{{$rl -> salary}}</p>
                                 <p><span><i class="fa fa-clock"></i></span> <b>Address: </b>{{$rl -> address}}</p>
                             </div>

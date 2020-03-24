@@ -18,6 +18,13 @@
                             </div>
                             <div class="course-des">
                                 <p><span><i class="fa fa-clock"></i></span> <b>Link: </b>{{$blog->content}}</p>
+                                <p><span><i class="fa fa-clock"></i></span> <b>Subject:</b>
+                                    @foreach($subject as $sub)
+                                        @if($blog -> idSubject == $sub -> id)
+                                            {{$sub -> nameSubject}}
+                                        @endif
+                                    @endforeach
+                                </p>
                             </div>
                             <div class="product-buttons">
                                 <a type="button" class="button-default cart-btn" href="admin/blogging/edit/{{$blog->id}}">Read </a>
