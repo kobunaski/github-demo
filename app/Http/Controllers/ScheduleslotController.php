@@ -32,9 +32,15 @@ class ScheduleslotController extends Controller
         $scheduleslot = new scheduleslot;
 
         $count = $Scheduleslot -> count();
-        $array = $Scheduleslot[$count - 1] -> id + 1;
 
-        $scheduleslot -> id = $array;
+        if ($count == 0)
+        {
+            $scheduleslot -> id = 1;
+        }else{
+            $array = $Scheduleslot[$count - 1] -> id + 1;
+            $scheduleslot -> id = $array;
+        }
+
         $scheduleslot -> idSchedule = $request -> idSchedule;
         $scheduleslot -> idSlot = $request -> idSlot;
         $scheduleslot -> day = $request -> day;

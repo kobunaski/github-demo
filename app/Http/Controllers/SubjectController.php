@@ -28,9 +28,15 @@ class SubjectController extends Controller
         $subject = new subject;
 
         $count = $Subject -> count();
-        $array = $Subject[$count - 1] -> id + 1;
 
-        $subject -> id = $array;
+        if ($count == 0)
+        {
+            $subject -> id = 1;
+        }else{
+            $array = $Subject[$count - 1] -> id + 1;
+            $subject -> id = $array;
+        }
+
         $subject -> nameSubject = $request -> nameSubject;
         $subject -> idUpload = 0;
         if ($request -> status == 1){

@@ -56,9 +56,15 @@ class BloggingController extends Controller
         $blogging = new blogging;
 
         $count = $Blogging -> count();
-        $array = $Blogging[$count - 1] -> id + 1;
 
-        $blogging -> id = $array;
+        if ($count == 0)
+        {
+            $blogging -> id = 1;
+        }else{
+            $array = $Blogging[$count - 1] -> id + 1;
+            $blogging -> id = $array;
+        }
+
         $blogging -> content = $request -> content1;
         $blogging -> idSubject = $request -> idSubject;
 

@@ -28,9 +28,15 @@ class RoleController extends Controller
         $role = new role;
 
         $count = $Roles -> count();
-        $array = $Roles[$count - 1] -> id + 1;
 
-        $role -> id = $array;
+        if ($count == 0)
+        {
+            $role -> id = 1;
+        }else{
+            $array = $Roles[$count - 1] -> id + 1;
+            $role -> id = $array;
+        }
+
         $role -> roleName = $request -> roleName;
 
         $role -> save();

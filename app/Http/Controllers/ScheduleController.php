@@ -19,9 +19,15 @@ class ScheduleController extends Controller
         $schedule = new schedule;
 
         $count = $Schedule -> count();
-        $array = $Schedule[$count - 1] -> id + 1;
 
-        $schedule -> id = $array;
+        if ($count == 0)
+        {
+            $schedule -> id = 1;
+        }else{
+            $array = $Schedule[$count - 1] -> id + 1;
+            $schedule -> id = $array;
+        }
+
         $schedule -> startTime = $request -> startTime;
         $schedule -> endTime = $request -> endTime;
         $schedule -> save();

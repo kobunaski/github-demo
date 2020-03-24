@@ -64,9 +64,15 @@ class StudentController extends Controller
         $student = new student;
 
         $count = $Student -> count();
-        $array = $Student[$count - 1] -> id + 1;
 
-        $student -> id = $array;
+        if ($count == 0)
+        {
+            $student -> id = 1;
+        }else{
+            $array = $Student[$count - 1] -> id + 1;
+            $student -> id = $array;
+        }
+
         $student -> fullName = $request -> fullName;
         $student -> userName = $request -> userName;
         $student -> password = $request -> password;

@@ -19,9 +19,15 @@ class SlotController extends Controller
         $slot = new slot;
 
         $count = $Slot -> count();
-        $array = $Slot[$count - 1] -> id + 1;
 
-        $slot -> id = $array;
+        if ($count == 0)
+        {
+            $slot -> id = 1;
+        }else{
+            $array = $Slot[$count - 1] -> id + 1;
+            $slot -> id = $array;
+        }
+
         $slot -> save();
         return redirect('admin/slot/add') -> with('notificate','Add successfully');
     }

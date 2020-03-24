@@ -50,9 +50,15 @@ class NewsController extends Controller
         $news = new news;
 
         $count = $News -> count();
-        $array = $News[$count - 1] -> id + 1;
 
-        $news -> id = $array;
+        if ($count == 0)
+        {
+            $news -> id = 1;
+        }else{
+            $array = $News[$count - 1] -> id + 1;
+            $news -> id = $array;
+        }
+
         $news -> title = $request -> title;
         $news -> content = $request -> content1;
         $news -> status = $request -> status;

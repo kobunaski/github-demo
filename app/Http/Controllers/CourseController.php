@@ -36,9 +36,15 @@ class CourseController extends Controller
         $course = new course;
 
         $count = $Course -> count();
-        $array = $Course[$count - 1] -> id + 1;
 
-        $course -> id = $array;
+        if ($count == 0)
+        {
+            $course -> id = 1;
+        }else{
+            $array = $Course[$count - 1] -> id + 1;
+            $course -> id = $array;
+        }
+
         $course -> courseName = $request -> courseName;
         $course -> idStaff = 0;
         $course -> idStudent = 0;
