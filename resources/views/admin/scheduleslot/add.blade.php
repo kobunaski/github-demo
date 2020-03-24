@@ -47,22 +47,17 @@
                                                                 <label>Day: </label>
                                                                 <input name="day" type="date" class="form-control" >
                                                             </div>
-                                                            <select name="idSubject" class="form-control">
-                                                                <option value="none" selected="" disabled="">Select Time</option>
-                                                                @foreach($schedule as $sche)
-                                                                    <option value={{$sche -> id}}>{{$sche -> startTime}} > {{$sche -> endTime}}</option>
-                                                                @endforeach
-                                                            </select>
+
                                                             <select name="idRoom" class="form-control">
-                                                                <option value="none" selected="" disabled="">Select Time</option>
-                                                                @foreach($schedule as $sche)
-                                                                    <option value={{$sche -> id}}>{{$sche -> startTime}} > {{$sche -> endTime}}</option>
+                                                                <option value="none" selected="" disabled="">Select Room</option>
+                                                                @foreach($room as $rm)
+                                                                    <option value={{$rm -> id}}>{{$rm -> id}} </option>
                                                                 @endforeach
                                                             </select>
                                                             <select name="idCourse" class="form-control">
-                                                                <option value="none" selected="" disabled="">Select Time</option>
-                                                                @foreach($schedule as $sche)
-                                                                    <option value={{$sche -> id}}>{{$sche -> startTime}} > {{$sche -> endTime}}</option>
+                                                                <option value="none" selected="" disabled="">Select Course</option>
+                                                                @foreach($course as $cour)
+                                                                    <option value={{$cour -> id}}>{{$cour -> courseName}}</option>
                                                                 @endforeach
                                                             </select>
 

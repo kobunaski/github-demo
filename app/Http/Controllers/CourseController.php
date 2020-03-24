@@ -31,7 +31,10 @@ class CourseController extends Controller
             'idStaff.required' => 'Choose a tutor'
         ]);
 
-        $course = new course;
+        $Course = room::all() -> count();
+        $course = new room;
+        $array = $Course + 1;
+        $course -> id = $array;
         $course -> courseName = $request -> courseName;
         $course -> idStaff = $request -> idStaff;
         $course -> idStudent = 0;

@@ -3,22 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\scheduleslot, App\schedule, App\slot;
+use App\scheduleslot, App\schedule, App\slot, App\course, App\room;
 class ScheduleslotController extends Controller
 {
     //
     public function getList(){
+        $course = course::all();
+        $room = room::all();
         $schedule = schedule::all();
         $slot = slot::all();
         $scheduleslot = scheduleslot::all();
-        return view('admin.scheduleslot.list', ['slot'=> $slot, 'schedule' => $schedule,'scheduleslot'=> $scheduleslot]);
+        return view('admin.scheduleslot.list', ['course'=>$course, 'room'=>$room,'slot'=> $slot, 'schedule' => $schedule,'scheduleslot'=> $scheduleslot]);
     }
     public function getAdd(){
+        $course = course::all();
+        $room = room::all();
         $schedule = schedule::all();
         $slot = slot::all();
-        return view('admin.scheduleslot.add', ['slot'=> $slot, 'schedule' => $schedule]);
+        return view('admin.scheduleslot.add', ['course'=>$course, 'room'=>$room,'slot'=> $slot, 'schedule' => $schedule]);
     }
     public function postAdd(Request $request){
+        $course = course::all();
+        $room = room::all();
         $schedule = schedule::all();
         $slot = slot::all();
         $Scheduleslot = scheduleslot::all() -> count();
@@ -28,30 +34,33 @@ class ScheduleslotController extends Controller
         $scheduleslot -> idSchedule = $request -> idSchedule;
         $scheduleslot -> idSlot = $request -> idSlot;
         $scheduleslot -> day = $request -> day;
-        $scheduleslot -> idSubject = 0;
-        $scheduleslot -> idRoom = 0;
-        $scheduleslot -> idCourse = 0;
+        $scheduleslot -> idRoom = $request -> idRoom;
+        $scheduleslot -> idCourse = $request -> idCourse;
 
         $scheduleslot -> save();
         return redirect('admin/scheduleslot/add') -> with('notificate','Add successfully');
     }
 
     public function getEdit($id){
+        $course = course::all();
+        $room = room::all();
         $schedule = schedule::all();
         $slot = slot::all();
         $scheduleslot = scheduleslot::find($id);
-        return view('admin.scheduleslot.edit',['slot'=> $slot, 'schedule' => $schedule,'scheduleslot'=> $scheduleslot]);
+        return view('admin.scheduleslot.edit',['course'=>$course, 'room'=>$room,'slot'=> $slot, 'schedule' => $schedule,'scheduleslot'=> $scheduleslot]);
     }
     public function postEdit(Request $request,$id){
+        $course = course::all();
+        $room = room::all();
         $schedule = schedule::all();
         $slot = slot::all();
         $scheduleslot = scheduleslot::find($id);
         $scheduleslot -> idSchedule = $request -> idSchedule;
         $scheduleslot -> idSlot = $request -> idSlot;
         $scheduleslot -> day = $request -> day;
-        $scheduleslot -> idSubject = 0;
-        $scheduleslot -> idRoom = 0;
-        $scheduleslot -> idCourse = 0;
+        $scheduleslot -> idRoom = $request -> idRoom;
+        $scheduleslot -> idCourse = $request -> idCourse;
+
         $scheduleslot -> save();
         return redirect('admin/scheduleslot/edit/'.$id)-> with('notificate','Update successfully');
     }

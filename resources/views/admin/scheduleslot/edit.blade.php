@@ -55,22 +55,24 @@
                                                                 <label>Day: </label>
                                                                 <input name="day" type="date" class="form-control" value="{{$scheduleslot-> day}}" >
                                                             </div>
-                                                            <select name="idSubject" class="form-control">
-                                                                <option value="none" selected="" disabled="">Select Time</option>
-                                                                @foreach($schedule as $sche)
-                                                                    <option value={{$sche -> id}}>{{$sche -> startTime}} > {{$sche -> endTime}}</option>
-                                                                @endforeach
-                                                            </select>
                                                             <select name="idRoom" class="form-control">
-                                                                <option value="none" selected="" disabled="">Select Time</option>
-                                                                @foreach($schedule as $sche)
-                                                                    <option value={{$sche -> id}}>{{$sche -> startTime}} > {{$sche -> endTime}}</option>
+                                                                <option value="none" selected="" disabled="">Select Role</option>
+                                                                @foreach($room as $rm)
+                                                                    @if($rm -> id == $scheduleslot -> idRoom)
+                                                                        <option value="{{$rm -> id}}" selected>{{$rm -> id}}</option>
+                                                                    @else
+                                                                        <option value={{$rm -> id}}>{{$rm -> id}}</option>
+                                                                    @endif
                                                                 @endforeach
                                                             </select>
                                                             <select name="idCourse" class="form-control">
-                                                                <option value="none" selected="" disabled="">Select Time</option>
-                                                                @foreach($schedule as $sche)
-                                                                    <option value={{$sche -> id}}>{{$sche -> startTime}} > {{$sche -> endTime}}</option>
+                                                                <option value="none" selected="" disabled="">Select Role</option>
+                                                                @foreach($course as $cour)
+                                                                    @if($cour -> id == $scheduleslot -> idCourse)
+                                                                        <option value="{{$cour -> id}}" selected>{{$cour -> courseName}}</option>
+                                                                    @else
+                                                                        <option value={{$cour -> id}}>{{$cour -> courseName}}</option>
+                                                                    @endif
                                                                 @endforeach
                                                             </select>
                                                         </div>

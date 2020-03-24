@@ -24,8 +24,11 @@ class RoleController extends Controller
         ],[
             'roleName.required' => 'Role Name can\'t be empty'
         ]);
-
+        $Roles = role::all() -> count();
         $role = new role;
+        $array = $Roles + 1;
+        $role -> id = $array;
+
         $role -> roleName = $request -> roleName;
 
         $role -> save();

@@ -18,9 +18,29 @@
                             </div>
                             <div class="course-des">
                                 <p><span><i class="fa fa-clock"></i></span> <b>Slot: </b>{{$slot[($schedules -> idSlot) - 1] -> id}}</p>
-                                <p><span><i class="fa fa-clock"></i></span> <b>From: </b>{{$schedule[($schedules -> idSchedule) - 1]->startTime}}</p>
-                                <p><span><i class="fa fa-clock"></i></span> <b>To: </b>{{$schedule[($schedules -> idSchedule) - 1]->endTime}}</p>
+
+                                <p><span><i class="fa fa-clock"></i></span> <b>From: </b>@foreach($schedule as $sche)
+                                        @if($schedules -> idSchedule == $sche -> id)
+                                            {{$sche -> startTime}}
+                                        @endif
+                                    @endforeach</p>
+                                <p><span><i class="fa fa-clock"></i></span> <b>To: </b>@foreach($schedule as $sche)
+                                        @if($schedules -> idSchedule == $sche -> id)
+                                            {{$sche -> endTime}}
+                                        @endif
+                                    @endforeach</p>
+
                                 <p><span><i class="fa fa-clock"></i></span> <b>Day: </b>{{$schedules->day}}</p>
+                                <p><span><i class="fa fa-clock"></i></span> <b>Room: </b>@foreach($room as $rm)
+                                        @if($schedules -> idRoom == $rm -> id)
+                                            {{$rm -> id}}
+                                        @endif
+                                    @endforeach</p>
+                                <p><span><i class="fa fa-clock"></i></span> <b>Course name: </b>@foreach($course as $cour)
+                                        @if($schedules -> idCourse == $cour -> id)
+                                            {{$cour -> courseName}}
+                                        @endif
+                                    @endforeach</p>
                             </div>
                             <div class="product-buttons">
                                 <a type="button" class="button-default cart-btn" href="admin/scheduleslot/edit/{{$schedules->id}}">Read More</a>

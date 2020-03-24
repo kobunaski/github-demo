@@ -16,4 +16,10 @@ class scheduleslot extends Model
     public function slot(){
         return $this->hasOne('App\slot', 'idSlot','id');
     }
+    public function course(){
+        return $this->hasMany('App\course', 'idCourse','id');
+    }
+    public function room(){
+        return $this->hasOne('App\room', 'idRoom','id');
+    }
 }
