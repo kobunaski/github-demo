@@ -27,9 +27,13 @@ class ScheduleslotController extends Controller
         $room = room::all();
         $schedule = schedule::all();
         $slot = slot::all();
-        $Scheduleslot = scheduleslot::all() -> count();
+
+        $Scheduleslot = scheduleslot::all();
         $scheduleslot = new scheduleslot;
-        $array = $Scheduleslot + 1;
+
+        $count = $Scheduleslot -> count();
+        $array = $Scheduleslot[$count - 1] -> id + 1;
+
         $scheduleslot -> id = $array;
         $scheduleslot -> idSchedule = $request -> idSchedule;
         $scheduleslot -> idSlot = $request -> idSlot;

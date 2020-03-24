@@ -24,11 +24,7 @@ class RoomController extends Controller
         ],[
             'id.required' => 'Room id can\'t be empty'
         ]);
-        $Room = room::all() -> count();
         $room = new room;
-        $array = $Room + 1;
-        $room -> id = $array;
-
 
         $room -> id = $request -> id;
 

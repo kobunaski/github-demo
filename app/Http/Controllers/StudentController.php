@@ -60,9 +60,12 @@ class StudentController extends Controller
             'fullName.required' =>'You have to enter the student title',
             'fullName.min'=>'You must input more than 5 characters',
         ]);
-        $Student = student::all() -> count();
+        $Student = student::all();
         $student = new student;
-        $array = $Student + 1;
+
+        $count = $Student -> count();
+        $array = $Student[$count - 1] -> id + 1;
+
         $student -> id = $array;
         $student -> fullName = $request -> fullName;
         $student -> userName = $request -> userName;

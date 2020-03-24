@@ -52,12 +52,16 @@ class BloggingController extends Controller
             'idSubject.required'=>'You must choose a subject',
         ]);
 
-        $Blogging = blogging::all() -> count();
+        $Blogging = blogging::all();
         $blogging = new blogging;
-        $array = $Blogging + 1;
+
+        $count = $Blogging -> count();
+        $array = $Blogging[$count - 1] -> id + 1;
+
         $blogging -> id = $array;
         $blogging -> content = $request -> content1;
         $blogging -> idSubject = $request -> idSubject;
+
         $blogging -> save();
         return redirect('admin/blogging/add') -> with('notificate','Add successfully');
     }

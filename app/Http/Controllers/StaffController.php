@@ -48,15 +48,16 @@ class StaffController extends Controller
             'password.required' => 'You haven\'t input password',
             'email.required' => 'You haven\'t input email',
         ]);
-        $Staff = staff::all() -> count();
-        $staff = new staff();
-        $array = $Staff + 1;
-        $staff -> id = $array;
+        $Staff = staff::all();
+        $staff = new staff;
 
+        $count = $Staff -> count();
+        $array = $Staff[$count - 1] -> id + 1;
+
+        $staff -> id = $array;
         echo $staff -> fullName = $request -> fullName;
         echo $staff -> phone = $request -> phone;
         echo $staff -> address = $request -> address;
-        //echo $staff -> image = $request -> image;
         echo $staff -> dateOfBirth = $request -> dob;
         echo $staff -> salary = $request -> salary;
         echo $staff -> idRole = $request -> idRole;

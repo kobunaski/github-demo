@@ -15,9 +15,12 @@ class SlotController extends Controller
         return view('admin.slot.add');
     }
     public function postAdd(Request $request){
-        $Slot = slot::all() -> count();
+        $Slot = slot::all();
         $slot = new slot;
-        $array = $Slot + 1;
+
+        $count = $Slot -> count();
+        $array = $Slot[$count - 1] -> id + 1;
+
         $slot -> id = $array;
         $slot -> save();
         return redirect('admin/slot/add') -> with('notificate','Add successfully');

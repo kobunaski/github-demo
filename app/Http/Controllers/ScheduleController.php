@@ -15,9 +15,12 @@ class ScheduleController extends Controller
         return view('admin.schedule.add');
     }
     public function postAdd(Request $request){
-        $Schedule = schedule::all() -> count();
+        $Schedule = schedule::all();
         $schedule = new schedule;
-        $array = $Schedule + 1;
+
+        $count = $Schedule -> count();
+        $array = $Schedule[$count - 1] -> id + 1;
+
         $schedule -> id = $array;
         $schedule -> startTime = $request -> startTime;
         $schedule -> endTime = $request -> endTime;
