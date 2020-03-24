@@ -24,8 +24,11 @@ class SubjectController extends Controller
         ],[
             'nameSubject.required' => 'Subject name can\'t be empty'
         ]);
-
+        $Subject = schedule::all() -> count();
         $subject = new subject;
+        $array = $Subject + 1;
+        $subject -> id = $array;
+
         $subject -> nameSubject = $request -> nameSubject;
         $subject -> idUpload = 0;
         if ($request -> status == 1){

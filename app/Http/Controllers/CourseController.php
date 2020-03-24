@@ -33,7 +33,10 @@ class CourseController extends Controller
             'idSubject.required' => 'Choose a subject'
         ]);
 
-        $course = new course;
+        $Course = room::all() -> count();
+        $course = new room;
+        $array = $Course + 1;
+        $course -> id = $array;
         $course -> courseName = $request -> courseName;
         $course -> idStaff = 0;
         $course -> idStudent = 0;

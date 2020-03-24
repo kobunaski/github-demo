@@ -46,8 +46,11 @@ class NewsController extends Controller
             'title.required' =>'You have to enter the news title',
             'title.min'=>'You must input more than 5 characters',
         ]);
-
+        $News = news::all() -> count();
         $news = new news;
+        $array = $News + 1;
+        $news -> id = $array;
+
         $news -> title = $request -> title;
         $news -> content = $request -> content1;
         $news -> status = $request -> status;
