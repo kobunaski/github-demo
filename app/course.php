@@ -18,4 +18,8 @@ class course extends Model
     public function idStudent(){
         return $this -> hasMany('App\student', 'idStudent', 'id');
     }
+
+    public function idSubject(){
+        return $this -> hasMany('App\subject', 'idSubject', 'id');
+    }
 }

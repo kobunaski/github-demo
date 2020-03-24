@@ -34,6 +34,14 @@
                                                             <input name="content1" type="text" class="form-control" placeholder="Content upload">
                                                         </div>
 
+                                                        <div class="form-group">
+                                                            <select name="idSubject" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select Subject for homework upload</option>
+                                                                @foreach($subject as $rl)
+                                                                    <option value={{$rl -> id}}>{{$rl -> nameSubject}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">

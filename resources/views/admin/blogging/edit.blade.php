@@ -34,6 +34,17 @@
                                                             <input name="content1" type="text" class="form-control" placeholder="Content upload" value="{{$blogging->content}}">
                                                         </div>
 
+                                                        <div class="form-group">
+                                                            <select name="idSubject" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select Subject for homework upload</option>
+                                                                @foreach($subject as $rl)
+                                                                    @if($blogging -> idSubject == $rl -> id)
+                                                                        <option value={{$rl -> id}} selected>{{$rl -> nameSubject}}</option>
+                                                                    @endif
+                                                                        <option value={{$rl -> id}}>{{$rl -> nameSubject}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">

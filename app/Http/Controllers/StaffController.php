@@ -31,7 +31,6 @@ class StaffController extends Controller
             'dob' => 'required',
             'salary' => 'required',
             'idRole' => 'required',
-            'idSchedule' => 'required',
             'gender' => 'required',
             'userName' => 'required',
             'password' => 'required',
@@ -44,7 +43,6 @@ class StaffController extends Controller
             'dob.required' => 'You haven\'t input date of birth',
             'salary.required' => 'You haven\'t input salary',
             'idRole.required' => 'You haven\'t choose role',
-            'idSchedule.required' => 'You haven\'t choose schedule',
             'gender.required' => 'You haven\'t choose gender',
             'userName.required' => 'You haven\'t input username',
             'password.required' => 'You haven\'t input password',
@@ -60,7 +58,6 @@ class StaffController extends Controller
         echo $staff -> dateOfBirth = $request -> dob;
         echo $staff -> salary = $request -> salary;
         echo $staff -> idRole = $request -> idRole;
-        echo $staff -> idSchedule = $request -> idSchedule;
         echo $staff -> gender = $request -> gender;
         if ($request -> status == 1){
             echo $staff -> status = 1;
@@ -104,7 +101,6 @@ class StaffController extends Controller
             'dateOfBirth' => 'required',
             'salary' => 'required',
             'idRole' => 'required',
-            'idSchedule' => 'required',
             'gender' => 'required',
             'userName' => 'required',
             'password' => 'required',
@@ -117,7 +113,6 @@ class StaffController extends Controller
             'dateOfBirth.required' => 'You haven\'t input date of birth',
             'salary.required' => 'You haven\'t input salary',
             'idRole.required' => 'You haven\'t choose role',
-            'idSchedule.required' => 'You haven\'t choose schedule',
             'gender.required' => 'You haven\'t choose gender',
             'userName.required' => 'You haven\'t input username',
             'password.required' => 'You haven\'t input password',

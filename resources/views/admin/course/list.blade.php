@@ -30,7 +30,13 @@
                                 <h2>{{$rl->courseName}}</h2>
                             </div>
                             <div class="course-des">
-                                <p><span><i class="fa fa-clock"></i></span> <b>Tutor Name: </b>{{$staff[($rl -> idStaff) - 1] -> fullName}}</p>
+                                <p><span><i class="fa fa-clock"></i></span> <b>Subject Name: </b>
+                                    @foreach($subject as $sj)
+                                        @if($rl -> idSubject == $sj -> id)
+                                            {{$sj -> nameSubject}}
+                                        @endif
+                                    @endforeach
+                                </p>
                             </div>
                             <div class="product-buttons">
                                 <a type="button" class="button-default cart-btn" href="admin/course/edit/{{$rl->id}}">Edit course</a>

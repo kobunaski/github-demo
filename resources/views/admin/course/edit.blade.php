@@ -37,13 +37,13 @@
                                                             <input name="courseName" type="text" class="form-control" value="{{$course -> courseName}}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <select name="idStaff" class="form-control">
-                                                                <option value="none" selected="" disabled="">Select Teacher</option>
-                                                                @foreach($staff as $rl)
-                                                                    @if($rl -> id == $course -> idStaff)
-                                                                        <option value="{{$rl -> id}}" selected>{{$rl -> fullName}}</option>
-                                                                    @elseif ($rl -> id == 1)
-                                                                        <option value={{$rl -> id}}>{{$rl -> fullName}}</option>
+                                                            <select name="idSubject" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select Subject</option>
+                                                                @foreach($subject as $rl)
+                                                                    @if($course -> idSubject == $rl -> id)
+                                                                        <option value="{{$rl -> id}}" selected>{{$rl -> nameSubject}}</option>
+                                                                    @else
+                                                                        <option value={{$rl -> id}}>{{$rl -> nameSubject}}</option>
                                                                     @endif
                                                                 @endforeach
                                                             </select>

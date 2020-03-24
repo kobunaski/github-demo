@@ -61,15 +61,6 @@
                                                             <div class="form-group">
                                                                 <input name="email" type="text" class="form-control" placeholder="Email">
                                                             </div>
-                                                            {{--<div class="form-group alert-up-pd">--}}
-                                                                {{--<div class="dz-message needsclick download-custom">--}}
-                                                                    {{--<i class="fa fa-download edudropnone" aria-hidden="true"></i>--}}
-                                                                    {{--<h2 class="edudropnone">Drop image here or click to upload.</h2>--}}
-                                                                    {{--<p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>--}}
-                                                                    {{--</p>--}}
-                                                                    {{--<input name="imageico" class="hd-pro-img" type="text" />--}}
-                                                                {{--</div>--}}
-                                                            {{--</div>--}}
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
@@ -85,17 +76,6 @@
                                                                     @foreach($role as $rl)
                                                                         <option value={{$rl -> id}}>{{$rl -> roleName}}</option>
                                                                     @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <select name="idSchedule" class="form-control">
-                                                                    <option value="none" selected="" disabled="">Select Schedule For Teacher</option>
-                                                                    <option value="0">Gujarat</option>
-                                                                    <option value="1">Maharastra</option>
-                                                                    <option value="2">Rajastan</option>
-                                                                    <option value="3">Maharastra</option>
-                                                                    <option value="4">Rajastan</option>
-                                                                    <option value="5">Gujarat</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">

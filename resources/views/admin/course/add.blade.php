@@ -11,8 +11,6 @@
                         </h2>
                         <ul id="myTabedu1" class="tab-review-design">
                             <li class="active"><a href="#description">Basic Information</a></li>
-                            <li><a href="#reviews"> Account Information</a></li>
-                            <li><a href="#INFORMATION">Social Information</a></li>
                         </ul>
                         <div id="myTabContent" class="tab-content custom-product-edit">
                             <div class="product-tab-list tab-pane fade active in" id="description">
@@ -41,12 +39,10 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <select name="idStaff" class="form-control">
-                                                                    <option value="none" selected="" disabled="">Select Teacher</option>
-                                                                    @foreach($staff as $rl)
-                                                                        @if($rl -> id == 1)
-                                                                            <option value={{$rl -> id}}>{{$rl -> fullName}}</option>
-                                                                        @endif
+                                                                <select name="idSubject" class="form-control">
+                                                                    <option value="none" selected="" disabled="">Select Subject for course</option>
+                                                                    @foreach($subject as $rl)
+                                                                            <option value={{$rl -> id}}>{{$rl -> nameSubject}}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -60,59 +56,6 @@
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-tab-list tab-pane fade" id="reviews">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <form id="acount-infor" action="#" class="acount-infor">
-                                                        <div class="devit-card-custom">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" name="email" placeholder="Email">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input name="password" type="password" class="form-control" placeholder="Password">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input name="confarmpassword" type="password" class="form-control" placeholder="Confirm Password">
-                                                            </div>
-                                                            <a href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-tab-list tab-pane fade" id="INFORMATION">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Facebook URL">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Twitter URL">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Google Plus">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Linkedin URL">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

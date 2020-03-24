@@ -14,8 +14,4 @@ class staff extends Model
     public function idRole(){
         return $this -> belongsTo('App\role','idRole', 'id');
     }
-
-    public function idSchedule(){
-        return $this -> belongsTo('App\schedule', 'idSchedule', 'id');
-    }
 }

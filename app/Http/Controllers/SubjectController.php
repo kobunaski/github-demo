@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\subject;
+use App\subject, App\blogging;
 
 class SubjectController extends Controller
 {
@@ -27,7 +27,6 @@ class SubjectController extends Controller
 
         $subject = new subject;
         $subject -> nameSubject = $request -> nameSubject;
-        $subject -> idBlogging = 0;
         $subject -> idUpload = 0;
         if ($request -> status == 1){
             echo $subject -> status = 1;
@@ -54,8 +53,7 @@ class SubjectController extends Controller
             'nameSubject.required' => 'Subject name can\'t be empty'
         ]);
 
-        $subject -> nameSubject = $request->nameSubject;
-        $subject -> idBlogging = 0;
+        $subject -> nameSubject = $request -> nameSubject;
         $subject -> idUpload = 0;
         if ($request -> status == 1){
             echo $subject -> status = 1;
