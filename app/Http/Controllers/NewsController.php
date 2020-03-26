@@ -27,6 +27,13 @@ class NewsController extends Controller
         $news -> title = $request -> title;
         $news -> content = $request -> content1;
         $news -> status = $request -> status;
+        if($request -> hasFile('image'))
+        {
+            $file = $request -> file('image');
+            $image = $file ->getClientOriginalName();
+            $file -> move('admin_asset/upload/image/news', $image);
+            $news -> image = $image;
+        }
         if ($request -> status == 1){
             $news -> status = 1;
         } else {
@@ -62,6 +69,15 @@ class NewsController extends Controller
 
         $news -> title = $request -> title;
         $news -> content = $request -> content1;
+        if($request -> hasFile('image'))
+        {
+            $file = $request -> file('image');
+            $image = $file ->getClientOriginalName();
+            $file -> move('admin_asset/upload/image/news', $image);
+            $news -> image = $image;
+        }else{
+            $news -> image = "";
+        }
         $news -> status = $request -> status;
         if ($request -> status == 1){
             $news -> status = 1;
@@ -70,7 +86,7 @@ class NewsController extends Controller
         }
         //echo $news -> status;
         $news -> save();
-        return redirect('admin/news/add') -> with('notificate','Add successfully');
+        return redirect('admin/news/list') -> with('notificate','Add successfully');
     }
 
     public function getDelete($id){

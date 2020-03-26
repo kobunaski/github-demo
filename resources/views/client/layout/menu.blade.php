@@ -11,12 +11,12 @@
                         Menu
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" href="student-index.html" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
+                        <a class="nav-link active" href="client/student/profile" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
                             <i class="fa fa-fw fa-user-circle"></i>Student
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="student-news.html" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
+                        <a class="nav-link" href="client/student/news" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
                             <i class="fab fa-fw fa-wpforms"></i>News</a>
                     </li>
                     <li class="nav-item">
