@@ -44,7 +44,7 @@
                                                     <input name="phone" type="number" class="form-control" placeholder="Phone">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input name="facebook" type="number" class="form-control" placeholder="Facebook">
+                                                    <input name="facebook" type="text" class="form-control" placeholder="Facebook">
                                                 </div>
                                                 <div class="form-group">
                                                     <input name="dateOfBirth" type="date" class="form-control" placeholder="Date of birth">

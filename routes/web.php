@@ -166,16 +166,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function(){
 
 Route::get('client/login', 'UserController@getLoginClient');
 Route::post('client/login', 'UserController@postLoginClient');
+Route::get('client/logout', 'UserController@getLogoutClient');
 
 Route::group(['prefix' => 'client'], function(){
-    Route::group(['prefix' => 'student'], function(){
-        Route::get('profile', 'ClientController@getProfile');
+    Route::group(['prefix' => 'student', 'middleware' => 'studentLogin'], function(){
+        Route::get('profile', 'ClientController@getStudentProfile');
 
         Route::get('edit/{id}', 'ClientController@getEdit');
-        Route::post('edit/{id}', 'ClientController@postEditProfile');
+        Route::post('edit/{id}', 'ClientController@postEditStudentProfile');
 
         Route::get('news', 'ClientController@getListNews');
     });
 
+
+    Route::group(['prefix' => 'tutor', 'middleware' => 'tutorLogin'], function(){
+        Route::get('profile', 'ClientController@getTutorProfile');
+
+        Route::get('edit/{id}', 'ClientController@getEdit');
+        Route::post('edit/{id}', 'ClientController@postEditTutorProfile');
+
+        Route::get('news', 'ClientController@getListNews');
+    });
 
 });

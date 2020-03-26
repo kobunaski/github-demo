@@ -149,8 +149,11 @@ class UserController extends Controller
 //        ], []);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
-            return redirect('client/student/profile');
-            //echo Auth::user() -> name;
+            if (Auth::user() -> idRole == 4){
+                return redirect('client/student/profile');
+            } else if (Auth::user() -> idRole == 2) {
+                return redirect('client/tutor/profile');
+            }
         } else {
             return redirect('client/login') -> with('notificate', 'Login unsuccessfully');
         }

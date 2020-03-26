@@ -41,7 +41,13 @@
                             <div class="text-center">
                                 <h2 class="font-24 mb-0">{{$user_login -> name}}</h2>
                                 <a href="#">Reset Password</a>
-                                <p>Role: {{$user_login -> idRole}}</p>
+                                <p>
+                                    @foreach($role as $rl)
+                                        @if($rl -> id == $user_login -> idRole)
+                                            Role: {{$rl -> roleName}}
+                                        @endif
+                                    @endforeach
+                                </p>
                             </div>
                         </div>
                         <div class="card-body border-top">
@@ -99,7 +105,7 @@
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="media influencer-profile-data d-flex align-items-center p-2">
                                                     {{--<div class="mr-4">--}}
-                                                        {{--<img src="client_asset/upload/image/student/" alt="" class="user-avatar-lg">--}}
+                                                        {{--<img src="client_asset/upload/image/user/" alt="" class="user-avatar-lg">--}}
                                                     {{--</div>--}}
                                                     <div class="media-body ">
                                                         <div class="influencer-profile-data">
