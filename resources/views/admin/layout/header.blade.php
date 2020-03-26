@@ -160,14 +160,11 @@
                                             </div>
                                         </li>
                                         <li class="nav-item">
+                                            @if(isset($user_login))
                                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                 <img src="img/product/pro4.jpg" alt="" />
 
-                                                @if(isset($user_login))
                                                 <span class="admin-name">{{$user_login -> name}}</span>
-                                                    @else
-                                                    Dang nhap khong duoc
-                                                @endif
                                                 <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                             </a>
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -182,6 +179,9 @@
                                                 <li><a href="admin/logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                 </li>
                                             </ul>
+                                            @else
+                                                <span class="admin-name"><a href="admin/login">Login</a></span>
+                                            @endif
                                         </li>
                                         <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-menu"></i></a>
 

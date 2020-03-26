@@ -133,4 +133,9 @@ class UserController extends Controller
             return redirect('admin/login') -> with('notificate', 'Login unsuccessfully');
         }
     }
+
+    public function getLogoutAdmin(){
+        Auth::logout();
+        return redirect('admin/login');
+    }
 }
