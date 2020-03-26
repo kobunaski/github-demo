@@ -163,3 +163,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function(){
         Route::get('delete/{id}', 'BloggingController@getDelete');
     });
 });
+
+ Route::group(['prefix' => 'client'], function(){
+     Route::group(['prefix' => 'student'], function(){
+         Route::get('profile', 'ClientController@getProfile');
+
+         Route::get('edit/{id}', 'ClientController@getEdit');
+         Route::post('edit/{id}', 'ClientController@postEdit');
+
+         Route::get('add', 'ClientController@getAdd');
+         Route::post('add', 'ClientController@postAdd');
+
+         Route::get('delete/{id}', 'ClientController@getDelete');
+     });
+ });
