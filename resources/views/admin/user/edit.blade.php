@@ -27,53 +27,52 @@
                                                 {{session('notificate')}}
                                             </div>
                                         @endif
-                                        <form action="admin/student/edit/{{$student->id}}" method="POST" enctype="multipart/form-data" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                        <form action="admin/user/edit/{{$user->id}}" method="POST" enctype="multipart/form-data" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
-                                                        <input name="fullName" type="text" class="form-control" placeholder="Full Name" value="{{$student->fullName}}">
+                                                        <input name="name" type="text" class="form-control" placeholder="Full Name" value="{{$user->name}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input name="userName" type="text" class="form-control" placeholder="User name" value="{{$student->userName}}">
+                                                        <input name="email" type="text" class="form-control" placeholder="email" value="{{$user->email}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input name="password" type="password" class="form-control" placeholder="Password" value="{{$student->password}}">
+                                                        <input name="password" type="password" class="form-control" placeholder="Password" value="{{$user->password}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input name="email" type="text" class="form-control" placeholder="Email" value="{{$student->email}}">
+                                                        <input name="facebook" type="text" class="form-control" placeholder="Facebook" value="{{$user->facebook}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input name="phone" type="number" class="form-control" placeholder="Phone" value="{{$student->phone}}">
+                                                        <input name="phone" type="number" class="form-control" placeholder="Phone" value="{{$user->phone}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input name="dateOfBirth" type="date" class="form-control" placeholder="Date of birth" value="{{$student->dateOfBirth}}">
+                                                        <input name="dateOfBirth" type="date" class="form-control" placeholder="Date of birth" value="{{$user->dateOfBirth}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input name="address" type="text" class="form-control" placeholder="Address" value="{{$student->address}}">
+                                                        <input name="address" type="text" class="form-control" placeholder="Address" value="{{$user->address}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Image</label>
-                                                        <p><img width="400px" src="admin_asset/upload/image/student/{{$student->image}}" alt="" /> </p>
-                                                        <input name="image" type="file" class="form-control" value="{{$student->image}}">
-                                                    </div>
-                                                    {{--                                                <div class="form-group alert-up-pd">--}}
-                                                    {{--                                                    <div class="dz-message needsclick download-custom">--}}
-                                                    {{--                                                        <i class="fa fa-download edudropnone" aria-hidden="true"></i>--}}
-                                                    {{--                                                        <h2 class="edudropnone">Drop image here or click to upload.</h2>--}}
-                                                    {{--                                                        <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>--}}
-                                                    {{--                                                        </p>--}}
-                                                    {{--                                                        <input name="imageico" class="hd-pro-img" type="text" />--}}
-                                                    {{--                                                    </div>--}}
-                                                    {{--                                                </div>--}}
+                                                        <p><img width="400px" src="admin_asset/upload/image/student/{{$user->image}}" alt="" /> </p>
+                                                        <input name="image" type="file" class="form-control" value="{{$user->image}}">
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
-                                                        <input name="idSchedule" type="text" class="form-control" placeholder="Id schedule" value="{{$student->idSchedule}}">
+                                                        <select name="idRole" class="form-control">
+                                                            <option value="none" selected="" disabled="">Select Role</option>
+                                                            @foreach($role as $rl)
+                                                                @if($rl -> id == $user -> idRole)
+                                                                    <option value="{{$rl -> id}}" selected>{{$rl -> roleName}}</option>
+                                                                @else
+                                                                    <option value={{$rl -> id}}>{{$rl -> roleName}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <select name="gender" class="form-control">
-                                                            @if($student -> gender == 'F')
+                                                            @if($user -> gender == 'F')
                                                                 <option value="none" disabled="">Select Gender</option>
                                                                 <option value="M">Male</option>
                                                                 <option value="F" selected="">Female</option>
@@ -86,12 +85,11 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <a>Status</a>
-                                                        @if($student -> status == 1)
+                                                        @if($user -> status == 1)
                                                             <input type="checkbox" name="status" value=1 checked />
                                                         @else
                                                             <input type="checkbox" name="status" value=1 />
                                                         @endif
-
                                                     </div>
                                                 </div>
                                             </div>

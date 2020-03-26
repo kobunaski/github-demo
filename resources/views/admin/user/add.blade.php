@@ -27,24 +27,24 @@
                                             {{session('notificate')}}
                                         </div>
                                     @endif
-                                    <form action="admin/student/add" method="POST" enctype="multipart/form-data" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                    <form action="admin/user/add" method="POST" enctype="multipart/form-data" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <input name="fullName" type="text" class="form-control" placeholder="Full Name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="userName" type="text" class="form-control" placeholder="User name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="password" type="password" class="form-control" placeholder="Password">
+                                                    <input name="name" type="text" class="form-control" placeholder="Full Name">
                                                 </div>
                                                 <div class="form-group">
                                                     <input name="email" type="text" class="form-control" placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
+                                                    <input name="password" type="password" class="form-control" placeholder="Password">
+                                                </div>
+                                                <div class="form-group">
                                                     <input name="phone" type="number" class="form-control" placeholder="Phone">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="facebook" type="number" class="form-control" placeholder="Facebook">
                                                 </div>
                                                 <div class="form-group">
                                                     <input name="dateOfBirth" type="date" class="form-control" placeholder="Date of birth">
@@ -52,23 +52,15 @@
                                                 <div class="form-group">
                                                     <input name="address" type="text" class="form-control" placeholder="Address">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Image</label>
-                                                    <input name="image" type="file" class="form-control">
-                                                </div>
-{{--                                                <div class="form-group alert-up-pd">--}}
-{{--                                                    <div class="dz-message needsclick download-custom">--}}
-{{--                                                        <i class="fa fa-download edudropnone" aria-hidden="true"></i>--}}
-{{--                                                        <h2 class="edudropnone">Drop image here or click to upload.</h2>--}}
-{{--                                                        <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>--}}
-{{--                                                        </p>--}}
-{{--                                                        <input name="imageico" class="hd-pro-img" type="text" />--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <input name="idSchedule" type="text" class="form-control" placeholder="Id schedule">
+                                                    <select name="idRole" class="form-control">
+                                                        <option value="none" selected="" disabled="">Select Role</option>
+                                                        @foreach($role as $rl)
+                                                            <option value={{$rl -> id}}>{{$rl -> roleName}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <select name="gender" class="form-control">
@@ -76,6 +68,10 @@
                                                         <option value="0">Male</option>
                                                         <option value="1">Female</option>
                                                     </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Image</label>
+                                                    <input name="image" type="file" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <a>Status</a>

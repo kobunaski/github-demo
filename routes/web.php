@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('admin/login', 'UserController@getLoginAdmin');
+Route::post('admin/login', 'UserController@postLoginAdmin');
+
 Route::group(['prefix' => 'admin'], function(){
     Route::group(['prefix' => 'role'], function(){
         Route::get('list', 'RoleController@getList');
@@ -97,17 +100,17 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('delete/{id}', 'NewsController@getDelete');
     });
 
-    Route::group (['prefix'=>'student'],function(){
+    Route::group (['prefix'=>'user'],function(){
         //admin/news/list
-        Route::get('list', 'StudentController@getList');
+        Route::get('list', 'UserController@getList');
 
-        Route::get('edit/{id}', 'StudentController@getEdit');
-        Route::post('edit/{id}', 'StudentController@postEdit');
+        Route::get('edit/{id}', 'UserController@getEdit');
+        Route::post('edit/{id}', 'UserController@postEdit');
 
-        Route::get('add', 'StudentController@getAdd');
-        Route::post('add', 'StudentController@postAdd');
+        Route::get('add', 'UserController@getAdd');
+        Route::post('add', 'UserController@postAdd');
 
-        Route::get('delete/{id}', 'StudentController@getDelete');
+        Route::get('delete/{id}', 'UserController@getDelete');
     });
 
     Route::group (['prefix'=>'slot'],function(){
