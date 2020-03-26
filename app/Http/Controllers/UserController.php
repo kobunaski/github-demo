@@ -138,4 +138,26 @@ class UserController extends Controller
         Auth::logout();
         return redirect('admin/login');
     }
+
+    public function getLoginClient(){
+        return view('client.login');
+    }
+
+    public function postloginClient(Request $request){
+//        $this->validate($request, [
+//            'email' => 'required',
+//        ], []);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
+            return redirect('client/student/profile');
+            //echo Auth::user() -> name;
+        } else {
+            return redirect('client/login') -> with('notificate', 'Login unsuccessfully');
+        }
+    }
+
+    public function getLogoutClient(){
+        Auth::logout();
+        return redirect('client/login');
+    }
 }

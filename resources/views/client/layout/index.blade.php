@@ -80,6 +80,8 @@
 <!-- main js -->
 <script src="client_asset/libs/js/main-js.js"></script>
 
+@yield('script')
+
 </body>
 
 </html>

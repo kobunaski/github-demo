@@ -1,7 +1,8 @@
 @extends('client.layout.index')
 
 @section('contentClient')
-    <div class="influence-profile">
+    @if(isset($user_login))
+        <div class="influence-profile">
         <div class="container-fluid dashboard-content ">
             <!-- ============================================================== -->
             <!-- pageheader -->
@@ -30,23 +31,25 @@
                     <!-- ============================================================== -->
                     <!-- card profile -->
                     <!-- ============================================================== -->
-                    @foreach($User as $us)
+                    {{--@foreach($User as $us)--}}
+
                     <div class="card">
                         <div class="card-body">
                             <div class="user-avatar text-center d-block">
                                 <img src="" alt="User Avatar" class="rounded-circle user-avatar-xxl">
                             </div>
                             <div class="text-center">
-                                <h2 class="font-24 mb-0">{{$us->name}}</h2>
-                                <p>Role:</p>
+                                <h2 class="font-24 mb-0">{{$user_login -> name}}</h2>
+                                <a href="#">Reset Password</a>
+                                <p>Role: {{$user_login -> idRole}}</p>
                             </div>
                         </div>
                         <div class="card-body border-top">
                             <h3 class="font-16">Contact Information</h3>
                             <div class="">
                                 <ul class="list-unstyled mb-0">
-                                    <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{$us-> email}}</li>
-                                    <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>{{$us-> phone}}</li>
+                                    <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{$user_login-> email}}</li>
+                                    <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>{{$user_login-> phone}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -55,10 +58,10 @@
                             <h3 class="font-16">More information</h3>
                             <div class="">
                                 <ul class="mb-0 list-unstyled">
-                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>{{$us-> facebook}}</a></li>
-                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-twitter-square mr-1 twitter-color"></i>{{$us-> address}}</a></li>
-                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>{{$us-> dayOfBirth}}</a></li>
-                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>{{$us-> gender}}</a></li>
+                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>{{$user_login-> facebook}}</a></li>
+                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-twitter-square mr-1 twitter-color"></i>{{$user_login-> address}}</a></li>
+                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>{{$user_login-> dayOfBirth}}</a></li>
+                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>{{$user_login-> gender}}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -69,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    {{--@endforeach--}}
                     <!-- ============================================================== -->
                     <!-- end card profile -->
                     <!-- ============================================================== -->
@@ -80,399 +83,128 @@
                 <!-- ============================================================== -->
                 <!-- campaign data -->
                 <!-- ============================================================== -->
-{{--                <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">--}}
-{{--                    <!-- ============================================================== -->--}}
-{{--                    <!-- campaign tab one -->--}}
-{{--                    <!-- ============================================================== -->--}}
-{{--                    <div class="influence-profile-content pills-regular">--}}
-{{--                        <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab" aria-controls="pills-campaign" aria-selected="true">Campaign</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages" aria-selected="false">Packages</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="false">Reviews</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link" id="pills-msg-tab" data-toggle="pill" href="#pills-msg" role="tab" aria-controls="pills-msg" aria-selected="false">Send Messages</a>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
-{{--                        <div class="tab-content" id="pills-tabContent">--}}
-{{--                            <div class="tab-pane fade show active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">--}}
-{{--                                        <div class="section-block">--}}
-{{--                                            <h3 class="section-title">My Campaign State</h3>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">--}}
-{{--                                        <div class="card">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <h1 class="mb-1">9</h1>--}}
-{{--                                                <p>Campaign Invitations</p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">--}}
-{{--                                        <div class="card">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <h1 class="mb-1">35</h1>--}}
-{{--                                                <p>Finished Campaigns</p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">--}}
-{{--                                        <div class="card">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <h1 class="mb-1">8</h1>--}}
-{{--                                                <p>Accepted Campaigns</p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">--}}
-{{--                                        <div class="card">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <h1 class="mb-1">1</h1>--}}
-{{--                                                <p>Declined Campaigns</p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="section-block">--}}
-{{--                                    <h3 class="section-title">Campaign List</h3>--}}
-{{--                                </div>--}}
-{{--                                <div class="card">--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <div class="row">--}}
-{{--                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">--}}
-{{--                                                <div class="media influencer-profile-data d-flex align-items-center p-2">--}}
-{{--                                                    <div class="mr-4">--}}
-{{--                                                        <img src="../assets/images/slack.png" alt="User Avatar" class="user-avatar-lg">--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="media-body ">--}}
-{{--                                                        <div class="influencer-profile-data">--}}
-{{--                                                            <h3 class="m-b-10">Your Campaign Title Here</h3>--}}
-{{--                                                            <p>--}}
-{{--                                                                        <span class="m-r-20 d-inline-block">Draft Due Date--}}
-{{--                                                                            <span class="m-l-10 text-primary">24 Jan 2018</span>--}}
-{{--                                                                        </span>--}}
-{{--                                                                <span class="m-r-20 d-inline-block"> Publish Date--}}
-{{--                                                                            <span class="m-l-10 text-secondary">30 Feb 2018</span>--}}
-{{--                                                                        </span>--}}
-{{--                                                                <span class="m-r-20 d-inline-block">Ends <span class="m-l-10  text-info">30 May, 2018</span>--}}
-{{--                                                                        </span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="border-top card-footer p-0">--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">45k</h4>--}}
-{{--                                            <p>Total Reach</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">29k</h4>--}}
-{{--                                            <p>Total Views</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">5k</h4>--}}
-{{--                                            <p>Total Click</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">4k</h4>--}}
-{{--                                            <p>Engagement</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">2k</h4>--}}
-{{--                                            <p>Conversion</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="card">--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <div class="row">--}}
-{{--                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">--}}
-{{--                                                <div class="media influencer-profile-data d-flex align-items-center p-2">--}}
-{{--                                                    <div class="mr-4">--}}
-{{--                                                        <img src="../assets/images/dribbble.png" alt="User Avatar" class="rounded-circle user-avatar-lg">--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="media-body">--}}
-{{--                                                        <h3 class="m-b-10">Your Campaign Title Here</h3>--}}
-{{--                                                        <p><span class="m-r-20 d-inline-block">Draft Due Date<span class="m-l-10 d-inline-block text-primary">28 Jan 2018</span></span><span class="m-r-20 d-inline-block"> Publish Date<span class="m-l-10 text-secondary">20 March 2018</span></span><span class="m-r-20">Ends<span class="m-l-10 text-info">10 July, 2018</span></span>--}}
-{{--                                                        </p>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="border-top card-footer p-0">--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0 ">35k</h4>--}}
-{{--                                            <p>Total Reach</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0 ">45k</h4>--}}
-{{--                                            <p>Total Views</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">8k</h4>--}}
-{{--                                            <p>Total Click</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0 ">10k</h4>--}}
-{{--                                            <p>Engagement</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">3k</h4>--}}
-{{--                                            <p>Conversion</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="card">--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <div class="row">--}}
-{{--                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">--}}
-{{--                                                <div class="media influencer-profile-data d-flex align-items-center p-2">--}}
-{{--                                                    <div class="mr-4">--}}
-{{--                                                        <img src="../assets/images/dropbox.png" alt="User Avatar" class="user-avatar-lg">--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="media-body">--}}
-{{--                                                        <h3 class="m-b-10">Your Campaign Title Here</h3>--}}
-{{--                                                        <p><span class="m-r-20 d-inline-block">Draft Due Date--}}
-{{--                                                                    <span class="m-l-10 text-primary">05 Feb 2018</span></span>--}}
-{{--                                                            <span class="m-r-20 d-inline-block"> Publish Date--}}
-{{--                                                                        <span class="m-l-10 text-secondary">14 May 2018</span></span><span class="m-r-20 d-inline-block">Ends<span class="m-l-10 text-info">16 Aug, 2018</span></span>--}}
-{{--                                                        </p>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="border-top card-footer p-0">--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">40k</h4>--}}
-{{--                                            <p>Total Reach</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0 ">35k</h4>--}}
-{{--                                            <p>Total Views</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">5k</h4>--}}
-{{--                                            <p>Total Click</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">15k</h4>--}}
-{{--                                            <p>Engagement</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="campaign-metrics d-xl-inline-block">--}}
-{{--                                            <h4 class="mb-0">14k</h4>--}}
-{{--                                            <p>Conversion</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-packages-tab">--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">--}}
-{{--                                        <div class="section-block">--}}
-{{--                                            <h2 class="section-title">My Packages</h2>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">--}}
-{{--                                        <div class="card">--}}
-{{--                                            <div class="card-header bg-primary text-center p-3 ">--}}
-{{--                                                <h4 class="mb-0 text-white"> Basic</h4>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="card-body text-center">--}}
-{{--                                                <h1 class="mb-1">$150</h1>--}}
-{{--                                                <p>Per Month Plateform</p>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="card-body border-top">--}}
-{{--                                                <ul class="list-unstyled bullet-check font-14">--}}
-{{--                                                    <li>Facebook, Instagram, Pinterest,Snapchat.</li>--}}
-{{--                                                    <li>Guaranteed follower growth for increas brand awareness.</li>--}}
-{{--                                                    <li>Daily updates on choose platforms</li>--}}
-{{--                                                    <li>Stronger customer service through daily interaction</li>--}}
-{{--                                                    <li>Monthly progress report</li>--}}
-{{--                                                    <li>1 Million Followers</li>--}}
-{{--                                                </ul>--}}
-{{--                                                <a href="#" class="btn btn-outline-secondary btn-block btn-lg">Get Started</a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">--}}
-{{--                                        <div class="card">--}}
-{{--                                            <div class="card-header bg-info text-center p-3">--}}
-{{--                                                <h4 class="mb-0 text-white"> Standard</h4>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="card-body text-center">--}}
-{{--                                                <h1 class="mb-1">$350</h1>--}}
-{{--                                                <p>Per Month Plateform</p>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="card-body border-top">--}}
-{{--                                                <ul class="list-unstyled bullet-check font-14">--}}
-{{--                                                    <li>Facebook, Instagram, Pinterest,Snapchat.</li>--}}
-{{--                                                    <li>Guaranteed follower growth for increas brand awareness.</li>--}}
-{{--                                                    <li>Daily updates on choose platforms</li>--}}
-{{--                                                    <li>Stronger customer service through daily interaction</li>--}}
-{{--                                                    <li>Monthly progress report</li>--}}
-{{--                                                    <li>2 Blog Post & 3 Social Post</li>--}}
-{{--                                                    <li>5 Millions Followers</li>--}}
-{{--                                                    <li>Growth Result</li>--}}
-{{--                                                </ul>--}}
-{{--                                                <a href="#" class="btn btn-secondary btn-block btn-lg">Get Started</a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">--}}
-{{--                                        <div class="card">--}}
-{{--                                            <div class="card-header bg-primary text-center p-3">--}}
-{{--                                                <h4 class="mb-0 text-white">Premium</h4>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="card-body text-center">--}}
-{{--                                                <h1 class="mb-1">$550</h1>--}}
-{{--                                                <p>Per Month Plateform</p>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="card-body border-top">--}}
-{{--                                                <ul class="list-unstyled bullet-check font-14">--}}
-{{--                                                    <li>Facebook, Instagram, Pinterest,Snapchat.</li>--}}
-{{--                                                    <li>Guaranteed follower growth for increas brand awareness.</li>--}}
-{{--                                                    <li>Daily updates on choose platforms</li>--}}
-{{--                                                    <li>Stronger customer service through daily interaction</li>--}}
-{{--                                                    <li>Monthly progress report & Growth Result</li>--}}
-{{--                                                    <li>4 Blog Post & 6 Social Post</li>--}}
-{{--                                                </ul>--}}
-{{--                                                <a href="#" class="btn btn-secondary btn-block btn-lg">Contact us</a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">--}}
-{{--                                <div class="card">--}}
-{{--                                    <h5 class="card-header">Campaign Reviews</h5>--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <div class="review-block">--}}
-{{--                                            <p class="review-text font-italic m-0">“Quisque lobortis vestibulum elit, vel fermentum elit pretium et. Nullam id ultrices odio. Cras id nulla mollis, molestie diam eu, facilisis tortor. Mauris ultrices lectus laoreet commodo hendrerit. Nullam varius arcu sed aliquam imperdiet. Etiam ut luctus augue.”</p>--}}
-{{--                                            <div class="rating-star mb-4">--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <span class="text-dark font-weight-bold">Tabitha C. Campbell</span><small class="text-mute"> (Company name)</small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="card-body border-top">--}}
-{{--                                        <div class="review-block">--}}
-{{--                                            <p class="review-text font-italic m-0">“Maecenas rutrum viverra augue. Nulla in eros vitae ante ullamcorper congue. Praesent tristique massa ac arcu dapibus tincidunt. Mauris arcu mi, lacinia et ipsum vel, sollicitudin laoreet risus.”</p>--}}
-{{--                                            <div class="rating-star mb-4">--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <span class="text-dark font-weight-bold">Luise M. Michet</span><small class="text-mute"> (Company name)</small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="card-body border-top">--}}
-{{--                                        <div class="review-block">--}}
-{{--                                            <p class="review-text font-italic m-0">“ Cras non rutrum neque. Sed lacinia ex elit, vel viverra nisl faucibus eu. Aenean faucibus neque vestibulum condimentum maximus. In id porttitor nisi. Quisque sit amet commodo arcu, cursus pharetra elit. Nam tincidunt lobortis augueat euismod ante sodales non. ”</p>--}}
-{{--                                            <div class="rating-star mb-4">--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <span class="text-dark font-weight-bold">Gloria S. Castillo</span><small class="text-mute"> (Company name)</small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="card-body border-top">--}}
-{{--                                        <div class="review-block">--}}
-{{--                                            <p class="review-text font-italic m-0">“Vestibulum cursus felis vel arcu convallis, viverra commodo felis bibendum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin non auctor est, sed lacinia velit. Orci varius natoque penatibus et magnis dis parturient montes nascetur ridiculus mus.”</p>--}}
-{{--                                            <div class="rating-star mb-4">--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <span class="text-dark font-weight-bold">Virgina G. Lightfoot</span><small class="text-mute"> (Company name)</small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="card-body border-top">--}}
-{{--                                        <div class="review-block">--}}
-{{--                                            <p class="review-text font-italic m-0">“Integer pretium laoreet mi ultrices tincidunt. Suspendisse eget risus nec sapien malesuada ullamcorper eu ac sapien. Maecenas nulla orci, varius ac tincidunt non, ornare a sem. Aliquam sed massa volutpat, aliquet nibh sit amet, tincidunt ex. Donec interdum pharetra dignissim.”</p>--}}
-{{--                                            <div class="rating-star mb-4">--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                                <i class="fa fa-fw fa-star"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <span class="text-dark font-weight-bold">Ruby B. Matheny</span><small class="text-mute"> (Company name)</small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <nav aria-label="Page navigation example">--}}
-{{--                                    <ul class="pagination">--}}
-{{--                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
-{{--                                        <li class="page-item"><a class="page-link" href="#">1</a></li>--}}
-{{--                                        <li class="page-item active"><a class="page-link " href="#">2</a></li>--}}
-{{--                                        <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
-{{--                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </nav>--}}
-{{--                            </div>--}}
-{{--                            <div class="tab-pane fade" id="pills-msg" role="tabpanel" aria-labelledby="pills-msg-tab">--}}
-{{--                                <div class="card">--}}
-{{--                                    <h5 class="card-header">Send Messages</h5>--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <form>--}}
-{{--                                            <div class="row">--}}
-{{--                                                <div class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-3 col-md-12 col-sm-12 col-12 p-4">--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="name">Your Name</label>--}}
-{{--                                                        <input type="text" class="form-control form-control-lg" id="name" placeholder="">--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="email">Your Email</label>--}}
-{{--                                                        <input type="email" class="form-control form-control-lg" id="email" placeholder="">--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="subject">Subject</label>--}}
-{{--                                                        <input type="text" class="form-control form-control-lg" id="subject" placeholder="">--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="messages">Messgaes</label>--}}
-{{--                                                        <textarea class="form-control" id="messages" rows="3"></textarea>--}}
-{{--                                                    </div>--}}
-{{--                                                    <button type="submit" class="btn btn-primary float-right">Send Message</button>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </form>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- ============================================================== -->--}}
-{{--                    <!-- end campaign tab one -->--}}
-{{--                    <!-- ============================================================== -->--}}
-{{--                </div>--}}
+                <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
+                    <!-- ============================================================== -->
+                    <!-- campaign tab one -->
+                    <!-- ============================================================== -->
+                    <div class="influence-profile-content pills-regular">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
+                                <div class="section-block">
+                                    <h3 class="section-title">Edit Profile</h3>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="media influencer-profile-data d-flex align-items-center p-2">
+                                                    {{--<div class="mr-4">--}}
+                                                        {{--<img src="client_asset/upload/image/student/" alt="" class="user-avatar-lg">--}}
+                                                    {{--</div>--}}
+                                                    <div class="media-body ">
+                                                        <div class="influencer-profile-data">
+                                                            @if(count($errors) > 0)
+                                                                <div class="alert alert-danger">
+                                                                    @foreach($errors -> all() as $err)
+                                                                        {{$err}}<br>
+                                                                    @endforeach
+                                                                </div>
+                                                            @endif
+                                                            @if(session('notificate'))
+                                                                <div class="alert alert-success">
+                                                                    {{session('notificate')}}
+                                                                </div>
+                                                            @endif
+                                                            <form action="client/student/edit/{{$user_login -> id}}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                                                <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                        <div class="form-group">
+                                                                            <input name="email" type="text" class="form-control" placeholder="Email" value="{{$user_login -> email}}" disabled>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="checkbox" id="changePassword" class="checkbox" name="checkpassword">
+                                                                            <label>Change password?</label>
+                                                                            <input name="password" type="password" class="form-control password" placeholder="Password" disabled>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="confirmPassword" type="password" class="form-control confirmPassword" placeholder="Confirm Password" disabled>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="name" type="text" class="form-control" placeholder="Name" value="{{$user_login -> name}}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="address" type="text" class="form-control" placeholder="Address" value="{{$user_login -> address}}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="phone" type="text" class="form-control" placeholder="Phone" value="{{$user_login -> phone}}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="facebook" type="text" class="form-control" placeholder="Facebook" value="{{$user_login -> facebook}}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            {{--<select name="idRole" class="form-control" disabled="">--}}
+                                                                                {{--<option value="none" selected="" disabled="">Select Role</option>--}}
+                                                                                {{--@foreach($role as $rl)--}}
+                                                                                    {{--@if($rl -> id == $user_login -> idRole)--}}
+                                                                                        {{--<option value="{{$rl -> id}}" selected>{{$rl -> roleName}}</option>--}}
+                                                                                    {{--@else--}}
+                                                                                        {{--<option value={{$rl -> id}}>{{$rl -> roleName}}</option>--}}
+                                                                                    {{--@endif--}}
+                                                                                {{--@endforeach--}}
+                                                                            {{--</select>--}}
+                                                                            <input name="gender" type="text" class="form-control" placeholder="gender" value= @if($user_login -> gender == "M") "Male" @else "Female" @endif disabled>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="dateOfBirth" type="date" class="form-control" placeholder="Email" value="{{$user_login -> dateOfBirth}}" disabled>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="image" type="text" class="form-control" placeholder="Email" value="{{$user_login -> email}}" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="payment-adress">
+                                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end campaign tab one -->
+                    <!-- ============================================================== -->
+                </div>
                 <!-- ============================================================== -->
                 <!-- end campaign data -->
                 <!-- ============================================================== -->
             </div>
         </div>
     </div>
+        @section('script')
+            <script>
+                $(document).ready(function () {
+                    $("#changePassword").change(function () {
+                        if ($(this).is(":checked")){
+                            $(".password").prop('disabled', false);
+                            $(".confirmPassword").prop('disabled', false);
+                        } else {
+                            $(".password").attr('disabled', '');
+                            $(".confirmPassword").attr('disabled', '');
+                        }
+                    });
+                });
+            </script>
+        @endsection
+    @endif
 @endsection

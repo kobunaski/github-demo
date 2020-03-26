@@ -22,6 +22,7 @@ class Controller extends BaseController
         if (Auth::check())
         {
             view() -> share('user_login', Auth::user());
+            echo 'true';
         }
     }
 }
