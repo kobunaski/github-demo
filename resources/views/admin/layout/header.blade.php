@@ -162,7 +162,12 @@
                                         <li class="nav-item">
                                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                 <img src="img/product/pro4.jpg" alt="" />
-                                                <span class="admin-name">Prof.Anderson</span>
+
+                                                @if(isset($user_login))
+                                                <span class="admin-name">{{$user_login -> name}}</span>
+                                                    @else
+                                                    Dang nhap khong duoc
+                                                @endif
                                                 <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                             </a>
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -174,7 +179,7 @@
                                                 </li>
                                                 <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                 </li>
-                                                <li><a href="#"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                <li><a href="admin/logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                 </li>
                                             </ul>
                                         </li>

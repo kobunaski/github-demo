@@ -40,4 +40,6 @@ class User extends Authenticatable
     public function role(){
         return $this -> hasOne('App\role', 'idRole', 'id');
     }
+
+    protected $primaryKey = 'id';
 }
