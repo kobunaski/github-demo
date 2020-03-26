@@ -130,7 +130,7 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             return redirect('admin/user/list');
         } else {
-            echo 'false';
+            return redirect('admin/login') -> with('notificate', 'Login unsuccessfully');
         }
     }
 }
