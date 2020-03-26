@@ -127,10 +127,15 @@ class UserController extends Controller
 //            'email' => 'required',
 //        ], []);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
             return redirect('admin/user/list');
         } else {
             return redirect('admin/login') -> with('notificate', 'Login unsuccessfully');
         }
+    }
+
+    public function getLogoutAdmin(){
+        Auth::logout();
+        return redirect('admin/login');
     }
 }
