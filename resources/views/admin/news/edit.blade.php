@@ -27,7 +27,7 @@
                                                         {{session('notificate')}}
                                                     </div>
                                                 @endif
-                                            <form action="admin/news/edit/{{$news->id}}" method="POST" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                            <form action="admin/news/edit/{{$news->id}}" method="POST" enctype="multipart/form-data" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
                                                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -36,6 +36,11 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <input name="content1" type="text" class="form-control" placeholder="Content"  value="{{$news->content}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Image</label>
+                                                            <p><img width="400px" src="admin_asset/upload/image/news/{{$news->image}}" alt="" /> </p>
+                                                            <input name="image" type="file" class="form-control" value="{{$news->image}}">
                                                         </div>
                                                         <div class="form-group">
                                                             <input type="checkbox" name="status"  value="1" />
