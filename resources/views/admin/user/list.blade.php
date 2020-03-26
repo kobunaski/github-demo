@@ -13,7 +13,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="student-inner-std res-mg-b-30">
                         <div class="student-img">
-                            <img width="400px" height="50px" src="admin_asset/upload/image/student/{{$us->image}}" alt="" />
+                            <img width="400px" height="50px" src="admin_asset/upload/image/user/{{$us->image}}" alt="" />
                         </div>
                         <div class="student-dtl">
                             <h2>{{$us->name}}</h2>

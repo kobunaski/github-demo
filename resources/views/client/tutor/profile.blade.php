@@ -34,7 +34,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="user-avatar text-center d-block">
-                                    <img src="" alt="User Avatar" class="rounded-circle user-avatar-xxl">
+                                    <img src="admin_asset/upload/image/user/{{$user_login -> image}}" alt="User Avatar" class="rounded-circle user-avatar-xxl">
                                 </div>
                                 <div class="text-center">
                                     <h2 class="font-24 mb-0">{{$user_login -> name}}</h2>

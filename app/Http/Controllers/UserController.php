@@ -153,6 +153,8 @@ class UserController extends Controller
                 return redirect('client/student/profile');
             } else if (Auth::user() -> idRole == 2) {
                 return redirect('client/tutor/profile');
+            } else if (Auth::user() -> idRole == 3) {
+                return redirect('client/staff/profile');
             }
         } else {
             return redirect('client/login') -> with('notificate', 'Login unsuccessfully');

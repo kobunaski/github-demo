@@ -121,7 +121,7 @@
                                                                     {{session('notificate')}}
                                                                 </div>
                                                             @endif
-                                                            <form action="client/student/edit/{{$user_login -> id}}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                                            <form action="client/staff/edit/{{$user_login -> id}}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                                                                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                                                 <div class="row">
                                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

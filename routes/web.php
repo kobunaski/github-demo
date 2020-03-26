@@ -188,4 +188,14 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('news', 'ClientController@getListNews');
     });
 
+
+    Route::group(['prefix' => 'staff', 'middleware' => 'staffLogin'], function(){
+        Route::get('profile', 'ClientController@getStaffProfile');
+
+        Route::get('edit/{id}', 'ClientController@getEdit');
+        Route::post('edit/{id}', 'ClientController@postEditStaffProfile');
+
+        Route::get('news', 'ClientController@getListNews');
+    });
+
 });
