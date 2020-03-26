@@ -10,6 +10,7 @@ class NewsController extends Controller
     public function getList(){
         $news = news::all();
         return view('admin.news.list',['news'=> $news]);
+
     }
     public function getEdit($id){
         $news = news::find($id);

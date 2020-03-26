@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
-use App\User, App\role;
+use App\User, App\role, App\news;
 class ClientController extends Controller
 {
 
@@ -15,10 +16,17 @@ class ClientController extends Controller
 //        view() ->share('role', $role);
 //    }
 
+
     public function getProfile(){
         //$user = User::all();
         $role = role::all();
         return view('client.student.profile', ['role' => $role]);
+
+    }
+    public function getListNews(){
+        $news = news::all();
+        return view('client.student.news', ['news'=> $news]);
+
     }
 
     public function postEditProfile(Request $request,$id){
@@ -55,6 +63,6 @@ class ClientController extends Controller
 //        }
         //echo $student -> status;
         $user -> save();
-        return redirect('client/student/profile/') -> with('notificate','Update successfully');
+        return redirect('client/student/profile') -> with('notificate','Update successfully');
     }
 }

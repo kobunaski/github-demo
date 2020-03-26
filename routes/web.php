@@ -173,5 +173,9 @@ Route::group(['prefix' => 'client'], function(){
 
         Route::get('edit/{id}', 'ClientController@getEdit');
         Route::post('edit/{id}', 'ClientController@postEditProfile');
+
+        Route::get('news', 'ClientController@getListNews');
     });
+
+
 });
