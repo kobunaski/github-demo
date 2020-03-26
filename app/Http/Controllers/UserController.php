@@ -42,7 +42,7 @@ class UserController extends Controller
         {
             $file = $request -> file('image');
             $image = $file ->getClientOriginalName();
-            $file -> move('admin_asset/upload/image/student', $image);
+            $file -> move('admin_asset/upload/image/user', $image);
             $user -> image = $image;
         }
         $user -> gender = $request -> gender;
@@ -95,7 +95,7 @@ class UserController extends Controller
         {
             $file = $request -> file('image');
             $image = $file ->getClientOriginalName();
-            $file -> move('admin_asset/upload/image/student', $image);
+            $file -> move('admin_asset/upload/image/user', $image);
             $user -> image = $image;
         }else{
             $user -> image = "";
