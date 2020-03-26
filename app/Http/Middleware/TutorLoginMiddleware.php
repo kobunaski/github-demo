@@ -18,7 +18,7 @@ class TutorLoginMiddleware
     {
         if (Auth::check()){
             $user = Auth::user();
-            if ($user -> idRole == 2 || $user -> idRole == 1){
+            if ($user -> idRole == 2 || $user -> idRole == 1 || $user -> idRole == 5){
                 return $next($request);
             } else {
                 return redirect('client/login');
