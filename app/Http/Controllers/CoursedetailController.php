@@ -38,7 +38,6 @@ class CoursedetailController extends Controller
         $coursedetail = new coursedetail;
 
         $Coursedetail = coursedetail::all();
-        $coursedetail = new coursedetail;
 
         $count = $Coursedetail -> count();
 
@@ -90,9 +89,9 @@ class CoursedetailController extends Controller
     }
 
     public function getDelete($id){
-        $course = course::find($id);
-        $course -> delete();
+        $coursedetail = coursedetail::find($id);
+        $coursedetail -> delete();
 
-        return redirect('admin/course/list') -> with('notificate', 'Successfully deleted');
+        return redirect('admin/coursedetail/list') -> with('notificate', 'Successfully deleted');
     }
 }

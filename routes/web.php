@@ -211,6 +211,7 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('news', 'ClientController@getListStaffNews');
 
         Route::get('course', 'ClientController@getListStaffCourse');
+        Route::post('addcourse', 'ClientController@postAddStaffCourse');
     });
 
 });
