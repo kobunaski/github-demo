@@ -180,6 +180,15 @@ class ClientController extends Controller
         return view('client.staff.course', ['user'=> $user, 'subject' => $subject, 'course' => $course]);
     }
 
+    public function getEditStaffCourse(Request $request){
+        $coursedetail = coursedetail::all();
+        $course = course::all();
+        $user = User::all();
+        $subject = subject::all();
+        return view('client.staff.editcourse', ['user'=> $user, 'subject' => $subject, 'course' => $course, 'coursedetail'=> $coursedetail]);
+
+    }
+
     public function postAddStaffCourse(Request $request){
 //        $course = course::all();
 //        $user = User::all();

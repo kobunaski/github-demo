@@ -68,9 +68,30 @@
                         <a class="nav-link" href="student-information-subject.html" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8">
                             <i class="fas fa-book"></i>Information Subject</a>
                     </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href=
+                        @if(isset($user_login))
+                        @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                            "client/tutor/course"
+                        @elseif($user_login -> idRole == 4)
+                            "client/student/course"
+                        @elseif($user_login -> idRole == 3)
+                            "client/staff/course"
+                        @endif
+                        @endif
+                        aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
+                        <i class="fas fa-id-card-alt"></i>Information Class</a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="student-information-class.html" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9">
-                            <i class="fas fa-id-card-alt"></i>Information Class</a>
+                        <a class="nav-link" href=
+                        @if(isset($user_login))
+                        @if($user_login -> idRole == 3 )
+                            "client/staff/editcourse"
+                        @endif
+                        @endif
+                        aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
+                        <i class="fas fa-id-card-alt"></i>Edit Class</a>
                     </li>
                 </ul>
             </div>
