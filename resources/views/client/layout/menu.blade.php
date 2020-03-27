@@ -11,8 +11,16 @@
                         Menu
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" href="client/student/profile" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
-                            <i class="fa fa-fw fa-user-circle"></i>Student
+                        <a class="nav-link active" href=
+                            @if(isset($user_login))
+                                @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                                    "client/tutor/profile"
+                                    @elseif($user_login -> idRole == 4)
+                                        "client/student/profile"
+                                @endif
+                            @endif
+                        aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
+                            <i class="fa fa-fw fa-user-circle"></i>Profile
                         </a>
                     </li>
                     <li class="nav-item ">
