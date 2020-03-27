@@ -129,7 +129,7 @@
                                                                             <input name="email" type="text" class="form-control" placeholder="Email" value="{{$user_login -> email}}" disabled>
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <input type="checkbox" id="changePassword" class="checkbox" name="checkpassword">
+                                                                            <input type="checkbox" id="changePassword" class="checkbox" name="checkpassword" value="1">
                                                                             <label>Change password?</label>
                                                                             <input name="password" type="password" class="form-control password" placeholder="Password" disabled>
                                                                         </div>

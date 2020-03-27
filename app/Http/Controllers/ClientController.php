@@ -59,6 +59,9 @@ class ClientController extends Controller
         $user -> phone = $request -> phone;
         //$user -> dateOfBirth = $request -> dateOfBirth;
         $user -> address = $request -> address;
+        if ($request -> checkpassword == "1"){
+            $user -> password = bcrypt($request -> password);
+        }
 //        if($request -> hasFile('image'))
 //        {
 //            $file = $request -> file('image');
@@ -96,6 +99,9 @@ class ClientController extends Controller
         $user -> phone = $request -> phone;
         //$user -> dateOfBirth = $request -> dateOfBirth;
         $user -> address = $request -> address;
+        if ($request -> checkpassword == "1"){
+            $user -> password = bcrypt($request -> password);
+        }
 //        if($request -> hasFile('image'))
 //        {
 //            $file = $request -> file('image');
@@ -126,13 +132,13 @@ class ClientController extends Controller
         ]);
 
         $user -> name = $request -> name;
-        //$user -> email = $request -> email;
-        //$user -> password = bcrypt($request -> password);
-        //$user -> idRole = $request -> idRole;
         $user -> facebook = $request -> facebook;
         $user -> phone = $request -> phone;
-        //$user -> dateOfBirth = $request -> dateOfBirth;
         $user -> address = $request -> address;
+        if ($request -> checkpassword == "1"){
+            $user -> password = bcrypt($request -> password);
+            echo "success";
+        }
 //        if($request -> hasFile('image'))
 //        {
 //            $file = $request -> file('image');
@@ -148,6 +154,10 @@ class ClientController extends Controller
 //            $user -> status = 0;
 //        }
         //echo $student -> status;
+        //$user -> email = $request -> email;
+        //$user -> password = bcrypt($request -> password);
+        //$user -> idRole = $request -> idRole;
+        //$user -> dateOfBirth = $request -> dateOfBirth;
         $user -> save();
         return redirect('client/staff/profile') -> with('notificate','Update successfully');
     }

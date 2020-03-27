@@ -34,7 +34,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="user-avatar text-center d-block">
-                                    <img src="admin_asset/upload/image/user/{{$user_login -> image}}" alt="User Avatar" class="rounded-circle user-avatar-xxl">
+                                    <img src="admin_asset/upload/image/user/{{$user_login -> image}}" alt="User Avatar"
+                                         class="rounded-circle user-avatar-xxl">
                                 </div>
                                 <div class="text-center">
                                     <h2 class="font-24 mb-0">{{$user_login -> name}}</h2>
@@ -115,8 +116,8 @@
                                                     <div
                                                         class="media influencer-profile-data d-flex align-items-center p-2">
                                                         {{--<div class="mr-4">--}}
-                                                            {{--<img src="admin_asset/upload/image/user/" alt="User Avatar"--}}
-                                                                 {{--class="user-avatar-lg">--}}
+                                                        {{--<img src="admin_asset/upload/image/user/" alt="User Avatar"--}}
+                                                        {{--class="user-avatar-lg">--}}
                                                         {{--</div>--}}
 
                                                         <div class="media-body ">
@@ -153,7 +154,7 @@
                                                                                 <input type="checkbox"
                                                                                        id="changePassword"
                                                                                        class="checkbox"
-                                                                                       name="checkpassword">
+                                                                                       name="checkpassword" value="1">
                                                                                 <label>Change password?</label>
                                                                                 <input name="password" type="password"
                                                                                        class="form-control password"
@@ -254,5 +255,20 @@
                 </div>
             </div>
         </div>
-    @endif
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $("#changePassword").change(function () {
+                if ($(this).is(":checked")) {
+                    $(".password").prop('disabled', false);
+                    $(".confirmPassword").prop('disabled', false);
+                } else {
+                    $(".password").attr('disabled', '');
+                    $(".confirmPassword").attr('disabled', '');
+                }
+            });
+        });
+    </script>
+@endsection
+@endif
 @endsection
