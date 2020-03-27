@@ -25,5 +25,6 @@ class StaffLoginMiddleware
             }
         } else {
             return redirect('client/login');
-        }    }
+        }
+    }
 }

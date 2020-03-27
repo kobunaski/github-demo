@@ -35,9 +35,21 @@ class ClientController extends Controller
         return view('client.staff.profile', ['role' => $role]);
     }
 
-    public function getListNews(){
+    public function getListStudentNews(){
         $news = news::all();
         return view('client.student.news', ['news'=> $news]);
+
+    }
+
+    public function getListStaffNews(){
+        $news = news::all();
+        return view('client.staff.news', ['news'=> $news]);
+
+    }
+
+    public function getListTutorNews(){
+        $news = news::all();
+        return view('client.tutor.news', ['news'=> $news]);
 
     }
 

@@ -175,7 +175,7 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('edit/{id}', 'ClientController@getEdit');
         Route::post('edit/{id}', 'ClientController@postEditStudentProfile');
 
-        Route::get('news', 'ClientController@getListNews');
+        Route::get('news', 'ClientController@getListStudentNews');
     });
 
 
@@ -185,7 +185,7 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('edit/{id}', 'ClientController@getEdit');
         Route::post('edit/{id}', 'ClientController@postEditTutorProfile');
 
-        Route::get('news', 'ClientController@getListNews');
+        Route::get('news', 'ClientController@getListTutorNews');
     });
 
 
@@ -195,7 +195,7 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('edit/{id}', 'ClientController@getEdit');
         Route::post('edit/{id}', 'ClientController@postEditStaffProfile');
 
-        Route::get('news', 'ClientController@getListNews');
+        Route::get('news', 'ClientController@getListStaffNews');
     });
 
 });

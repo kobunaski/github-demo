@@ -17,6 +17,8 @@
                                     "client/tutor/profile"
                                     @elseif($user_login -> idRole == 4)
                                         "client/student/profile"
+                                        @elseif($user_login -> idRole == 3)
+                                            "client/staff/profile"
                                 @endif
                             @endif
                         aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
@@ -24,7 +26,17 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="client/student/news" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
+                        <a class="nav-link" href=
+                            @if(isset($user_login))
+                                @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                                    "client/tutor/news"
+                                @elseif($user_login -> idRole == 4)
+                                    "client/student/news"
+                                    @elseif($user_login -> idRole == 3)
+                                        "client/staff/news"
+                                @endif
+                            @endif
+                        aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
                             <i class="fab fa-fw fa-wpforms"></i>News</a>
                     </li>
                     <li class="nav-item">
