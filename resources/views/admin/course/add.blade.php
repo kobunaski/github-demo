@@ -37,15 +37,6 @@
                                                             <div class="form-group">
                                                                 <input name="courseName" type="text" class="form-control" placeholder="Course Name">
                                                             </div>
-
-                                                            <div class="form-group">
-                                                                <select name="idSubject" class="form-control">
-                                                                    <option value="none" selected="" disabled="">Select Subject for course</option>
-                                                                    @foreach($subject as $rl)
-                                                                            <option value={{$rl -> id}}>{{$rl -> nameSubject}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">

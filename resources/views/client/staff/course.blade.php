@@ -25,12 +25,7 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <label for="input-select">Example Select</label>
-                                <select class="form-control" id="input-select">
-                                    <option>Choose Example</option>
-                                    <option>Choose Example</option>
-                                    <option>Choose Example</option>
-                                </select>
+                                <input name="courseName" type="text" class="form-control" placeholder="Course Name">
                             </div>
                         </form>
                     </div>
@@ -39,11 +34,13 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <label for="input-select">Example Select</label>
+                                {{--<label for="input-select">Example Select</label>--}}
                                 <select class="form-control" id="input-select">
-                                    <option>Choose Example</option>
-                                    <option>Choose Example</option>
-                                    <option>Choose Example</option>
+                                @foreach ($user as $us)
+                                    @if ($us -> idRole == 2 || $us -> idRole == 5)
+                                        <option value="">{{$us -> name}}</option>
+                                    @endif
+                                @endforeach
                                 </select>
                             </div>
                         </form>
@@ -53,11 +50,11 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <label for="input-select">Example Select</label>
+                                {{--<label for="input-select">Example Select</label>--}}
                                 <select class="form-control" id="input-select">
-                                    <option>Choose Example</option>
-                                    <option>Choose Example</option>
-                                    <option>Choose Example</option>
+                                    @foreach ($subject as $sj)
+                                        <option value="">{{$sj -> nameSubject}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </form>
@@ -89,24 +86,23 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><label class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Check</span>
-                                        </label></td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>2011/04/25</td>
+                                    @foreach($user as $us)
+                                        @if($us -> idRole == 4)
+                                            <td><label class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Check</span>
+                                                </label></td>
+                                            <td>{{$us -> name}}</td>
+                                            <td>{{$us -> email}}</td>
+                                            <td>{{$us -> address}}</td>
+                                            <td>{{$us -> phone}}</td>
+                                            <td>{{$us -> gender}}</td>
+                                        @endif
+                                    @endforeach
                                 </tr>
 
                                 </tfoot>
                             </table>
-                            <div class="col-sm-6 pl-0">
-                                <p class="text-right">
-                                    <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                    <button class="btn btn-space btn-secondary">Cancel</button>
-                                </p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -114,6 +110,12 @@
             <!-- ============================================================== -->
             <!-- end basic table  -->
             <!-- ============================================================== -->
+        </div>
+        <div class="col-sm-6 pl-0">
+            <p class="text-right">
+                <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                <button class="btn btn-space btn-secondary">Cancel</button>
+            </p>
         </div>
     </div>
 @endsection

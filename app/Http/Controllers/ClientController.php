@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\User, App\role, App\news;
+use App\User, App\role, App\news, App\subject;
 class ClientController extends Controller
 {
 
@@ -38,19 +38,22 @@ class ClientController extends Controller
     public function getListStudentNews(){
         $news = news::all();
         return view('client.student.news', ['news'=> $news]);
-
     }
 
     public function getListStaffNews(){
         $news = news::all();
         return view('client.staff.news', ['news'=> $news]);
-
     }
 
     public function getListTutorNews(){
         $news = news::all();
         return view('client.tutor.news', ['news'=> $news]);
+    }
 
+    public function getListStaffCourse(){
+        $user = User::all();
+        $subject = subject::all();
+        return view('client.staff.course', ['user'=> $user, 'subject' => $subject]);
     }
 
     public function postEditStudentProfile(Request $request,$id){

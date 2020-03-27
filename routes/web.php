@@ -162,6 +162,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function(){
 
         Route::get('delete/{id}', 'BloggingController@getDelete');
     });
+
+    Route::group (['prefix'=>'coursedetail'],function(){
+        //admin/blogging/list
+        Route::get('list', 'CoursedetailController@getList');
+
+        Route::get('edit/{id}', 'CoursedetailController@getEdit');
+        Route::post('edit/{id}', 'CoursedetailController@postEdit');
+
+        Route::get('add', 'CoursedetailController@getAdd');
+        Route::post('add', 'CoursedetailController@postAdd');
+
+        Route::get('delete/{id}', 'CoursedetailController@getDelete');
+    });
 });
 
 Route::get('client/login', 'UserController@getLoginClient');
@@ -196,6 +209,8 @@ Route::group(['prefix' => 'client'], function(){
         Route::post('edit/{id}', 'ClientController@postEditStaffProfile');
 
         Route::get('news', 'ClientController@getListStaffNews');
+
+        Route::get('course', 'ClientController@getListStaffCourse');
     });
 
 });

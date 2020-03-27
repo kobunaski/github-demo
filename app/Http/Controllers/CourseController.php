@@ -12,26 +12,21 @@ class CourseController extends Controller
     //
     public function getList(){
         $course = course::all();
-        $staff = staff::all();
-        $student = staff::all();
-        $subject = subject::all();
-        return view('admin.course.list', ['course' => $course, 'staff' => $staff, 'student' => $student, 'subject' => $subject]);
+        return view('admin.course.list', ['course' => $course]);
     }
 
     public function getAdd(){
-        $subject = subject::all();
-        return view('admin.course.add', ['subject' => $subject]);
+        return view('admin.course.add');
     }
 
     public function postAdd(Request $request){
         $this -> validate($request,[
             'courseName' => 'required|max:10',
-            'idSubject' => 'required'
         ],[
             'courseName.required' => 'Course Name can\'t be empty',
-            'courseName.max' => 'Course Name can\' be longer than 10 characters',
-            'idSubject.required' => 'Choose a subject'
+            'courseName.max' => 'Course Name can\' be longer than 10 characters'
         ]);
+
         $Course = course::all();
         $course = new course;
 
@@ -46,9 +41,6 @@ class CourseController extends Controller
         }
 
         $course -> courseName = $request -> courseName;
-        $course -> idStaff = 0;
-        $course -> idStudent = 0;
-        $course -> idSubject = $request -> idSubject;
         $course -> save();
 
         return redirect('admin/course/add') -> with('notificate', 'Add successfully');
@@ -56,10 +48,7 @@ class CourseController extends Controller
 
     public function getEdit($id){
         $course = course::find($id);
-        $staff = staff::all();
-        $student = staff::all();
-        $subject = subject::all();
-        return view('admin.course.edit', ['course' => $course, 'staff' => $staff, 'student' => $student, 'subject' => $subject]);
+        return view('admin.course.edit', ['course' => $course]);
     }
 
     public function postEdit(Request $request, $id){
@@ -75,7 +64,6 @@ class CourseController extends Controller
         ]);
 
         $course -> courseName = $request -> courseName;
-        $course -> idSubject = $request -> idSubject;
 
         $course -> save();
 

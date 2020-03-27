@@ -14,7 +14,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <h1>
-                                            Course Edit
+                                            Course detail Edit
                                         </h1>
                                         <div id="dropzone1" class="pro-ad addcoursepro">
                                             @if(count($errors) > 0)
@@ -29,12 +29,61 @@
                                                     {{session('notificate')}}
                                                 </div>
                                             @endif
-                                            <form action="admin/course/edit/{{$course -> id}}" method="POST" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                            <form action="admin/coursedetail/edit/{{$coursedetail -> id}}" method="POST" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
                                                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
-                                                            <input name="courseName" type="text" class="form-control" value="{{$course -> courseName}}">
+                                                            <select name="idCourse" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select Course</option>
+                                                                @foreach($course as $co)
+                                                                    @if($coursedetail -> idCourse == $co -> id)
+                                                                        <option value="{{$co -> id}}" selected>{{$co -> courseName}}</option>
+                                                                    @else
+                                                                        <option value={{$co -> id}}>{{$co -> courseName}}</option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select name="idSubject" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select Subject</option>
+                                                                @foreach($subject as $rl)
+                                                                    @if($coursedetail -> idSubject == $rl -> id)
+                                                                        <option value="{{$rl -> id}}" selected>{{$rl -> nameSubject}}</option>
+                                                                    @else
+                                                                        <option value={{$rl -> id}}>{{$rl -> nameSubject}}</option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select name="idTutor" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select Tutor</option>
+                                                                @foreach($user as $us)
+                                                                    @if($us -> idRole == 2 || $us -> idRole == 5)
+                                                                        @if($coursedetail -> idTutor == $us -> id)
+                                                                            <option value="{{$us -> id}}" selected>{{$us -> name}}</option>
+                                                                        @else
+                                                                            <option value={{$us -> id}}>{{$us -> name}}</option>
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select name="idStudent" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select Student</option>
+                                                                @foreach($user as $us)
+                                                                    @if($us -> idRole == 4)
+                                                                        @if($coursedetail -> idStudent == $us -> id)
+                                                                            <option value="{{$us -> id}}" selected>{{$us -> name}}</option>
+                                                                        @else
+                                                                            <option value={{$us -> id}}>{{$us -> name}}</option>
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
