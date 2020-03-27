@@ -28,9 +28,10 @@
                         <div class="card-body">
                             <div class="form-group">
                                 {{--<label for="input-select">Example Select</label>--}}
-                                <select class="form-control" id="input-select">
+                                <select name="idCourse" class="form-control" id="input-select">
+                                    <option value="none" selected="" disabled="">Select Course</option>
                                     @foreach ($course as $co)
-                                        <option value="">{{$co -> courseName}}</option>
+                                        <option value="{{$co -> id}}">{{$co -> courseName}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -40,10 +41,11 @@
                         <div class="card-body">
                             <div class="form-group">
                                 {{--<label for="input-select">Example Select</label>--}}
-                                <select class="form-control" id="input-select">
+                                <select name="idTutor" class="form-control" id="input-select">
+                                    <option value="none" selected="" disabled="">Select Role</option>
                                     @foreach ($user as $us)
                                         @if ($us -> idRole == 2 || $us -> idRole == 5)
-                                            <option value="">{{$us -> name}}</option>
+                                            <option value="{{$us -> id}}">{{$us -> name}}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -54,9 +56,10 @@
                         <div class="card-body">
                             <div class="form-group">
                                 {{--<label for="input-select">Example Select</label>--}}
-                                <select class="form-control" id="input-select">
+                                <select name="idSubject" class="form-control" id="input-select">
+                                    <option value="none" selected="" disabled="">Select Subject</option>
                                     @foreach ($subject as $sj)
-                                        <option value="">{{$sj -> nameSubject}}</option>
+                                        <option value="{{$sj -> id}}">{{$sj -> nameSubject}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -92,7 +95,7 @@
                                             <tr>
                                                 <td>
                                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                                        <input type="checkbox" name="selectStudent"
+                                                        <input type="checkbox" name="student[]"
                                                                class="custom-control-input" value={{$us -> id}}><span
                                                             class="custom-control-label">Check</span>
                                                     </label>

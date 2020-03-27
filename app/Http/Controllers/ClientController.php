@@ -185,32 +185,110 @@ class ClientController extends Controller
 //        $user = User::all();
 //        $subject = subject::all();
 
-        $coursedetail = new coursedetail();
 
-        $Coursedetail = coursedetail::all();
 
-        $count = $Coursedetail -> count();
+//        if ($count == 0)
+//        {
+//            $coursedetail -> id = 1;
+//        }else{
+//            $array = $Coursedetail[$count - 1] -> id + 1;
+//            $coursedetail -> id = $array;
+//        }
+//
+//        $coursedetail -> idCourse = $request -> idCourse;
+//        $coursedetail -> idTutor = $request -> idTutor;
+//        $coursedetail -> idStudent = $request -> idStudent;
+//        $coursedetail -> idSubject = $request -> idSubject;
 
-        if ($count == 0)
-        {
-            $coursedetail -> id = 1;
-        }else{
-            $array = $Coursedetail[$count - 1] -> id + 1;
-            $coursedetail -> id = $array;
-        }
+        //$user = User::all();
+        //$testCount = 0;
 
-        $coursedetail -> idCourse = $request -> idCourse;
-        $coursedetail -> idTutor = $request -> idTutor;
-        $coursedetail -> idStudent = $request -> idStudent;
-        $coursedetail -> idSubject = $request -> idSubject;
-
-        $user = User::all();
-
-//        for ($x = 0; $x < $user -> count(); $x++){
-//            if ($x == $request -> selectStudent ){
-//                echo $user[$x] -> id;
+//        foreach ($user as $us){
+//            if ($us -> idRole == 4) {
+//                $testCount++;
 //            }
 //        }
+//
+//        for ($x = 0; $x < $testCount; $x++){
+//            if ($request -> student[$x] == $user[$request -> student[$x]] -> id){
+//                echo "true";
+//            }
+//        }
+//        if (isset($request -> student)){
+////            $test = count($request -> student);
+////            for ($x = 0; $x < $test; $x++){
+////
+////            }
+//            $coursedetail = new coursedetail();
+//
+//            foreach ($request -> student as $req){
+//                $Coursedetail = coursedetail::all();
+//
+//                $count = $Coursedetail -> count();
+//
+//                if ($count == 0)
+//                {
+//                    $coursedetail -> id = 1;
+//                }else{
+//                    $array = $Coursedetail[$count - 1] -> id + 1;
+//                    $coursedetail -> id = $array;
+//                }
+//
+//                $coursedetail -> idCourse = $request -> idCourse;
+//                $coursedetail -> idTutor = $request -> idTutor;
+//                $coursedetail -> idSubject = $request -> idSubject;
+//                $coursedetail -> idStudent = $req;
+//
+//                $coursedetail -> save();
+//            }
+//        }
+
+        if(isset($request -> student))
+        {
+
+            $Coursedetail = coursedetail::all();
+
+            $count = $Coursedetail -> count();
+            $count2 = 0;
+
+            if ($count == 0)
+            {
+                $id = 1;
+            }else{
+                $array = $Coursedetail[$count - 1] -> id + 1;
+                $id = $array;
+            }
+
+            // Submitted books
+            $idStudent = $request -> student;
+            $idCourse = $request -> idCourse;
+            $idTutor = $request -> idTutor;
+            $idSubject = $request -> idSubject;
+
+            // Book records to be saved
+            $coursedetail_records = [];
+
+            // Add needed information to book records
+            foreach($idStudent as $req)
+            {
+                $count2++;
+                if(! empty($req))
+                {
+                    // Formulate record that will be saved
+                    $coursedetail_records[] = [
+                        'id' => ($id + $count2) - 1,
+                        'idCourse' => $idCourse,
+                        'idTutor' => $idTutor,
+                        'idSubject' => $idSubject,
+                        'idStudent' => $req
+                    ];
+                }
+            }
+
+            // Insert book records
+            coursedetail::insert($coursedetail_records);
+        }
+
 //
 //        for ($x = 0; $x <= $user -> count(); $x++){
 //            for ($y = $request -> selectStudent; $y < $x; $y++) {
@@ -225,7 +303,6 @@ class ClientController extends Controller
 //            echo "true";
 //        }
 
-        //$coursedetail -> save();
         //return view('client.staff.course');
     }
 }
