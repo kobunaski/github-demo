@@ -195,10 +195,19 @@ class ClientController extends Controller
     public function postSearchStaffCourse(Request $request){
         $coursedetail = coursedetail::all();
         $nameCourse = $request -> nameCourse;
-        $subject = subject::all();
         $user = User::all();
+        $subject = subject::all();
         $course = course::where('id', 'like', "%$nameCourse%")->get();
         return view('client.staff.showcourse',['subject'=> $subject, 'user'=> $user, 'course'=> $course, 'nameCourse'=>$nameCourse, 'coursedetail'=> $coursedetail]);
+
+    }
+    public function postSearchStaffCourse2 (Request $request){
+        $coursedetail = coursedetail::all();
+        $nameSub= $request -> nameSub;
+        $course = course::all();
+        $user = User::all();
+        $subject = subject::where('id', 'like', "%$nameSub%")->get();
+        return view('client.staff.showcourse2',['course' => $course, 'subject'=> $subject, 'nameSub'=>$nameSub,'user'=> $user, 'coursedetail'=> $coursedetail]);
 
     }
 
