@@ -178,6 +178,7 @@ class ClientController extends Controller
         $user = User::all();
         $subject = subject::all();
         return view('client.staff.course', ['user'=> $user, 'subject' => $subject, 'course' => $course]);
+
     }
 
     public function getEditStaffCourse(Request $request){
@@ -188,70 +189,15 @@ class ClientController extends Controller
         return view('client.staff.editcourse', ['user'=> $user, 'subject' => $subject, 'course' => $course, 'coursedetail'=> $coursedetail]);
 
     }
+    public function postSearchStaffCourse(Request $request){
+        $coursedetail = coursedetail::all();
+        $nameCourse = $request -> nameCourse;
+        $user = User::all();
+        $course = course::where('courseName', 'like', "%$nameCourse%");
+        return view('client.staff.editcourse',['user'=> $user, 'course'=>$course, 'nameCourse'=>$nameCourse, 'coursedetail'=> $coursedetail]);
 
+    }
     public function postAddStaffCourse(Request $request){
-//        $course = course::all();
-//        $user = User::all();
-//        $subject = subject::all();
-
-
-
-//        if ($count == 0)
-//        {
-//            $coursedetail -> id = 1;
-//        }else{
-//            $array = $Coursedetail[$count - 1] -> id + 1;
-//            $coursedetail -> id = $array;
-//        }
-//
-//        $coursedetail -> idCourse = $request -> idCourse;
-//        $coursedetail -> idTutor = $request -> idTutor;
-//        $coursedetail -> idStudent = $request -> idStudent;
-//        $coursedetail -> idSubject = $request -> idSubject;
-
-        //$user = User::all();
-        //$testCount = 0;
-
-//        foreach ($user as $us){
-//            if ($us -> idRole == 4) {
-//                $testCount++;
-//            }
-//        }
-//
-//        for ($x = 0; $x < $testCount; $x++){
-//            if ($request -> student[$x] == $user[$request -> student[$x]] -> id){
-//                echo "true";
-//            }
-//        }
-//        if (isset($request -> student)){
-////            $test = count($request -> student);
-////            for ($x = 0; $x < $test; $x++){
-////
-////            }
-//            $coursedetail = new coursedetail();
-//
-//            foreach ($request -> student as $req){
-//                $Coursedetail = coursedetail::all();
-//
-//                $count = $Coursedetail -> count();
-//
-//                if ($count == 0)
-//                {
-//                    $coursedetail -> id = 1;
-//                }else{
-//                    $array = $Coursedetail[$count - 1] -> id + 1;
-//                    $coursedetail -> id = $array;
-//                }
-//
-//                $coursedetail -> idCourse = $request -> idCourse;
-//                $coursedetail -> idTutor = $request -> idTutor;
-//                $coursedetail -> idSubject = $request -> idSubject;
-//                $coursedetail -> idStudent = $req;
-//
-//                $coursedetail -> save();
-//            }
-//        }
-
         if(isset($request -> student))
         {
 
@@ -298,20 +244,8 @@ class ClientController extends Controller
             coursedetail::insert($coursedetail_records);
         }
 
-//
-//        for ($x = 0; $x <= $user -> count(); $x++){
-//            for ($y = $request -> selectStudent; $y < $x; $y++) {
-//                if ($y == $x){
-//                    echo $y;
-//                }
-//                //echo $request -> selectStudent;
-//            }
-//        }
 
-//        if ($request -> selectStudent == 1){
-//            echo "true";
-//        }
 
-        //return view('client.staff.course');
+       return view('client.staff.addcourse');
     }
 }

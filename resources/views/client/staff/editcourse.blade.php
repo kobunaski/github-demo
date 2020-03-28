@@ -1,16 +1,7 @@
 @extends('client.layout.index')
 @section('contentClient')
     <div class="container-fluid  dashboard-content">
-        <form action="client/staff/addcourse" method="POST">
-            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-            <!-- ============================================================== -->
-            <!-- pageheader -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                </div>
-            </div>
             <!-- ============================================================== -->
             <!-- end pageheader -->
             <!-- ============================================================== -->
@@ -27,14 +18,23 @@
                         <h5 class="card-header">Class:</h5>
                         <div class="card-body">
                             <div class="form-group">
-                                {{--<label for="input-select">Example Select</label>--}}
-                                <select name="idCourse" class="form-control" id="input-select">
-                                    <option value="none" selected="" disabled="">Select Course</option>
-                                    @foreach ($course as $cod)
-                                        <option value="{{$cod -> id}}">{{$cod -> courseName}}</option>
-                                    @endforeach
-                                </select>
-
+                                <form action="client/staff/editcourse" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <input name="nameCourse" type="text" class="form-control" placeholder="Enter Course Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="payment-adress">
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -55,6 +55,7 @@
                                     <thead>
                                     <tr>
                                         <th>Action</th>
+                                        <th>Course</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
@@ -63,28 +64,53 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($coursedetail as $crd)
 
-                                    @foreach($user as $us)
-                                        @if($us -> idRole == 4)
                                             <tr>
-                                                <td>
-                                                    <label class="custom-control custom-checkbox custom-control-inline">
-                                                        <input type="checkbox" name="student[]"
-                                                               class="custom-control-input" value={{$us -> id}}><span
-                                                            class="custom-control-label">Check</span>
-                                                    </label>
-                                                </td>
-                                                <td>{{$us -> name}}</td>
-                                                <td>{{$us -> email}}</td>
-                                                <td>{{$us -> address}}</td>
-                                                <td>{{$us -> phone}}</td>
-                                                <td>{{$us -> gender}}</td>
+                                                @foreach($user as $us)
+                                                    @if($crd -> idStudent == $us -> id)
+                                                        <td><label class="custom-control custom-checkbox custom-control-inline">
+                                                                <input type="checkbox" name="student[]"
+                                                                       class="custom-control-input" value={{$us -> id}}><span
+                                                                    class="custom-control-label">Check</span>
+                                                            </label></td>
+                                                    @endif
+                                                @endforeach
+                                               @foreach($course as $cr)
+                                                        @if($crd -> idCourse == $cr -> id)
+                                                        <td>{{$cr -> courseName}}</td>
+                                                        @endif
+                                                @endforeach
+                                                @foreach($user as $us)
+                                                    @if($crd -> idStudent == $us -> id)
+                                                        <td>{{$us -> name}}</td>
+                                                    @endif
+                                                @endforeach
+                                                @foreach($user as $us)
+                                                    @if($crd -> idStudent == $us -> id)
+                                                        <td>{{$us -> email}}</td>
+                                                    @endif
+                                                @endforeach
+                                                @foreach($user as $us)
+                                                    @if($crd -> idStudent == $us -> id)
+                                                        <td>{{$us -> address}}</td>
+                                                    @endif
+                                                @endforeach
+                                                @foreach($user as $us)
+                                                    @if($crd -> idStudent == $us -> id)
+                                                        <td>{{$us -> phone}}</td>
+                                                    @endif
+                                                @endforeach
+                                                @foreach($user as $us)
+                                                    @if($crd -> idStudent == $us -> id)
+                                                        <td>{{$us -> gender}}</td>
+                                                    @endif
+                                                @endforeach
                                             </tr>
-                                    @endif
+
                                     @endforeach
                                     </tfoot>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -99,6 +125,6 @@
                     <button class="btn btn-space btn-secondary">Cancel</button>
                 </p>
             </div>
-        </form>
+
     </div>
 @endsection
