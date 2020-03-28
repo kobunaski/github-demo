@@ -193,8 +193,8 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $nameCourse = $request -> nameCourse;
         $user = User::all();
-        $course = course::where('courseName', 'like', "%$nameCourse%");
-        return view('client.staff.editcourse',['user'=> $user, 'course'=>$course, 'nameCourse'=>$nameCourse, 'coursedetail'=> $coursedetail]);
+        $course = course::where('courseName', 'like', "%$nameCourse%")->get();
+        return view('client.staff.editcourse',['user'=> $user, 'course'=> $course, 'nameCourse'=>$nameCourse, 'coursedetail'=> $coursedetail]);
 
     }
     public function postAddStaffCourse(Request $request){
