@@ -18,18 +18,19 @@
                         <h5 class="card-header">Class:</h5>
                         <div class="card-body">
                             <div class="form-group">
-                                <form action="client/staff/editcourse/" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                <form action="client/staff/showcourse" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <select name="idCourse" class="form-control" id="input-select">
-                                                    <option value="none" selected="" disabled="">Select Course</option>
-                                                    @foreach ($course as $co)
-                                                        <option value="{{$co -> id}}">{{$co -> courseName}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                            <select name="nameCourse" class="form-control" id="input-select">
+                                                <option value="none" selected="" disabled="">Select Course</option>
+                                                @foreach ($course as $co)
+                                                    <option value="{{$co -> id}}">{{$co -> courseName}}</option>
+                                                @endforeach
+                                            </select>
+{{--                                            <div class="form-group">--}}
+{{--                                                <input name="nameCourse" class="form-control" placeholder="Enter name course">--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="row">
