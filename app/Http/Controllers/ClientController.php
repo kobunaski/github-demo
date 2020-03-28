@@ -7,6 +7,8 @@ use App\course;
 use App\coursedetail;
 use Illuminate\Http\Request;
 use App\User, App\role, App\news, App\subject;
+use Illuminate\Validation\Rule;
+
 class ClientController extends Controller
 {
 
@@ -189,6 +191,7 @@ class ClientController extends Controller
         return view('client.staff.editcourse', ['user'=> $user, 'subject' => $subject, 'course' => $course, 'coursedetail'=> $coursedetail]);
 
     }
+
     public function postSearchStaffCourse(Request $request){
         $coursedetail = coursedetail::all();
         $nameCourse = $request -> nameCourse;
@@ -197,10 +200,14 @@ class ClientController extends Controller
         return view('client.staff.editcourse',['user'=> $user, 'course'=> $course, 'nameCourse'=>$nameCourse, 'coursedetail'=> $coursedetail]);
 
     }
+
     public function postAddStaffCourse(Request $request){
+        $course = course::all();
+        $user = User::all();
+        $subject = subject::all();
+
         if(isset($request -> student))
         {
-
             $Coursedetail = coursedetail::all();
 
             $count = $Coursedetail -> count();
@@ -214,16 +221,34 @@ class ClientController extends Controller
                 $id = $array;
             }
 
-            // Submitted books
+            // Submitted class
             $idStudent = $request -> student;
             $idCourse = $request -> idCourse;
             $idTutor = $request -> idTutor;
             $idSubject = $request -> idSubject;
 
-            // Book records to be saved
+            // Validate choose class
+            $this -> validate($request,[
+                'idSubject' => [
+                    Rule::unique('coursedetail') -> where(function ($query) use($idCourse, $idSubject) {
+                        return $query->where('idSubject', $idSubject)
+                            ->where('idCourse', $idCourse);
+                    })
+                ],
+                'idStudent' => [
+                    Rule::unique('coursedetail') -> where(function ($query) use($idCourse, $idStudent) {
+                        return $query->where('idStudent', $idStudent)
+                            ->where('idCourse', $idCourse);
+                    })
+                ]
+            ],[
+
+            ]);
+
+            // class records to be saved
             $coursedetail_records = [];
 
-            // Add needed information to book records
+            // Add needed information to class records
             foreach($idStudent as $req)
             {
                 $count2++;
@@ -240,12 +265,10 @@ class ClientController extends Controller
                 }
             }
 
-            // Insert book records
+            // Insert class records
             coursedetail::insert($coursedetail_records);
         }
 
-
-
-       return view('client.staff.addcourse');
+       return view('client.staff.course', ['course' => $course, 'user'=> $user, 'subject' => $subject]);
     }
 }
