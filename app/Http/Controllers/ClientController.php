@@ -292,13 +292,7 @@ class ClientController extends Controller
 
         $idTutor = $request -> idTutor;
 
-        $this -> validate($request,[
-            'id' => 'required',
-            'idTutor' => 'required'
-        ],[
-            'id.required' => 'You need to choose one student',
-            'idTutor.required' => 'You need to choose tutor',
-        ]);
+
 
         if(isset($request -> idCoursedetail))
         {

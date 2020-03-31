@@ -11,18 +11,6 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="section-block" id="select">
                         <h3 class="section-title">Allocate Tutors and Students</h3>
-                        @if(count($errors) > 0)
-                            <div class="alert alert-danger">
-                                @foreach($errors -> all() as $err)
-                                    {{$err}}<br>
-                                @endforeach
-                            </div>
-                        @endif
-                        @if(session('notificate'))
-                            <div class="alert alert-success">
-                                {{session('notificate')}}
-                            </div>
-                        @endif
                     </div>
                     <div class="card">
                         <h5 class="card-header">Class:</h5>
