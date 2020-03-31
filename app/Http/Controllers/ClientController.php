@@ -201,6 +201,7 @@ class ClientController extends Controller
         return view('client.staff.showcourse',['subject'=> $subject, 'user'=> $user, 'course'=> $course, 'nameCourse'=>$nameCourse, 'coursedetail'=> $coursedetail]);
 
     }
+
     public function postSearchStaffCourse2 (Request $request){
         $coursedetail = coursedetail::all();
         $nameSub= $request -> nameSub;
@@ -239,18 +240,19 @@ class ClientController extends Controller
 
             // Validate choose class
             $this -> validate($request,[
-                'idSubject' => [
-                    Rule::unique('coursedetail') -> where(function ($query) use($idCourse, $idSubject) {
-                        return $query->where('idSubject', $idSubject)
-                            ->where('idCourse', $idCourse);
-                    })
-                ],
                 'idStudent' => [
-                    Rule::unique('coursedetail') -> where(function ($query) use($idCourse, $idStudent) {
-                        return $query->where('idStudent', $idStudent)
+                    Rule::unique('coursedetail') -> where(function ($query) use($idCourse, $idSubject, $idStudent) {
+                        return $query->where('idStudent',$idStudent)
+                            ->where('idSubject', $idSubject)
                             ->where('idCourse', $idCourse);
                     })
                 ]
+//                'idStudent' => [
+//                    Rule::unique('coursedetail') -> where(function ($query) use($idCourse, $idStudent) {
+//                        return $query->where('idStudent', $idStudent)
+//                            ->where('idCourse', $idCourse);
+//                    })
+//                ]
             ],[
 
             ]);
@@ -277,8 +279,59 @@ class ClientController extends Controller
 
             // Insert class records
             coursedetail::insert($coursedetail_records);
+
         }
 
        return view('client.staff.course', ['course' => $course, 'user'=> $user, 'subject' => $subject]);
+    }
+
+    public function postReallocateStaffCourse(Request $request){
+        $course = course::all();
+        $user = User::all();
+        $subject = subject::all();
+
+        $idTutor = $request -> idTutor;
+
+        $this -> validate($request,[
+            'id' => 'required',
+            'idTutor' => 'required'
+        ],[
+            'id.required' => 'You need to choose one student',
+            'idTutor.required' => 'You need to choose tutor',
+        ]);
+
+        if(isset($request -> idCoursedetail))
+        {
+            $count2 = 0;
+
+            // Submitted class
+            //$idStudent = $request -> student;
+            $id = $request -> idCoursedetail;
+            $idCoursedetail = $request -> id;
+            $idSubject = $request -> idSubject;
+
+            // Validate choose class
+
+
+            // class records to be saved
+            $idCoursedetail_records = [];
+            $coursedetail_records = [];
+
+            // Add needed information to class records
+            foreach($id as $req)
+            {
+                if(! empty($req))
+                {
+                    // Formulate record that will be saved
+//                    $coursedetail_records[] = [
+//                        'idTutor' => $idTutor
+//                    ];
+                    coursedetail::where(['id' => $req]) -> update(['idTutor' => $idTutor]);
+                }
+            }
+
+        }
+
+        return view('client.staff.editcourse', ['course' => $course, 'user'=> $user, 'subject' => $subject]) -> with('notificate', 'Changed success');
     }
 }

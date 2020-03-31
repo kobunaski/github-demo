@@ -1,6 +1,18 @@
 @extends('client.layout.index')
 @section('contentClient')
     <div class="container-fluid  dashboard-content">
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                @foreach($errors -> all() as $err)
+                    {{$err}}<br>
+                @endforeach
+            </div>
+        @endif
+        @if(session('notificate'))
+            <div class="alert alert-success">
+                {{session('notificate')}}
+            </div>
+        @endif
         <form action="client/staff/addcourse" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <!-- ============================================================== -->
