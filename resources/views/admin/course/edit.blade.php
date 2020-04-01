@@ -52,60 +52,50 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-tab-list tab-pane fade" id="reviews">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="devit-card-custom">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="number" class="form-control" placeholder="Phone">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" placeholder="Password">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" placeholder="Confirm Password">
-                                                    </div>
-                                                    <a href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
-                                                </div>
-                                            </div>
+
+                        <div class="row">
+                            <!-- ============================================================== -->
+                            <!-- basic table  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Message</h5>
+
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered first">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>idUser</th>
+                                                    <th>Content</th>
+                                                    <th>Create at</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                @foreach($course -> messagebox as $mess)
+                                                        <tr>
+                                                            <td>{{$mess -> id}}</td>
+                                                            <td>{{$mess -> user -> name}}</td>
+                                                            <td>{{$mess -> content}}</td>
+                                                            <td>{{$mess -> created_at}}</td>
+                                                            <td class="center" ><i class="fa fa-trash-o fa-fw"></i>
+                                                                <a href="admin/messagebox/delete/{{$mess->id}}/{{$course->id}}">Delete</a></td>
+                                                        </tr>
+                                                @endforeach
+                                            </table>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
+                            <!-- ============================================================== -->
+                            <!-- end basic table  -->
+                            <!-- ============================================================== -->
                         </div>
-                        <div class="product-tab-list tab-pane fade" id="INFORMATION">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="devit-card-custom">
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Facebook URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Twitter URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Google Plus">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Linkedin URL">
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

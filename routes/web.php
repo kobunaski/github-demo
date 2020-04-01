@@ -136,6 +136,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function(){
 
         Route::get('delete/{id}', 'ScheduleController@getDelete');
     });
+    Route::group (['prefix'=>'messagebox'],function(){
+        //admin/schedule/list
+        Route::get('delete/{id}/{idCourse}', 'MessageBoxController@getDelete');
+    });
 
     Route::group (['prefix'=>'scheduleslot'],function(){
         //admin/schedule/list
@@ -189,6 +193,11 @@ Route::group(['prefix' => 'client'], function(){
         Route::post('edit/{id}', 'ClientController@postEditStudentProfile');
 
         Route::get('news', 'ClientController@getListStudentNews');
+        Route::get('messagebox', 'ClientController@getListCourse');
+        Route::post('messagebox', 'ClientController@postListCourse');
+
+//        Route::get('messagecourse/{id}', 'MessageBoxController@getMessCourse');
+        Route::post('messagecourse/{id}', 'MessageBoxController@postMessCourse');
     });
 
 

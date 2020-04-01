@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\course, App\staff, App\subject;
+use App\course, App\staff, App\subject, App\messagebox;
 
 class CourseController extends Controller
 {
