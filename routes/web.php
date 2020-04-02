@@ -223,7 +223,8 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('infoclass', 'ClientController@getListCourse3');
 
         Route::get('detailclass/{id}', 'ClientController@getDetailClass');
-        Route::post('detailclass/{id}', 'ClientController@postDetailClass');
+
+        Route::get('detailstudent/{id}', 'ClientController@getDetailStudent');
     });
 
 

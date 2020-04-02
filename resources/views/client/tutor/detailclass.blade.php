@@ -43,15 +43,19 @@
                                 @foreach($coursedetail as $crd)
                                     @if($crd -> idCourse == $course -> id)
                                         <tr>
-                                            <td>
-                                                <a class="text-dark" href="#">Click to view</a>
-                                            </td>
+
+                                            @foreach($user as $us)
+                                                @if($crd -> idStudent == $us -> id)
+                                                    <td>
+                                                        <a class="text-dark" href="client/tutor/detailstudent/{{$us -> id}}">Click to view</a>
+                                                    </td>
+                                                @endif
+                                            @endforeach
 
                                             @foreach($user as $us)
                                                 @if($crd -> idStudent == $us -> id)
                                                     <td>{{$us -> name}}</td>
                                                 @endif
-
                                             @endforeach
 
                                             @foreach($user as $us)

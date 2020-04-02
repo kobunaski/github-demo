@@ -15,7 +15,8 @@
                                     @foreach ($course as $co)
                                         @if($cd -> idCourse == $co -> id)
                                             <div class="media-body">
-                                                <a href="client/tutor/detailclass/{{$co -> id}}" class="mt-0 mb-1">{{$co -> courseName}}</a>
+                                                <a href="client/tutor/detailclass/{{$co -> id}}"
+                                                   class="mt-0 mb-1">{{$co -> courseName}}</a>
                                             </div>
                                         @endif
                                     @endforeach

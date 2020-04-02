@@ -310,11 +310,16 @@ class ClientController extends Controller
 
             // Validate choose class
             $this->validate($request, [
-                'idStudent' => [
-                    Rule::unique('coursedetail')->where(function ($query) use ($idCourse, $idSubject, $idStudent) {
-                        return $query->where('idStudent', $idStudent)
-                            ->where('idSubject', $idSubject)
+                'idSubject' => [
+                    Rule::unique('coursedetail')->where(function ($query) use ($idCourse, $idSubject) {
+                        return $query->where('idSubject', $idSubject)
                             ->where('idCourse', $idCourse);
+                    })
+                ],
+                'idCourse' => [
+                    Rule::unique('coursedetail')->where(function ($query) use ($idCourse, $idSubject) {
+                        return $query->where('idCourse', $idCourse)
+                            ->where('idSubject', $idSubject);
                     })
                 ]
             ], [
@@ -375,7 +380,7 @@ class ClientController extends Controller
                 $message->to($emailTutor, 'Visitor')->subject('Class Announcement');
             });
 
-            //coursedetail::insert($coursedetail_records);
+            coursedetail::insert($coursedetail_records);
         }
 
         return view('client.staff.course', ['course' => $course, 'user' => $user, 'subject' => $subject]);
@@ -507,8 +512,14 @@ class ClientController extends Controller
             ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
     }
 
-    public function postDetailClass()
+    public function getDetailStudent($id)
     {
-
+        $user = User::find($id);
+        $coursedetail = coursedetail::all();
+        $subject = subject::all();
+        $course = course::all();
+        $role = role::all();
+        return view('client.tutor.detailstudent',
+            ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'role' => $role]);
     }
 }
