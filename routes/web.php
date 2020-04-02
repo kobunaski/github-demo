@@ -239,7 +239,7 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('newsdetail/{id}', 'ClientController@getDetailStaffNews');
 
         Route::get('course', 'ClientController@getListStaffCourse');
-        Route::post('addcourse', 'ClientController@postAddStaffCourse');
+        Route::post('course', 'ClientController@postAddStaffCourse');
 
         Route::get('editcourse', 'ClientController@getEditStaffCourse');
         //Route::post('editcourse', 'ClientController@postSearchStaffCourse');

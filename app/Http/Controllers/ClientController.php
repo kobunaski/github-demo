@@ -319,22 +319,7 @@ class ClientController extends Controller
             $idSubject = $request->idSubject;
 
             // Validate choose class
-            $this->validate($request, [
-                'idSubject' => [
-                    Rule::unique('coursedetail')->where(function ($query) use ($idCourse, $idSubject) {
-                        return $query->where('idSubject', $idSubject)
-                            ->where('idCourse', $idCourse);
-                    })
-                ],
-                'idCourse' => [
-                    Rule::unique('coursedetail')->where(function ($query) use ($idCourse, $idSubject) {
-                        return $query->where('idCourse', $idCourse)
-                            ->where('idSubject', $idSubject);
-                    })
-                ]
-            ], [
 
-            ]);
 
             foreach ($user as $us) {
                 if ($us->id == $idTutor) {
@@ -348,6 +333,24 @@ class ClientController extends Controller
             // Add needed information to class records
             foreach ($idStudent as $req) {
                 $count2++;
+
+                $this->validate($request, [
+                    'idSubject' => [
+                        Rule::unique('coursedetail')->where(function ($query) use ($req, $idSubject) {
+                            return $query->where('idSubject', $idSubject)
+                                ->where('idStudent', $req);
+                        })
+                    ],
+                    'idCourse' => [
+                        Rule::unique('coursedetail')->where(function ($query) use ($req, $idCourse) {
+                            return $query->where('idCourse', $idCourse)
+                                ->where('idStudent', $req);
+                        })
+                    ]
+                ], [
+
+                ]);
+
                 if (!empty($req)) {
                     foreach ($user as $us) {
                         if ($us->id == $req) {
@@ -531,6 +534,7 @@ class ClientController extends Controller
             ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
     }
 
+    //GET() Method: Get the detail information of the selected student
     public function getDetailStudent($id)
     {
         $user = User::find($id);

@@ -21,7 +21,7 @@
                 {{session('notificate')}}
             </div>
         @endif
-        <form action="client/staff/addcourse" method="POST">
+        <form action="client/staff/course" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <!-- ============================================================== -->
             <!-- pageheader -->
