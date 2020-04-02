@@ -13,16 +13,7 @@ use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
-
-//    function __construct()
-//    {
-//        $user =  User::all();
-//        $role = role::all();
-//        view() ->share('User', $user);
-//        view() ->share('role', $role);
-//    }
-
-
+    //GET() FUNCTION: get information of student
     public function getStudentProfile()
     {
         //$user = User::all();
@@ -30,6 +21,7 @@ class ClientController extends Controller
         return view('client.student.profile', ['role' => $role]);
     }
 
+    //GET() FUNCTION: get information of tutor
     public function getTutorProfile()
     {
         //$user = User::all();
@@ -37,6 +29,7 @@ class ClientController extends Controller
         return view('client.tutor.profile', ['role' => $role]);
     }
 
+    //GET() FUNCTION: get information of staff
     public function getStaffProfile()
     {
         //$user = User::all();
@@ -44,6 +37,7 @@ class ClientController extends Controller
         return view('client.staff.profile', ['role' => $role]);
     }
 
+    //POST() Method: Edit information of student
     public function postEditStudentProfile(Request $request, $id)
     {
         $user = User::find($id);
@@ -85,6 +79,7 @@ class ClientController extends Controller
         return redirect('client/student/profile')->with('notificate', 'Update successfully');
     }
 
+    //POST() Method: Edit information of Tutor
     public function postEditTutorProfile(Request $request, $id)
     {
         $user = User::find($id);
@@ -126,6 +121,7 @@ class ClientController extends Controller
         return redirect('client/tutor/profile')->with('notificate', 'Update successfully');
     }
 
+    //POST() Method: Edit information of staff
     public function postEditStaffProfile(Request $request, $id)
     {
         $user = User::find($id);
@@ -168,24 +164,49 @@ class ClientController extends Controller
         return redirect('client/staff/profile')->with('notificate', 'Update successfully');
     }
 
+    //GET() Method: Get news
     public function getListStudentNews()
     {
         $news = news::all();
         return view('client.student.news', ['news' => $news]);
     }
 
+    //GET() Method: Get news detail
+    public function getDetailStudentNews($id)
+    {
+        $news = news::find($id);
+        return view('client.student.newsdetail', ['news' => $news]);
+    }
+
+    //GET() Method: Get news
     public function getListStaffNews()
     {
         $news = news::all();
         return view('client.staff.news', ['news' => $news]);
     }
 
+    //GET() Method: Get news detail
+    public function getDetailStaffNews($id)
+    {
+        $news = news::find($id);
+        return view('client.staff.newsdetail', ['news' => $news]);
+    }
+
+    //GET() Method: Get news
     public function getListTutorNews()
     {
         $news = news::all();
         return view('client.tutor.news', ['news' => $news]);
     }
 
+    //GET() Method: Get news detail
+    public function getDetailTutorNews($id)
+    {
+        $news = news::find($id);
+        return view('client.tutor.newsdetail', ['news' => $news]);
+    }
+
+    //GET() Method: Get view for course in staff site
     public function getListStaffCourse()
     {
         $course = course::all();
@@ -195,6 +216,7 @@ class ClientController extends Controller
 
     }
 
+    //GET() Method: Get list of course for messages in student site
     public function getListCourse(){
         $coursedetail = coursedetail::all();
         $course = course::all();
@@ -202,14 +224,7 @@ class ClientController extends Controller
         return view('client.student.message', ['coursedetail'=> $coursedetail, 'user'=> $user,  'course' => $course]);
     }
 
-    public function postListCourse(Request $request){
-        $nameCourse = $request -> nameCourse;
-        $user = User::all();
-        $messagebox = messagebox::all();
-        $course = course::where('id', 'like', "%$nameCourse%")->get();
-        return view('client.student.messagecourse',[ 'user'=> $user, 'messagebox'=> $messagebox, 'course'=> $course, 'nameCourse'=>$nameCourse]);
-    }
-
+    //GET() Method: view coursedetail of staff site
     public function getEditStaffCourse(Request $request)
     {
         $coursedetail = coursedetail::all();
@@ -221,6 +236,7 @@ class ClientController extends Controller
 
     }
 
+    //POST() Method: function search course of staff site
     public function postSearchStaffCourse(Request $request)
     {
         $coursedetail = coursedetail::all();
@@ -238,6 +254,7 @@ class ClientController extends Controller
 
     }
 
+    //POST() Method: function search subject of staff site
     public function postSearchStaffCourse2(Request $request)
     {
         $coursedetail = coursedetail::all();
@@ -255,6 +272,7 @@ class ClientController extends Controller
 
     }
 
+    //POST() Method: function add(ALLOCATE) a new tutor for course/student
     public function postAddStaffCourse(Request $request)
     {
         $course = course::all();
@@ -353,6 +371,7 @@ class ClientController extends Controller
         return view('client.staff.course', ['course' => $course, 'user' => $user, 'subject' => $subject]);
     }
 
+    //POST() Method: function edit(REALLOCATE) a tutor for student
     public function postReallocateStaffCourse(Request $request)
     {
         $course = course::all();

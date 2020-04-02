@@ -193,8 +193,11 @@ Route::group(['prefix' => 'client'], function(){
         Route::post('edit/{id}', 'ClientController@postEditStudentProfile');
 
         Route::get('news', 'ClientController@getListStudentNews');
+
+        Route::get('newsdetail/{id}', 'ClientController@getDetailStudentNews');
+
         Route::get('messagebox', 'ClientController@getListCourse');
-        Route::post('messagebox', 'ClientController@postListCourse');
+        //Route::post('messagebox', 'ClientController@postListCourse');
 
         Route::get('messagecourse/{id}', 'MessageBoxController@getMessCourse');
         Route::post('messagecourse/{id}', 'MessageBoxController@postMessCourse');
@@ -208,6 +211,8 @@ Route::group(['prefix' => 'client'], function(){
         Route::post('edit/{id}', 'ClientController@postEditTutorProfile');
 
         Route::get('news', 'ClientController@getListTutorNews');
+
+        Route::get('newsdetail/{id}', 'ClientController@getDetailTutorNews');
     });
 
 
@@ -218,6 +223,8 @@ Route::group(['prefix' => 'client'], function(){
         Route::post('edit/{id}', 'ClientController@postEditStaffProfile');
 
         Route::get('news', 'ClientController@getListStaffNews');
+
+        Route::get('newsdetail/{id}', 'ClientController@getDetailStaffNews');
 
         Route::get('course', 'ClientController@getListStaffCourse');
         Route::post('addcourse', 'ClientController@postAddStaffCourse');

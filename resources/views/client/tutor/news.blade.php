@@ -36,14 +36,15 @@
                             <div class="media">
                                 <img class="mr-3 user-avatar-lg rounded" src="admin_asset/upload/image/news/{{$ns->image}}" alt="Generic placeholder image">
                                 <div class="media-body">
-                                    <p>{{$ns -> content}}</p>
+                                    <p><strong>Posted at: </strong>{{$ns -> created_at}}</p>
                                 </div>
                                 <div class="product-buttons">
-                                    <a type="button" class="button-default cart-btn" href="admin/news/edit/{{$ns->id}}">Read More</a>
+                                    <a type="button" class="button-default cart-btn" href="client/tutor/newsdetail/{{$ns->id}}">Read More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         @endforeach
