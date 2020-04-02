@@ -12,6 +12,7 @@
     <link href="client_asset/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="client_asset/libs/css/style.css">
     <link rel="stylesheet" href="client_asset/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    @yield('header')
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 
 </head>
