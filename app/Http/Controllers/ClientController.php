@@ -8,6 +8,7 @@ use App\coursedetail;
 use App\messagebox;
 use Illuminate\Http\Request;
 use App\User, App\role, App\news, App\subject;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
@@ -231,7 +232,16 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        return view('client.tutor.message', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
+        foreach ($coursedetail as $cd){
+            if (Auth::user()->id == $cd -> idTutor)
+                foreach ($course as $co){
+                    if ($cd -> idCourse == $co -> id){
+                        $array_course[] = $co -> id;
+                    }
+                }
+        }
+        $unique_course = array_unique($array_course);
+        return view('client.tutor.message', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
     //GET() Method: view coursedetail of staff site
@@ -498,7 +508,16 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        return view('client.tutor.infoclass', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
+        foreach ($coursedetail as $cd){
+            if (Auth::user()->id == $cd -> idTutor)
+            foreach ($course as $co){
+                if ($cd -> idCourse == $co -> id){
+                    $array_course[] = $co -> id;
+                }
+            }
+        }
+        $unique_course = array_unique($array_course);
+        return view('client.tutor.infoclass', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
     //GET() Method: Get list of student for selected course in tutor site

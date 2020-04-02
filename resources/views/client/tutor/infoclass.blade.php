@@ -10,17 +10,14 @@
                     <ul class="list-unstyled">
                         <li class="media">
                             {{--<img class=" mr-3 user-avatar-lg rounded" src="../assets/images/avatar-3.jpg" alt="Generic placeholder image">--}}
-                            @foreach($coursedetail as $cd)
-                                @if($cd -> idTutor == Auth::User() -> id)
-                                    @foreach ($course as $co)
-                                        @if($cd -> idCourse == $co -> id)
-                                            <div class="media-body">
-                                                <a href="client/tutor/detailclass/{{$co -> id}}"
-                                                   class="mt-0 mb-1">{{$co -> courseName}}</a>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                @endif
+                            @foreach ($unique_course as $uc)
+                                @foreach ($course as $co)
+                                    @if($co -> id == $uc)
+                                <div class="media-body">
+                                    <a href="client/tutor/detailclass/{{$uc}}" class="mt-0 mb-1">{{$co -> courseName}}</a>
+                                </div>
+                                    @endif
+                                @endforeach
                             @endforeach
                         </li>
                     </ul>
