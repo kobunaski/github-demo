@@ -219,6 +219,11 @@ Route::group(['prefix' => 'client'], function(){
 
         Route::get('messagecourse/{id}', 'MessageBoxController@getMessCourse2');
         Route::post('messagecourse/{id}', 'MessageBoxController@postMessCourse2');
+
+        Route::get('infoclass', 'ClientController@getListCourse3');
+
+        Route::get('detailclass/{id}', 'ClientController@getDetailClass');
+        Route::post('detailclass/{id}', 'ClientController@postDetailClass');
     });
 
 

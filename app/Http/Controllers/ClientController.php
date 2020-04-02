@@ -217,18 +217,21 @@ class ClientController extends Controller
     }
 
     //GET() Method: Get list of course for messages in student site
-    public function getListCourse(){
+    public function getListCourse()
+    {
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        return view('client.student.message', ['coursedetail'=> $coursedetail, 'user'=> $user,  'course' => $course]);
+        return view('client.student.message', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
     }
+
     //GET() Method: Get list of course for messages in tutor site
-    public function getListCourse2(){
+    public function getListCourse2()
+    {
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        return view('client.tutor.message', ['coursedetail'=> $coursedetail, 'user'=> $user,  'course' => $course]);
+        return view('client.tutor.message', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
     }
 
     //GET() Method: view coursedetail of staff site
@@ -402,23 +405,23 @@ class ClientController extends Controller
             $id = $request->idCoursedetail;
             foreach ($coursedetail as $cd) {
                 foreach ($id as $item) {
-                    if ($cd -> id == $item){
+                    if ($cd->id == $item) {
                         foreach ($course as $co) {
-                            if ($co -> id == $cd -> idCourse){
-                                $courseName = $co -> courseName;
+                            if ($co->id == $cd->idCourse) {
+                                $courseName = $co->courseName;
                             }
                         }
                         foreach ($subject as $sj) {
-                            if ($sj -> id == $cd -> idSubject){
-                                $nameSubject = $sj -> nameSubject;
+                            if ($sj->id == $cd->idSubject) {
+                                $nameSubject = $sj->nameSubject;
                             }
                         }
                     }
-                    if ($cd -> id == $item) {
-                        $idOldTutor = $cd -> idTutor;
-                        foreach ($user as $us){
-                            if ($us -> id == $idOldTutor){
-                                $emailOldTutor = $us -> email;
+                    if ($cd->id == $item) {
+                        $idOldTutor = $cd->idTutor;
+                        foreach ($user as $us) {
+                            if ($us->id == $idOldTutor) {
+                                $emailOldTutor = $us->email;
                             }
                         }
                     }
@@ -482,5 +485,30 @@ class ClientController extends Controller
 
         return view('client.staff.editcourse',
             ['course' => $course, 'user' => $user, 'subject' => $subject])->with('notificate', 'Changed success');
+    }
+
+    //GET() Method: Get list of course for information course in tutor site
+    public function getListCourse3()
+    {
+        $coursedetail = coursedetail::all();
+        $course = course::all();
+        $user = User::all();
+        return view('client.tutor.infoclass', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
+    }
+
+    //GET() Method: Get list of student for selected course in tutor site
+    public function getDetailClass($id)
+    {
+        $course = course::find($id);
+        $coursedetail = coursedetail::all();
+        $subject = subject::all();
+        $user = user::all();
+        return view('client.tutor.detailclass',
+            ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
+    }
+
+    public function postDetailClass()
+    {
+
     }
 }

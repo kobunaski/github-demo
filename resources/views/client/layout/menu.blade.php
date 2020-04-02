@@ -84,9 +84,9 @@
                     {{--</li>--}}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="student-information-subject.html" aria-expanded="false"
+                        <a class="nav-link" href="client/tutor/infoclass" aria-expanded="false"
                            data-target="#submenu-8" aria-controls="submenu-8">
-                            <i class="fas fa-book"></i>Information Subject</a>
+                            <i class="fas fa-book"></i>Information Class</a>
                     </li>
 
                     @if(isset($user_login))
