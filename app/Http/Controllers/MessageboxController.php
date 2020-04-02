@@ -17,11 +17,13 @@ class MessageboxController extends Controller
         return redirect('admin/course/edit/'.$idCourse) -> with('notificate', 'Successfully deleted');
     }
 
-//    public function getMessCourse($id, Request $request){
-//        $course = course::all();
-//        $user = User::all();
-//        return view('client.student.messagecourse', ['user'=> $user,  'course' => $course]);
-//    }
+    public function getMessCourse($id){
+        $course = course::find($id);
+        $user = User::all();
+        $messagebox = messagebox::all();
+        return view('client.student.messagecourse', ['user'=> $user, 'course' => $course, 'messagebox' => $messagebox]);
+    }
+
     public function postMessCourse($id, Request $request){
         $idCourse = $id;
         $course = course::find($id);
@@ -31,7 +33,6 @@ class MessageboxController extends Controller
         $messagebox -> content = $request -> messageContent;
         $messagebox -> save();
 
-
-        return redirect('client/student/messagebox/') -> with('notificate', 'Successfully deleted');
+        return redirect('client/student/messagecourse/'.$id) -> with('notificate', 'Successfully deleted');
     }
 }

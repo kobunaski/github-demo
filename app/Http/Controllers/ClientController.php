@@ -194,23 +194,21 @@ class ClientController extends Controller
         return view('client.staff.course', ['user' => $user, 'subject' => $subject, 'course' => $course]);
 
     }
+
     public function getListCourse(){
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
         return view('client.student.message', ['coursedetail'=> $coursedetail, 'user'=> $user,  'course' => $course]);
-
     }
+
     public function postListCourse(Request $request){
         $nameCourse = $request -> nameCourse;
         $user = User::all();
         $messagebox = messagebox::all();
         $course = course::where('id', 'like', "%$nameCourse%")->get();
         return view('client.student.messagecourse',[ 'user'=> $user, 'messagebox'=> $messagebox, 'course'=> $course, 'nameCourse'=>$nameCourse]);
-
-
     }
-
 
     public function getEditStaffCourse(Request $request)
     {
