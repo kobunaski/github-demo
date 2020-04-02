@@ -223,6 +223,13 @@ class ClientController extends Controller
         $user = User::all();
         return view('client.student.message', ['coursedetail'=> $coursedetail, 'user'=> $user,  'course' => $course]);
     }
+    //GET() Method: Get list of course for messages in tutor site
+    public function getListCourse2(){
+        $coursedetail = coursedetail::all();
+        $course = course::all();
+        $user = User::all();
+        return view('client.tutor.message', ['coursedetail'=> $coursedetail, 'user'=> $user,  'course' => $course]);
+    }
 
     //GET() Method: view coursedetail of staff site
     public function getEditStaffCourse(Request $request)

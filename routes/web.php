@@ -213,6 +213,12 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('news', 'ClientController@getListTutorNews');
 
         Route::get('newsdetail/{id}', 'ClientController@getDetailTutorNews');
+
+        Route::get('messagebox', 'ClientController@getListCourse2');
+        //Route::post('messagebox', 'ClientController@postListCourse');
+
+        Route::get('messagecourse/{id}', 'MessageBoxController@getMessCourse2');
+        Route::post('messagecourse/{id}', 'MessageBoxController@postMessCourse2');
     });
 
 
