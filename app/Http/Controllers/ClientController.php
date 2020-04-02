@@ -396,7 +396,7 @@ class ClientController extends Controller
             coursedetail::insert($coursedetail_records);
         }
 
-        return view('client.staff.course', ['course' => $course, 'user' => $user, 'subject' => $subject]);
+        return view('client/staff/course', ['course' => $course, 'user' => $user, 'subject' => $subject]);
     }
 
     //POST() Method: function edit(REALLOCATE) a tutor for student
