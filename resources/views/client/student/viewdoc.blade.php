@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-header">
-                    <h2 class="pageheader-title">Schedules</h2>
+                    <h2 class="pageheader-title">Uploaded Documents</h2>
                     <div class="page-breadcrumb">
                         <hr>
                     </div>
@@ -29,39 +29,47 @@
             <!-- ============================================================== -->
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="card">
-                    <h5 class="card-header">Schedules table</h5>
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            @foreach($errors -> all() as $err)
+                                {{$err}}<br>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if(session('notificate'))
+                        <div class="alert alert-success">
+                            {{session('notificate')}}
+                        </div>
+                    @endif
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered first">
                                 <thead>
                                 <tr>
-                                    <th>Course</th>
-                                    <th>Date</th>
-                                    <th>Slot</th>
-                                    <th>Room</th>
-                                    <th>Time Start</th>
-                                    <th>Time End</th>
+                                    <th>Action</th>
+                                    <th>Subject</th>
+                                    <th>Link</th>
+                                    <th>Comment</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($scheduleslot as $schedules)
-                                    @if($schedules -> idCourse == $course -> id)
+                                @foreach($uploaddoc as $ud)
+                                    @if($ud -> idStudent == $user_login -> id)
                                         <tr>
-
-                                            <td>{{$course -> courseName}}</td>
-                                            <td>{{$schedules -> day}}</td>
-                                            <td>{{$schedules -> idSlot}}</td>
-                                            <td>{{$schedules -> idRoom}}</td>
-                                            @foreach($schedule as $sche)
-                                                @if($schedules -> idSchedule == $sche -> id)
-                                                    <td>{{$sche -> startTime}}</td>
+                                            <td><a href="client/student/edit/detail/{{$ud -> id}}" class="text-primary">Edit
+                                                    link</a></td>
+                                            @foreach($subject as $sj)
+                                                @if($sj -> id == $ud -> idSubject)
+                                                    <td>{{$sj -> nameSubject}}</td>
                                                 @endif
                                             @endforeach
-                                            @foreach($schedule as $sche)
-                                                @if($schedules -> idSchedule == $sche -> id)
-                                                    <td>{{$sche -> endTime}}</td>
-                                                @endif
-                                            @endforeach
+                                            <td><a href="{{$ud -> link}}" class="text-primary" target="_blank">View
+                                                    Document</a></td>
+                                            @if($ud -> comment == "")
+                                                <td>Not yet</td>
+                                            @else
+                                                <td>{{$ud -> comment}}</td>
+                                            @endif
                                         </tr>
                                 @endif
                                 @endforeach

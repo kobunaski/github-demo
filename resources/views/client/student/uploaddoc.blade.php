@@ -34,6 +34,10 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="form-group">
+                <a class="btn btn-primary" href="client/student/viewdoc">View Uploaded Document</a>
+            </div>
         </div>
     </div>
 @endsection

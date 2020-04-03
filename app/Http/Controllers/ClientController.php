@@ -605,6 +605,14 @@ class ClientController extends Controller
         return view('client.student.schedulelist', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
+    //GET() Method: Get the uploaded document of the student
+    public function getAllUploadDoc(){
+        $uploaddoc = uploaddoc::all();
+        $subject = subject::all();
+        $user = User::all();
+        return view('client.student.viewdoc', ['user' => $user, 'subject' => $subject, 'uploaddoc' => $uploaddoc]);
+    }
+
     //GET() Method: Get the subject of the student
     public function getUploadStudent(){
         $coursedetail = coursedetail::all();
@@ -661,5 +669,35 @@ class ClientController extends Controller
         $uploaddoc -> save();
 
         return redirect('client/student/uploaddoc') -> with('notificate', 'Add successfully');
+    }
+
+    //GET() Method: Get the detail information of the selected student upload document
+    public function getEditUploadDetailStudent($id){
+        $uploaddoc = uploaddoc::find($id);
+        $subject = subject::all();
+        foreach ($subject as $item) {
+            if ($uploaddoc -> idSubject == $item -> id){
+                $subName = $item -> nameSubject;
+            }
+        }
+        return view('client.student.edituploaddetail', ['subName' => $subName, 'uploaddoc' => $uploaddoc]);
+    }
+
+    //POST() Method: Upload the link to the database
+    public function postEditUploadDetailStudent(Request $request, $id){
+
+        $this -> validate($request,[
+            'link' => 'required'
+        ],[
+            'link.required' => 'You need to post a link of your document from Google Drive'
+        ]);
+
+        $uploaddoc = uploaddoc::find($id);
+
+        $uploaddoc -> link = $request -> link;
+
+        $uploaddoc -> save();
+
+        return redirect('client/student/viewdoc') -> with('notificate', 'Add successfully');
     }
 }

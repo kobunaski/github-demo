@@ -208,8 +208,13 @@ Route::group(['prefix' => 'client'], function(){
 
         Route::get('uploaddoc', 'ClientController@getUploadStudent');
 
+        Route::get('viewdoc', 'ClientController@getAllUploadDoc');
+
         Route::get('uploaddoc/detail/{id}', 'ClientController@getUploadDetailStudent');
         Route::post('uploaddoc/detail/{id}', 'ClientController@postUploadDetailStudent');
+
+        Route::get('edit/detail/{id}', 'ClientController@getEditUploadDetailStudent');
+        Route::post('edit/detail/{id}', 'ClientController@postEditUploadDetailStudent');
     });
 
 
