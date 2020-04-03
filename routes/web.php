@@ -202,6 +202,10 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('messagecourse/{id}', 'MessageBoxController@getMessCourse');
         Route::post('messagecourse/{id}', 'MessageBoxController@postMessCourse');
 
+        Route::get('schedule/{id}', 'ClientController@getSchedule2');
+
+        Route::get('schedulelist', 'ClientController@getListSchedule2');
+
         Route::get('uploaddoc', 'ClientController@getUploadStudent');
 
         Route::get('uploaddoc/detail/{id}', 'ClientController@getUploadDetailStudent');
