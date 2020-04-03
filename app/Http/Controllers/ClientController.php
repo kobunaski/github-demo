@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\course;
 use App\coursedetail;
 use App\messagebox;
+use App\scheduleslot;
+use App\schedule;
 use Illuminate\Http\Request;
 use App\User, App\role, App\news, App\subject;
 use Illuminate\Support\Facades\Auth;
@@ -215,6 +217,59 @@ class ClientController extends Controller
         $subject = subject::all();
         return view('client.staff.course', ['user' => $user, 'subject' => $subject, 'course' => $course]);
 
+    }
+    //GET() Method: Get schedule for tutor site
+    public function getSchedule($id)
+    {
+        $course = course::find($id);
+        $scheduleslot = scheduleslot::all();
+        $user = User::all();
+        $schedule = schedule::all();
+
+        return view('client.tutor.schedule', ['scheduleslot' => $scheduleslot, 'user' => $user, 'course' => $course, 'schedule' => $schedule]);
+    }
+    //GET() Method: Get list of schedule for tutor site
+    public function getListSchedule()
+    {
+        $coursedetail = coursedetail::all();
+        $course = course::all();
+        $user = User::all();
+        foreach ($coursedetail as $cd){
+            if (Auth::user()->id == $cd -> idTutor)
+                foreach ($course as $co){
+                    if ($cd -> idCourse == $co -> id){
+                        $array_course[] = $co -> id;
+                    }
+                }
+        }
+        $unique_course = array_unique($array_course);
+        return view('client.tutor.schedulelist', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
+    }
+    public function getSchedule2($id)
+    {
+        $course = course::find($id);
+        $scheduleslot = scheduleslot::all();
+        $user = User::all();
+        $schedule = schedule::all();
+
+        return view('client.student.schedule', ['scheduleslot' => $scheduleslot, 'user' => $user, 'course' => $course, 'schedule' => $schedule]);
+    }
+    //GET() Method: Get list of schedule for tutor site
+    public function getListSchedule2()
+    {
+        $coursedetail = coursedetail::all();
+        $course = course::all();
+        $user = User::all();
+        foreach ($coursedetail as $cd){
+            if (Auth::user()->id == $cd -> idStudent)
+                foreach ($course as $co){
+                    if ($cd -> idCourse == $co -> id){
+                        $array_course[] = $co -> id;
+                    }
+                }
+        }
+        $unique_course = array_unique($array_course);
+        return view('client.student.schedulelist', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
     //GET() Method: Get list of course for messages in student site
