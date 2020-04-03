@@ -40,11 +40,24 @@
                            aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
                             <i class="fab fa-fw fa-wpforms"></i>News</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="student-schedule.html" aria-expanded="false" data-target="#submenu-5"
-                           aria-controls="submenu-5">
-                            <i class="fas fa-fw fa-table"></i>Schedules</a>
-                    </li>
+
+
+                    @if(isset($user_login))
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                               href="client/tutor/schedulelist"
+                               @endif
+                               @if($user_login -> idRole == 4)
+                               href="client/student/schedulelist"
+                               @endif
+                               aria-expanded="false"
+                               data-target="#submenu-5"
+                               aria-controls="submenu-5">
+                                <i class="fas fa-fw fa-table"></i>Schedules</a>
+                        </li>
+                    @endif
+
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
                             <li class="nav-item">
@@ -65,29 +78,34 @@
                         @endif
                     @endif
                     {{--<li class="nav-item">--}}
-                        {{--<a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"--}}
-                           {{--data-target="#submenu-7" aria-controls="submenu-7">--}}
-                            {{--<i class="fas fa-fw fa-inbox"></i>Email</a>--}}
-                        {{--<div id="submenu-7" class="collapse submenu" style="">--}}
-                            {{--<ul class="nav flex-column">--}}
-                                {{--<li class="nav-item">--}}
-                                    {{--<a class="nav-link" href="student-inbox.html">Inbox</a>--}}
-                                {{--</li>--}}
-                                {{--<li class="nav-item">--}}
-                                    {{--<a class="nav-link" href="student-email-details.html">Email Detail</a>--}}
-                                {{--</li>--}}
-                                {{--<li class="nav-item">--}}
-                                    {{--<a class="nav-link" href="student-email-compose.html">Email Compose</a>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
+                    {{--<a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"--}}
+                    {{--data-target="#submenu-7" aria-controls="submenu-7">--}}
+                    {{--<i class="fas fa-fw fa-inbox"></i>Email</a>--}}
+                    {{--<div id="submenu-7" class="collapse submenu" style="">--}}
+                    {{--<ul class="nav flex-column">--}}
+                    {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="student-inbox.html">Inbox</a>--}}
+                    {{--</li>--}}
+                    {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="student-email-details.html">Email Detail</a>--}}
+                    {{--</li>--}}
+                    {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="student-email-compose.html">Email Compose</a>--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
                     {{--</li>--}}
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="client/tutor/infoclass" aria-expanded="false"
-                           data-target="#submenu-8" aria-controls="submenu-8">
-                            <i class="fas fa-book"></i>Information Class</a>
-                    </li>
+
+                    @if(isset($user_login))
+                        @if($user_login -> idRole == 2 || $user_login -> idRole == 5)
+                            <li class="nav-item">
+                                <a class="nav-link" href="client/tutor/infoclass" aria-expanded="false"
+                                   data-target="#submenu-8" aria-controls="submenu-8">
+                                    <i class="fas fa-book"></i>Information Class</a>
+                            </li>
+                        @endif
+                    @endif
 
                     @if(isset($user_login))
                         @if($user_login -> idRole == 3)
