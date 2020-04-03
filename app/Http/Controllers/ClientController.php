@@ -671,6 +671,24 @@ class ClientController extends Controller
         return redirect('client/student/uploaddoc') -> with('notificate', 'Add successfully');
     }
 
+    //POST() Method: Add the comment to student upload
+    public function postAddCommentStudent(Request $request, $id){
+        $this -> validate($request,[
+            'comment' => 'required'
+        ],[
+            'comment.required' => 'You need to add a comment'
+        ]);
+
+        $uploaddoc = uploaddoc::find($id);
+        $uploaddoc -> comment = $request -> comment;
+
+        $idCourse = $request -> idCourse;
+
+        $uploaddoc -> save();
+
+        return redirect('client/tutor/detailclass/'.$idCourse) -> with('notificate', 'Add successfully');
+    }
+
     //GET() Method: Get the detail information of the selected student upload document
     public function getEditUploadDetailStudent($id){
         $uploaddoc = uploaddoc::find($id);

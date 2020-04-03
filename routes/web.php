@@ -243,6 +243,8 @@ Route::group(['prefix' => 'client'], function(){
         Route::get('detailclass/{id}', 'ClientController@getDetailClass');
 
         Route::get('detailstudent/{id}', 'ClientController@getDetailStudent');
+
+        Route::post('addComment/{id}', 'ClientController@postAddCommentStudent');
     });
 
 
