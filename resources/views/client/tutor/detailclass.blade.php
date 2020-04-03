@@ -74,7 +74,9 @@
 
                                             @foreach($uploaddoc as $ud)
                                                 @if($ud -> idStudent == $crd -> idStudent && $ud -> idSubject == $crd -> idSubject)
-                                                    <td><a href="{{$ud -> link}}">View document</a></td>
+                                                    <td><a href="{{$ud -> link}}" target="_blank">View document</a></td>
+                                                @elseif($ud -> idSubject != $crd -> idSubject)
+
                                                 @else
                                                     <td>Not yet</td>
                                                 @endif

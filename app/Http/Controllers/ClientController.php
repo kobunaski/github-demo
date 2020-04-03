@@ -6,8 +6,6 @@ namespace App\Http\Controllers;
 use App\course;
 use App\coursedetail;
 use App\messagebox;
-use App\scheduleslot;
-use App\schedule;
 use App\uploaddoc;
 use Illuminate\Http\Request;
 use App\User, App\role, App\news, App\subject;
@@ -531,10 +529,11 @@ class ClientController extends Controller
     {
         $course = course::find($id);
         $coursedetail = coursedetail::all();
+        $uploaddoc = uploaddoc::all();
         $subject = subject::all();
         $user = user::all();
         return view('client.tutor.detailclass',
-            ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
+            ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'uploaddoc' => $uploaddoc]);
     }
 
     //GET() Method: Get the detail information of the selected student
@@ -547,5 +546,64 @@ class ClientController extends Controller
         $role = role::all();
         return view('client.tutor.detailstudent',
             ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'role' => $role]);
+    }
+
+
+    //GET() Method: Get the subject of the student
+    public function getUploadStudent(){
+        $coursedetail = coursedetail::all();
+        $course = course::all();
+        $subject = subject::all();
+        $user = User::all();
+        foreach ($coursedetail as $cd){
+            if (Auth::user()->id == $cd -> idStudent)
+                foreach ($subject as $sj){
+                    if ($cd -> idSubject == $sj -> id){
+                        $array_course[] = $sj -> id;
+                    }
+                }
+        }
+        $unique_subject = array_unique($array_course);
+        return view('client.student.uploaddoc', ['coursedetail' => $coursedetail, 'user' => $user, 'subject' => $subject, 'unique_subject' => $unique_subject]);
+    }
+
+    //GET() Method: Get the detail information of the selected student upload document
+    public function getUploadDetailStudent($id){
+        $coursedetail = coursedetail::all();
+        $subjectA = subject::all();
+        $subject = subject::find($id);
+        $user = User::all();
+        return view('client.student.uploaddetail', ['subject' => $subject]);
+    }
+
+    //POST() Method: Upload the link to the database
+    public function postUploadDetailStudent(Request $request, $id){
+        $this -> validate($request,[
+            'link' => 'required'
+        ],[
+            'link.required' => 'You need to post a link of your document from Google Drive'
+        ]);
+
+        $Uploaddoc = uploaddoc::all();
+        $uploaddoc = new uploaddoc;
+
+        $count = $Uploaddoc -> count();
+
+        if ($count == 0)
+        {
+            $uploaddoc -> id = 1;
+        }else{
+            $array = $Uploaddoc[$count - 1] -> id + 1;
+            $uploaddoc -> id = $array;
+        }
+
+        $uploaddoc -> idStudent = Auth::user() -> id;
+        $uploaddoc -> idSubject = $id;
+        $uploaddoc -> link = $request -> link;
+        $uploaddoc -> comment = "";
+
+        $uploaddoc -> save();
+
+        return redirect('client/student/uploaddoc') -> with('notificate', 'Add successfully');
     }
 }
