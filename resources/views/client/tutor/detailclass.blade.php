@@ -47,7 +47,9 @@
                                             @foreach($user as $us)
                                                 @if($crd -> idStudent == $us -> id)
                                                     <td>
-                                                        <a class="text-dark" href="client/tutor/detailstudent/{{$us -> id}}">Click to view</a>
+                                                        <a class="text-dark"
+                                                           href="client/tutor/detailstudent/{{$us -> id}}">Click to
+                                                            view</a>
                                                     </td>
                                                 @endif
                                             @endforeach
@@ -70,7 +72,13 @@
                                                 @endif
                                             @endforeach
 
-                                            <td>Not yet</td>
+                                            @foreach($uploaddoc as $ud)
+                                                @if($ud -> idStudent == $crd -> idStudent && $ud -> idSubject == $crd -> idSubject)
+                                                    <td><a href="{{$ud -> link}}">View document</a></td>
+                                                @else
+                                                    <td>Not yet</td>
+                                                @endif
+                                            @endforeach
                                         </tr>
                                     @endif
                                 @endforeach

@@ -110,6 +110,17 @@
                             </li>
                         @endif
                     @endif
+
+                    @if(isset($user_login))
+                        @if($user_login -> idRole == 4)
+                            <li class="nav-item ">
+                                <a class="nav-link"
+                                   href="client/student/uploaddoc"
+                                   aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
+                                    <i class="fas fa-id-card-alt"></i>Upload a document</a>
+                            </li>
+                        @endif
+                    @endif
                 </ul>
             </div>
         </nav>
