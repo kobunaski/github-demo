@@ -9,7 +9,11 @@
 
 @section('contentClient')
 
+    <?php
 
+    $array_list = array();
+
+    ?>
 
     <div class="container-fluid  dashboard-content">
         <div class="row">
@@ -54,6 +58,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+
+                                @foreach($uploaddoc as $ud)
+                                    <?php
+                                    $array_upload_id[$ud->idStudent][$ud->idSubject][$ud->idCourse] = $ud->id;
+                                    $array_upload[$ud->idStudent][$ud->idSubject][$ud->idCourse] = $ud->link;
+                                    $array_upload_comment[$ud->idStudent][$ud->idSubject][$ud->idCourse] = $ud->comment;
+                                    //echo $ud -> comment;
+                                    ?>
+                                @endforeach
+
                                 @foreach($coursedetail as $crd)
                                     @if($crd -> idCourse == $course -> id)
                                         <tr>
@@ -86,30 +101,60 @@
                                                 @endif
                                             @endforeach
 
-                                            @foreach($uploaddoc as $ud)
-                                                @if($ud -> idStudent == $crd -> idStudent && $ud -> idSubject == $crd -> idSubject)
-                                                    <td><a href="{{$ud -> link}}" target="_blank">View document</a></td>
+                                            @if(isset($array_upload[$crd->idStudent][$crd->idSubject][$crd->idCourse]))
+                                                <td>
+                                                    <a target="_blank" href="{{$array_upload[$crd->idStudent][$crd->idSubject][$crd->idCourse]}}">View
+                                                        Document</a></td>
+                                                <form action="client/tutor/addComment/{{$array_upload_id[$crd->idStudent][$crd->idSubject][$crd->idCourse]}}" method="POST">
+                                                    <input type="hidden" name="_token"
+                                                           value="{{csrf_token()}}"/>
+                                                    <td>
+                                                        <input type="hidden" name="idCourse"
+                                                               value="{{$course -> id}}">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Comment on student" name="comment"
+                                                               value="{{$array_upload_comment[$crd->idStudent][$crd->idSubject][$crd->idCourse]}}">
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary">Comment
+                                                        </button>
+                                                    </td>
+                                                </form>
+                                            @else
+                                                <td>Not Yet</td>
+                                                <td>Not Yet</td>
+                                                <td></td>
+                                            @endif
 
-                                                @endif
 
-                                                @if($ud -> idStudent == $crd -> idStudent && $ud -> idSubject == $crd -> idSubject)
-                                                    <form action="client/tutor/addComment/{{$ud -> id}}" method="POST">
-                                                        <input type="hidden" name="_token"
-                                                               value="{{csrf_token()}}"/>
-                                                        <td>
-                                                            <input type="hidden" name="idCourse" value="{{$course -> id}}">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Comment on student" name="comment"
-                                                                   value="{{$ud -> comment}}">
-                                                        </td>
-                                                        <td>
-                                                            <button type="submit" class="btn btn-primary">Comment
-                                                            </button>
-                                                        </td>
-                                                    </form>
+                                            {{--@if($crd -> idStudent == 2)--}}
+                                            {{--<?php--}}
+                                            {{--echo $crd->idStudent;--}}
+                                            {{--?>--}}
+                                            {{--@else--}}
+                                            {{--<?php--}}
+                                            {{--echo $crd->idStudent;--}}
+                                            {{--?>--}}
+                                            {{--@endif--}}
 
-                                                @endif
-                                            @endforeach
+
+                                            {{--@if($ud -> idStudent == $crd -> idStudent && $ud -> idSubject == $crd -> idSubject)--}}
+                                            {{--<form action="client/tutor/addComment/{{$ud -> id}}" method="POST">--}}
+                                            {{--<input type="hidden" name="_token"--}}
+                                            {{--value="{{csrf_token()}}"/>--}}
+                                            {{--<td>--}}
+                                            {{--<input type="hidden" name="idCourse" value="{{$course -> id}}">--}}
+                                            {{--<input type="text" class="form-control"--}}
+                                            {{--placeholder="Comment on student" name="comment"--}}
+                                            {{--value="{{$ud -> comment}}">--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                            {{--<button type="submit" class="btn btn-primary">Comment--}}
+                                            {{--</button>--}}
+                                            {{--</td>--}}
+                                            {{--</form>--}}
+
+                                            {{--@endif--}}
                                         </tr>
                                     @endif
                                 @endforeach

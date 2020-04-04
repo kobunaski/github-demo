@@ -701,6 +701,13 @@ class ClientController extends Controller
             'link.required' => 'You need to post a link of your document from Google Drive'
         ]);
 
+        $coursedetail = coursedetail::all();
+        foreach ($coursedetail as $item) {
+            if ($item -> idStudent == Auth::user() -> id){
+                $idCourse = $item -> idCourse;
+            }
+        }
+
         $Uploaddoc = uploaddoc::all();
         $uploaddoc = new uploaddoc;
 
@@ -717,6 +724,7 @@ class ClientController extends Controller
         $uploaddoc -> idStudent = Auth::user() -> id;
         $uploaddoc -> idSubject = $id;
         $uploaddoc -> link = $request -> link;
+        $uploaddoc -> idCourse = $idCourse;
         $uploaddoc -> comment = "";
 
         $uploaddoc -> save();
