@@ -89,15 +89,9 @@
                                             @foreach($uploaddoc as $ud)
                                                 @if($ud -> idStudent == $crd -> idStudent && $ud -> idSubject == $crd -> idSubject)
                                                     <td><a href="{{$ud -> link}}" target="_blank">View document</a></td>
-                                                @elseif($ud -> idStudent != $crd -> idStudent || $ud -> idSubject != $crd -> idSubject)
 
-                                                @else
-                                                    <td>Not yet</td>
-                                                    <td></td>
                                                 @endif
-                                            @endforeach
 
-                                            @foreach($uploaddoc as $ud)
                                                 @if($ud -> idStudent == $crd -> idStudent && $ud -> idSubject == $crd -> idSubject)
                                                     <form action="client/tutor/addComment/{{$ud -> id}}" method="POST">
                                                         <input type="hidden" name="_token"
@@ -113,11 +107,7 @@
                                                             </button>
                                                         </td>
                                                     </form>
-                                                @elseif($ud -> idStudent != $crd -> idStudent || $ud -> idSubject != $crd -> idSubject)
 
-                                                @else
-                                                    <td>Not yet</td>
-                                                    <td></td>
                                                 @endif
                                             @endforeach
                                         </tr>

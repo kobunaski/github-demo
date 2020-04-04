@@ -1,7 +1,7 @@
 @extends('client.layout.index')
 @section('contentClient')
     <div class="container-fluid  dashboard-content">
-        <div><h3>Select class to view student and details</h3></div>
+        <div><h3>Select class to upload your document</h3></div>
         @if(count($errors) > 0)
             <div class="alert alert-danger">
                 @foreach($errors -> all() as $err)

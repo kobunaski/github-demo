@@ -7,6 +7,7 @@ use App\course;
 use App\coursedetail;
 use App\messagebox;
 use App\uploaddoc;
+use App\blogging;
 use Illuminate\Http\Request;
 use App\User, App\role, App\news, App\subject, App\scheduleslot, App\schedule;
 use Illuminate\Support\Facades\Auth;
@@ -575,6 +576,58 @@ class ClientController extends Controller
         }
         $unique_course = array_unique($array_course);
         return view('client.tutor.schedulelist', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
+    }
+    //GET() Method: Get blogging for tutor site
+    public function getBlogging($id)
+    {
+        $subject = subject::find($id);
+        $blogging = blogging::all();
+        $user = User::all();
+        return view('client.tutor.blogging', [ 'subject' => $subject, 'user' => $user, 'blogging' => $blogging]);
+    }
+
+    //GET() Method: Get list of blogging for tutor site
+    public function getListBlogging()
+    {
+        $coursedetail = coursedetail::all();
+        $subject = subject::all();
+        $user = User::all();
+        foreach ($coursedetail as $cd){
+            if (Auth::user()->id == $cd -> idTutor)
+                foreach ($subject as $sb){
+                    if ($cd -> idSubject == $sb -> id){
+                        $unique_subject[] = $sb -> id;
+                    }
+                }
+        }
+        $unique_subject = array_unique($unique_subject);
+        return view('client.tutor.blogginglist', ['coursedetail' => $coursedetail, 'user' => $user, 'subject' => $subject, 'unique_subject' => $unique_subject]);
+    }
+
+    public function getBlogging2($id)
+    {
+        $subject = subject::find($id);
+        $blogging = blogging::all();
+        $user = User::all();
+        return view('client.student.blogging', [ 'subject' => $subject, 'user' => $user, 'blogging' => $blogging]);
+    }
+
+    //GET() Method: Get list of blogging for tutor site
+    public function getListBlogging2()
+    {
+        $coursedetail = coursedetail::all();
+        $subject = subject::all();
+        $user = User::all();
+        foreach ($coursedetail as $cd){
+            if (Auth::user()->id == $cd -> idStudent)
+                foreach ($subject as $sb){
+                    if ($cd -> idSubject == $sb -> id){
+                        $unique_subject[] = $sb -> id;
+                    }
+                }
+        }
+        $unique_subject = array_unique($unique_subject);
+        return view('client.student.blogginglist', ['coursedetail' => $coursedetail, 'user' => $user, 'subject' => $subject, 'unique_subject' => $unique_subject]);
     }
 
     public function getSchedule2($id)

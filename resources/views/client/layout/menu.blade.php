@@ -96,7 +96,21 @@
                     {{--</div>--}}
                     {{--</li>--}}
 
-
+                    @if(isset($user_login))
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                               href="client/tutor/blogginglist"
+                               @endif
+                               @if($user_login -> idRole == 4)
+                               href="client/student/blogginglist"
+                               @endif
+                               aria-expanded="false"
+                               data-target="#submenu-5"
+                               aria-controls="submenu-5">
+                                <i class="fas fa-book"></i>Document for subject</a>
+                        </li>
+                    @endif
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole == 5)
                             <li class="nav-item">
