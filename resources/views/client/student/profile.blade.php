@@ -71,12 +71,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-body border-top">
-                            <h3 class="font-16">Category</h3>
-                            <div>
-                                <a href="#" class="badge badge-light mr-1">Fitness</a><a href="#" class="badge badge-light mr-1">Life Style</a><a href="#" class="badge badge-light mr-1">Gym</a>
-                            </div>
-                        </div>
                     </div>
                     {{--@endforeach--}}
                     <!-- ============================================================== -->

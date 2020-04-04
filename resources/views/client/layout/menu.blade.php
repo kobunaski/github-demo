@@ -11,8 +11,8 @@
                     <li class="nav-divider">
                         Menu
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active"
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('client/student/profile')) || (request()->is('client/tutor/profile')) || (request()->is('client/staff/profile')) ? 'active' : '' }}"
                            @if(isset($user_login))
                            @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
                            href="client/tutor/profile"
@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"
+                        <a class="nav-link {{ (request()->is('client/student/news')) || (request()->is('client/tutor/news')) || (request()->is('client/staff/news')) ? 'active' : '' }}"
                            @if(isset($user_login))
                            @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
                            href="client/tutor/news"
@@ -43,25 +43,28 @@
 
 
                     @if(isset($user_login))
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
-                               href="client/tutor/schedulelist"
-                               @endif
-                               @if($user_login -> idRole == 4)
-                               href="client/student/schedulelist"
-                               @endif
-                               aria-expanded="false"
-                               data-target="#submenu-5"
-                               aria-controls="submenu-5">
-                                <i class="fas fa-fw fa-table"></i>Schedules</a>
-                        </li>
+                        @if($user_login -> idRole == 2 || $user_login -> idRole ==5 || $user_login -> idRole == 4)
+                            <li class="nav-item">
+                                <a class="nav-link {{ (request()->is('client/tutor/schedulelist')) || (request()->is('client/student/schedulelist')) ? 'active' : '' }}"
+                                   @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                                   href="client/tutor/schedulelist"
+                                   @endif
+                                   @if($user_login -> idRole == 4)
+                                   href="client/student/schedulelist"
+                                   @endif
+                                   aria-expanded="false"
+                                   data-target="#submenu-5"
+                                   aria-controls="submenu-5">
+                                    <i class="fas fa-fw fa-table"></i>Schedules</a>
+                            </li>
+                        @endif
                     @endif
 
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
                             <li class="nav-item">
-                                <a class="nav-link" href="client/tutor/messagebox"
+                                <a class="nav-link {{ (request()->is('client/tutor/messagebox')) ? 'active' : '' }}"
+                                   href="client/tutor/messagebox"
                                    aria-expanded="false"
                                    data-target="#submenu-6" aria-controls="submenu-6">
                                     <i class="fab fa-facebook-messenger"></i> Message Chat </a>
@@ -70,7 +73,8 @@
 
                         @if($user_login -> idRole == 4)
                             <li class="nav-item">
-                                <a class="nav-link" href="client/student/messagebox"
+                                <a class="nav-link {{ (request()->is('client/student/messagebox')) ? 'active' : '' }}"
+                                   href="client/student/messagebox"
                                    aria-expanded="false"
                                    data-target="#submenu-6" aria-controls="submenu-6">
                                     <i class="fab fa-facebook-messenger"></i> Message Chat </a>
@@ -97,24 +101,27 @@
                     {{--</li>--}}
 
                     @if(isset($user_login))
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
-                               href="client/tutor/blogginglist"
-                               @endif
-                               @if($user_login -> idRole == 4)
-                               href="client/student/blogginglist"
-                               @endif
-                               aria-expanded="false"
-                               data-target="#submenu-5"
-                               aria-controls="submenu-5">
-                                <i class="fas fa-book"></i>Document for subject</a>
-                        </li>
+                        @if($user_login -> idRole == 2 || $user_login -> idRole ==5 || $user_login -> idRole == 4)
+                            <li class="nav-item">
+                                <a class="nav-link {{ (request()->is('client/student/blogginglist')) || (request()->is('client/tutor/blogginglist')) ? 'active' : '' }}"
+                                   @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                                   href="client/tutor/blogginglist"
+                                   @endif
+                                   @if($user_login -> idRole == 4)
+                                   href="client/student/blogginglist"
+                                   @endif
+                                   aria-expanded="false"
+                                   data-target="#submenu-5"
+                                   aria-controls="submenu-5">
+                                    <i class="fas fa-book"></i>Document for subject</a>
+                            </li>
+                        @endif
                     @endif
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole == 5)
                             <li class="nav-item">
-                                <a class="nav-link" href="client/tutor/infoclass" aria-expanded="false"
+                                <a class="nav-link {{ (request()->is('client/tutor/infoclass')) ? 'active' : '' }}"
+                                   href="client/tutor/infoclass" aria-expanded="false"
                                    data-target="#submenu-8" aria-controls="submenu-8">
                                     <i class="fas fa-book"></i>Information Class</a>
                             </li>
@@ -124,7 +131,7 @@
                     @if(isset($user_login))
                         @if($user_login -> idRole == 3)
                             <li class="nav-item ">
-                                <a class="nav-link"
+                                <a class="nav-link {{ (request()->is('client/staff/course')) ? 'active' : '' }}"
                                    href="client/staff/course"
                                    aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
                                     <i class="fas fa-id-card-alt"></i>Information Class</a>
@@ -135,7 +142,7 @@
                     @if(isset($user_login))
                         @if($user_login -> idRole == 3)
                             <li class="nav-item ">
-                                <a class="nav-link"
+                                <a class="nav-link {{ (request()->is('client/staff/editcourse')) ? 'active' : '' }}"
                                    href="client/staff/editcourse"
                                    aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
                                     <i class="fas fa-id-card-alt"></i>Edit Class</a>
@@ -146,7 +153,7 @@
                     @if(isset($user_login))
                         @if($user_login -> idRole == 4)
                             <li class="nav-item ">
-                                <a class="nav-link"
+                                <a class="nav-link {{ (request()->is('client/student/uploaddoc')) ? 'active' : '' }}"
                                    href="client/student/uploaddoc"
                                    aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
                                     <i class="fas fa-id-card-alt"></i>Upload a document</a>
