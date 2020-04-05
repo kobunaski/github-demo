@@ -26,6 +26,14 @@
             padding-top: 40px;
             padding-bottom: 40px;
         }
+        .hero{
+          height: 100%;
+          width: 100%;
+          background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(admin_asset/img/greenwich.jpg);
+          background-position: center;
+          background-size: cover;
+          position: absolute;
+        }
     </style>
 </head>
 
@@ -33,9 +41,17 @@
 <!-- ============================================================== -->
 <!-- login page  -->
 <!-- ============================================================== -->
-<div class="splash-container">
-    <div class="card ">
-        <div class="card-header text-center"><a href=""><h1>Academic Portal</h1></a><span class="splash-description">Please enter your user information.</span></div>
+<div class="hero">
+<div class="splash-container" >
+    <div class="card " style="
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+">
+        <div class="card-header text-center"><a href=""><h1>Academic Portal</h1></a></div>
+        <!-- <img src="client_asset/img/Greenwich_logo.jpg" alt="">
+         -->
         <div class="card-body">
             <form action="client/login" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
@@ -53,14 +69,9 @@
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
             </form>
         </div>
-        <div class="card-footer bg-white p-0  ">
-            <div class="card-footer-item card-footer-item-bordered">
-                <a href="sign-up.html" class="footer-link">Create An Account</a></div>
-            <div class="card-footer-item card-footer-item-bordered">
-                <a href="#" class="footer-link">Forgot Password</a>
-            </div>
-        </div>
     </div>
+</div>
+
 </div>
 
 <!-- ============================================================== -->

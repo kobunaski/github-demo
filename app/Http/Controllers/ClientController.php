@@ -703,7 +703,7 @@ class ClientController extends Controller
 
         $coursedetail = coursedetail::all();
         foreach ($coursedetail as $item) {
-            if ($item -> idStudent == Auth::user() -> id){
+            if ($item -> idStudent == Auth::user() -> id && $item -> idSubject == $id){
                 $idCourse = $item -> idCourse;
             }
         }

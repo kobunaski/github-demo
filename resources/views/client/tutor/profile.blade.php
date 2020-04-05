@@ -4,23 +4,6 @@
     @if(isset($user_login))
         <div class="influence-profile">
             <div class="container-fluid dashboard-content ">
-                <!-- ============================================================== -->
-                <!-- pageheader -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h3 class="mb-2">Your Profile </h3>
-                            <div class="page-breadcrumb">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end pageheader -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
                 <!-- content -->
                 <!-- ============================================================== -->
                 <div class="row">
@@ -28,6 +11,9 @@
                     <!-- profile -->
                     <!-- ============================================================== -->
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+                      <div class="section-block">
+                          <h3 class="section-title">My Profile</h3>
+                      </div>
                         <!-- ============================================================== -->
                         <!-- card profile -->
                         <!-- ============================================================== -->
@@ -68,13 +54,13 @@
                                                     class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>{{$user_login-> facebook}}
                                             </a></li>
                                         <li class="mb-1"><a href="#"><i
-                                                    class="fab fa-fw fa-twitter-square mr-1 twitter-color"></i>{{$user_login-> address}}
+                                                    class="fab fa-fw far fa-map mr-1 rss-color"></i>{{$user_login-> address}}
                                             </a></li>
                                         <li class="mb-1"><a href="#"><i
-                                                    class="fab fa-fw fa-instagram mr-1 instagram-color"></i>{{$user_login-> dayOfBirth}}
+                                                    class="fab fa-fw fas fa-birthday-cake mr-1 pinterest-color"></i>{{$user_login-> dayOfBirth}}
                                             </a></li>
                                         <li class="mb-1"><a href="#"><i
-                                                    class="fab fa-fw fa-instagram mr-1 instagram-color"></i>{{$user_login-> gender}}
+                                                    class="fab fa-fw fas fa-transgender mr-1 instagram-color"></i>{{$user_login-> gender}}
                                             </a></li>
                                     </ul>
                                 </div>

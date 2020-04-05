@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
+
     <link rel="shortcut icon" type="image/x-icon" href="admin_asset/img/favicon.ico">
     <!-- Google Fonts
 		============================================ -->
@@ -55,6 +56,19 @@
 		============================================ -->
     <link rel="stylesheet" href="admin_asset/css/calendar/fullcalendar.min.css">
     <link rel="stylesheet" href="admin_asset/css/calendar/fullcalendar.print.min.css">
+    <!-- x-editor CSS
+    ============================================ -->
+    <link rel="stylesheet" href="admin_asset/css/editor/select2.css">
+    <link rel="stylesheet" href="admin_asset/css/editor/datetimepicker.css">
+    <link rel="stylesheet" href="admin_asset/css/editor/bootstrap-editable.css">
+    <link rel="stylesheet" href="admin_asset/css/editor/x-editor-style.css">
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" href="admin_asset/css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="admin_asset/css/data-table/bootstrap-editable.css">
+    <!-- buttons CSS
+    ============================================ -->
+    <link rel="stylesheet" href="admin_asset/css/buttons.css">
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="admin_asset/style.css">
@@ -98,6 +112,9 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://kit.fontawesome.com/05bbfcd242.js" crossorigin="anonymous"></script>
 
 <!-- jquery
     ============================================ -->
@@ -160,6 +177,32 @@
 <!-- tawk chat JS
     ============================================ -->
 <script src="admin_asset/js/tawk-chat.js"></script>
+<!-- data table JS
+============================================ -->
+<script src="admin_asset/js/data-table/bootstrap-table.js"></script>
+<script src="admin_asset/js/data-table/tableExport.js"></script>
+<script src="admin_asset/js/data-table/data-table-active.js"></script>
+<script src="admin_asset/js/data-table/bootstrap-table-editable.js"></script>
+<script src="admin_asset/js/data-table/bootstrap-editable.js"></script>
+<script src="admin_asset/js/data-table/bootstrap-table-resizable.js"></script>
+<script src="admin_asset/js/data-table/colResizable-1.5.source.js"></script>
+<script src="admin_asset/js/data-table/bootstrap-table-export.js"></script>
+<!--  editable JS
+============================================ -->
+<script src="admin_asset/js/editable/jquery.mockjax.js"></script>
+<script src="admin_asset/js/editable/mock-active.js"></script>
+<script src="admin_asset/js/editable/select2.js"></script>
+<script src="admin_asset/js/editable/moment.min.js"></script>
+<script src="admin_asset/js/editable/bootstrap-datetimepicker.js"></script>
+<script src="admin_asset/js/editable/bootstrap-editable.js"></script>
+<script src="admin_asset/js/editable/xediable-active.js"></script>
+<!-- Chart JS
+============================================ -->
+<script src="admin_asset/js/chart/jquery.peity.min.js"></script>
+<script src="admin_asset/js/peity/peity-active.js"></script>
+<!-- tab JS
+============================================ -->
+<script src="admin_asset/js/tab.js"></script>
 </body>
 
 </html>

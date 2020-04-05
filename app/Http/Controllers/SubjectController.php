@@ -38,7 +38,6 @@ class SubjectController extends Controller
         }
 
         $subject -> nameSubject = $request -> nameSubject;
-        $subject -> idUpload = 0;
         if ($request -> status == 1){
             echo $subject -> status = 1;
         } else {

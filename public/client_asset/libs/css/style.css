@@ -1234,11 +1234,11 @@ Top Header
 
 .navbar-brand {
     display: inline-block;
-    margin-right: 1rem;
+    margin-right: .1rem;
     line-height: inherit;
     white-space: nowrap;
-    padding: 11px 20px;
-    font-size: 30px;
+    padding: 11px 5px;
+    font-size: 22px;
     text-transform: uppercase;
     font-weight: 700;
     color: #007bff;
@@ -2059,6 +2059,8 @@ Pageheader
 -------------------------*/
 
 .footer {
+    position:absolute;
+    bottom:0;
     border-top: 1px solid rgba(152, 166, 173, .2);
     padding: 14px 30px 14px;
     color: #71748d;
@@ -6315,7 +6317,7 @@ Vertical Timeline - by CodyHouse.co
 }
 
 .chat-module .chat-module-body {
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 55px;
     height: calc(100% - 4rem);
@@ -6335,6 +6337,7 @@ Vertical Timeline - by CodyHouse.co
     flex: 1;
     max-height: calc(100% - 3.5rem);
     position: relative;
+    padding:1.5rem;
 }
 
 .avatar {

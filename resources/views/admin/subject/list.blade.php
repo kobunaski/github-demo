@@ -26,7 +26,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="courses-inner res-mg-b-30">
                             <div class="courses-title">
-                                <a href="#"><img src="{{$rl->image}}" alt="" style="width: 50%; height: 50%"></a>
+                                <a href="#"><img src="admin_asset/img/courses/1.jpg"></a>
                                 <h2>{{$rl->nameSubject}}</h2>
                             </div>
                             <div class="course-des">

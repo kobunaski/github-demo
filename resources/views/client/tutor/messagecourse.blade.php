@@ -56,57 +56,70 @@
         }
     }
     ?>
-    <div class="container-fluid  dashboard-content">
-        <br/>
-        <div><h3>{{$course -> courseName}}</h3></div>
-        <div class="chat-module">
-            <div class="chat-module-top">
-                <div class="chat-module-body">
+    <div class="container-fluid">
 
-                    @foreach($messagebox as $crd)
-                        @if($crd -> idCourse == $course -> id)
-                            <div class="media chat-item">
-                                @foreach($user as $us)
-                                    @if($crd -> idUser == $us -> id)
-                                        <img src="admin_asset/upload/image/user/{{$us->image}}"
-                                             class="rounded-circle user-avatar-lg">
-                                    @endif
-                                @endforeach
+    <h1>Message Chat</h1>
 
-                                <div class="media-body">
-                                    <div class="chat-item-title">
-                                    <span class="chat-item-author">
-                                        @foreach($user as $us)
-                                            @if($crd -> idUser == $us -> id)
-                                                <td>{{$us -> name}}</td>
-                                            @endif
-                                        @endforeach</span>
-                                        <span>
-                                            <?php
-                                            echo time_ago($crd->created_at);
-                                            ?>
-                                        </span>
-                                    </div>
-                                    <div class="chat-item-body">
-                                        <p>{{$crd -> content}}</p>
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header p-4">
+              <div><h3>{{$course -> courseName}}</h3></div>
+            </div>
+            <div class="chat-module">
+
+                <div class="chat-module-top">
+                    <div class="chat-module-body">
+
+                        @foreach($messagebox as $crd)
+                            @if($crd -> idCourse == $course -> id)
+                                <div class="media chat-item">
+                                    @foreach($user as $us)
+                                        @if($crd -> idUser == $us -> id)
+                                            <img src="admin_asset/upload/image/user/{{$us->image}}"
+                                                 class="rounded-circle user-avatar-lg">
+                                        @endif
+                                    @endforeach
+
+                                    <div class="media-body">
+                                        <div class="chat-item-title">
+                                        <span class="chat-item-author">
+                                            @foreach($user as $us)
+                                                @if($crd -> idUser == $us -> id)
+                                                    <td>{{$us -> name}}</td>
+                                                @endif
+                                            @endforeach</span>
+                                            <span>
+                                                <?php
+                                                echo time_ago($crd->created_at);
+                                                ?>
+                                            </span>
+
+                                        </div>
+                                        <div class="chat-item-body">
+                                            <p>{{$crd -> content}}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                                <hr>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div>
+                    <h4 style="margin-left:10px;">Wirte something...</h4>
+                    <form role="form" action="client/tutor/messagecourse/{{$course->id}}" method="POST">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="form-group">
+                            <textarea name="messageContent" class="form-control" row="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form><br><br><br>
                 </div>
             </div>
-            <div>
-                <h4>Wirte something...</h4>
-                <form role="form" action="client/tutor/messagecourse/{{$course->id}}" method="POST">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <div class="form-group">
-                        <textarea name="messageContent" class="form-control" row="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-            </div>
+          </div>
+
         </div>
+
     </div>
 
 
