@@ -52,7 +52,7 @@
                                 <ul class="mb-0 list-unstyled">
                                     <li class="mb-1"><a href="{{$user_login-> facebook}}"><i class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>Facebook</a></li>
                                     <li class="mb-1"><a href="#"><i class="fab fa-fw far fa-map mr-1 rss-color"></i>{{$user_login-> address}}</a></li>
-                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fas fa-birthday-cake mr-1 pinterest-color"></i>{{$user_login-> dayOfBirth}}</a></li>
+                                    <li class="mb-1"><a href="#"><i class="fab fa-fw fas fa-birthday-cake mr-1 pinterest-color"></i>{{$user_login-> dateOfBirth}}</a></li>
                                     <li class="mb-1"><a href="#"><i class="fab fa-fw fas fa-transgender mr-1 instagram-color"></i>{{$user_login-> gender}}</a></li>
                                 </ul>
                             </div>

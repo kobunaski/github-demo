@@ -54,6 +54,18 @@
         <div class="card-header text-center"><a href=""><h1>Academic Portal</h1></a></div>
         <!-- <img src="admin_asset/img/greenwich.jpg" alt=""> -->
         <div class="card-body">
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    @foreach($errors -> all() as $err)
+                        {{$err}}<br>
+                    @endforeach
+                </div>
+            @endif
+            @if(session('notificate'))
+                <div class="alert alert-danger">
+                    {{session('notificate')}}
+                </div>
+            @endif
             <form action="admin/login" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">

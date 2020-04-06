@@ -23,12 +23,32 @@ class UserController extends Controller
     public function postEdit(Request $request,$id){
         $user = User::find($id);
 
-//        $this -> validate($request, [
-//            'fullName' => 'required|min:5'
-//        ],[
-//            'fullName.required' =>'You have to enter the student title',
-//            'fullName.min'=>'You must input more than 5 characters',
-//        ]);
+        $this -> validate($request, [
+            'name' => 'required|min:5',
+            'email' => 'required|min:5',
+            'password' => 'required|min:8',
+            'idRole' => 'required',
+            'facebook' => 'required',
+            'phone' => 'required|min:10',
+            'dateOfBirth' => 'required',
+            'address' => 'required|min:10',
+            'gender' => 'required'
+        ],[
+            'name.required' =>'You have to enter user name',
+            'name.min'=>'You must input more than 5 characters',
+            'email.required' =>'You have to enter the Email',
+            'email.min'=>'You must input more than 5 characters',
+            'password.required' =>'You have to enter the password',
+            'password.min'=>'You must input more than 8 characters',
+            'idRole.required' =>'You have to select Role',
+            'facebook.required' =>'You have to enter Facebook link',
+            'phone.required' =>'You have to enter the phone number',
+            'phone.min'=>'You must input more than 10 number',
+            'dateOfBirth.required' =>'You have to enter date of birth',
+            'address.required' =>'You have to enter the address',
+            'address.min'=>'You must input more than 10 characters',
+            'gender.required' =>'You have to select gender'
+        ]);
 
         $user -> name = $request -> name;
         $user -> email = $request -> email;
@@ -63,12 +83,32 @@ class UserController extends Controller
     }
     public function postAdd(Request $request){
 
-//        $this -> validate($request,[
-//            'fullName' => 'required|min:5'
-//        ],[
-//            'fullName.required' =>'You have to enter the student title',
-//            'fullName.min'=>'You must input more than 5 characters',
-//        ]);
+        $this -> validate($request, [
+            'name' => 'required|min:5',
+            'email' => 'required|min:5',
+            'password' => 'required|min:8',
+            'idRole' => 'required',
+            'facebook' => 'required',
+            'phone' => 'required|min:10',
+            'dateOfBirth' => 'required',
+            'address' => 'required|min:10',
+            'gender' => 'required'
+        ],[
+            'name.required' =>'You have to enter user name',
+            'name.min'=>'You must input more than 5 characters',
+            'email.required' =>'You have to enter the Email',
+            'email.min'=>'You must input more than 5 characters',
+            'password.required' =>'You have to enter the password',
+            'password.min'=>'You must input more than 8 characters',
+            'idRole.required' =>'You have to select Role',
+            'facebook.required' =>'You have to enter Facebook link',
+            'phone.required' =>'You have to enter the phone number',
+            'phone.min'=>'You must input more than 10 number',
+            'dateOfBirth.required' =>'You have to enter date of birth',
+            'address.required' =>'You have to enter the address',
+            'address.min'=>'You must input more than 10 characters',
+            'gender.required' =>'You have to select gender',
+        ]);
 
         $User = User::all();
         $user = new User;
@@ -123,14 +163,19 @@ class UserController extends Controller
     }
 
     public function postLoginAdmin(Request $request){
-//        $this->validate($request, [
-//            'email' => 'required',
-//        ], []);
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required'
+        ], [
+            'email.required' =>'You have to enter the Email',
+            'password.required' =>'You have to enter the Email',
+//            'password.min'=>'You must input more than 8 character'
+        ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
             return redirect('admin/user/list');
         } else {
-            return redirect('admin/login') -> with('notificate', 'Login unsuccessfully');
+            return redirect('admin/login') -> with('notificate', 'Login Fail');
         }
     }
 
@@ -144,9 +189,14 @@ class UserController extends Controller
     }
 
     public function postloginClient(Request $request){
-//        $this->validate($request, [
-//            'email' => 'required',
-//        ], []);
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required'
+        ], [
+            'email.required' =>'You have to enter the Email',
+            'password.required' =>'You have to enter the Email',
+//            'password.min'=>'You must input more than 8 character'
+        ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
             if (Auth::user() -> idRole == 4){
@@ -157,7 +207,7 @@ class UserController extends Controller
                 return redirect('client/staff/profile');
             }
         } else {
-            return redirect('client/login') -> with('notificate', 'Login unsuccessfully');
+            return redirect('client/login') -> with('notificate', 'Login Fail');
         }
     }
 

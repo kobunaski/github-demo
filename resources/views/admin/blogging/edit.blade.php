@@ -52,7 +52,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="payment-adress">
                                                             <button type="submit" class="btn btn-primary waves-effect waves-light">Edit</button>
-                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Reset</button>
+                                                            <a type="submit" href="admin/blogging/list" class="btn btn-primary waves-effect waves-light">cancel</a>
                                                         </div>
                                                     </div>
                                                 </div>

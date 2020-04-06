@@ -18,11 +18,14 @@ class NewsController extends Controller
     }
     public function postEdit(Request $request,$id){
         $news = news::find($id);
-        $this -> validate($request, [
-            'title' => 'required|min:5'
+        $this -> validate($request,[
+            'title' => 'required|min:5',
+            'content1' => 'required|min:15'
         ],[
             'title.required' =>'You have to enter the news title',
             'title.min'=>'You must input more than 5 characters',
+            'content1.required' =>'You have to enter the content',
+            'content1.min'=>'You must input more than 15 characters'
         ]);
         $news -> title = $request -> title;
         $news -> content = $request -> content1;
@@ -49,10 +52,13 @@ class NewsController extends Controller
     }
     public function postAdd(Request $request){
         $this -> validate($request,[
-            'title' => 'required|min:5'
+            'title' => 'required|min:5',
+            'content1' => 'required|min:15'
         ],[
             'title.required' =>'You have to enter the news title',
             'title.min'=>'You must input more than 5 characters',
+            'content1.required' =>'You have to enter the content',
+            'content1.min'=>'You must input more than 15 characters'
         ]);
         $News = news::all();
         $news = new news;

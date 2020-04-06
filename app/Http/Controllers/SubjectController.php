@@ -20,9 +20,10 @@ class SubjectController extends Controller
 
     public function postAdd(Request $request){
         $this -> validate($request,[
-            'nameSubject' => 'required'
+            'nameSubject' => 'required|min:5'
         ],[
-            'nameSubject.required' => 'Subject name can\'t be empty'
+            'nameSubject.required' => 'Subject name can\'t be empty',
+            'nameSubject.min' => 'Subject name is not correct'
         ]);
         $Subject = subject::all();
         $subject = new subject;
@@ -58,9 +59,10 @@ class SubjectController extends Controller
         $subject = subject::find($id);
 
         $this -> validate($request,[
-            'nameSubject' => 'required'
+            'nameSubject' => 'required|min:5'
         ],[
-            'nameSubject.required' => 'Subject name can\'t be empty'
+            'nameSubject.required' => 'Subject name can\'t be empty',
+            'nameSubject.min' => 'Subject name is not correct'
         ]);
 
         $subject -> nameSubject = $request -> nameSubject;

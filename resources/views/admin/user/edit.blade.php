@@ -54,7 +54,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Image</label>
-                                                        <p><img width="400px" src="admin_asset/upload/image/student/{{$user->image}}" alt="" /> </p>
+                                                        <p><img width="400px" src="admin_asset/upload/image/user/{{$user->image}}" alt="" /> </p>
                                                         <input name="image" type="file" class="form-control" value="{{$user->image}}">
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -97,6 +97,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="payment-adress">
                                                         <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                        <a type="submit" href="admin/user/list" class="btn btn-primary waves-effect waves-light">cancel</a>
                                                     </div>
                                                 </div>
                                             </div>
