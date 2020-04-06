@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\course;
 use App\coursedetail;
+use App\email;
 use App\messagebox;
 use App\uploaddoc;
 use App\blogging;
@@ -282,8 +283,10 @@ class ClientController extends Controller
 
         if (isset($request->student)) {
             $Coursedetail = coursedetail::all();
+            $Email = email::all();
 
             $count = $Coursedetail->count();
+            $countEmail = $Email->count();
             $count2 = 0;
 
             if ($count == 0) {
@@ -291,6 +294,13 @@ class ClientController extends Controller
             } else {
                 $array = $Coursedetail[$count - 1]->id + 1;
                 $id = $array;
+            }
+
+            if ($countEmail == 0) {
+                $idEmail = 1;
+            } else {
+                $array_email = $Email[$countEmail - 1]->id + 1;
+                $idEmail = $array_email;
             }
 
             // Submitted class
@@ -358,6 +368,14 @@ class ClientController extends Controller
                     ], function ($message) use ($email) {
                         $message->to($email, 'Visitor')->subject('Class Announcement');
                     });
+
+                    $email_records[] = [
+                        'id' => ($idEmail + $countEmail) -1,
+                        'title' => 'Allocate teacher',
+                        'content' => 'Allocate teacher '.$idTutor.'to student '.$req,
+                        'sender' => 'Admin',
+                        'receiver' => $email
+                    ];
                 }
             }
 
@@ -375,6 +393,7 @@ class ClientController extends Controller
             });
 
             coursedetail::insert($coursedetail_records);
+            email::insert($email_records);
         }
 
         return redirect('client/staff/course')->with('notificate', 'Add successfully');
