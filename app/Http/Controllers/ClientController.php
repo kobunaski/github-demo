@@ -46,38 +46,26 @@ class ClientController extends Controller
         $user = User::find($id);
 
         $this->validate($request, [
-            'name' => 'required|min:5'
+            'name' => 'required|min:5',
+            'address' => 'required',
+            'phone' => 'required|regex:/(09)[0-9]{8}/',
+            'facebook' => 'required|url|regex:/http(?:s):\/\/(?:www\.)facebook\.com\/.+/i',
+            'password' => 'same:confirmPassword|min:8'
+
         ], [
             'name.required' => 'You have to enter the student title',
             'name.min' => 'You must input more than 5 characters',
         ]);
 
         $user->name = $request->name;
-        //$user -> email = $request -> email;
-        //$user -> password = bcrypt($request -> password);
-        //$user -> idRole = $request -> idRole;
         $user->facebook = $request->facebook;
         $user->phone = $request->phone;
-        //$user -> dateOfBirth = $request -> dateOfBirth;
         $user->address = $request->address;
+
         if ($request->checkpassword == "1") {
             $user->password = bcrypt($request->password);
         }
-//        if($request -> hasFile('image'))
-//        {
-//            $file = $request -> file('image');
-//            $image = $file ->getClientOriginalName();
-//            $file -> move('admin_asset/upload/image/student', $image);
-//            $user -> image = $image;
-//        }
-        //$user -> gender = $request -> gender;
-        //$user -> status = $request -> status;
-//        if ($request -> status == 1){
-//            $user -> status = 1;
-//        } else {
-//            $user -> status = 0;
-//        }
-        //echo $student -> status;
+
         $user->save();
         return redirect('client/student/profile')->with('notificate', 'Update successfully');
     }
@@ -88,38 +76,23 @@ class ClientController extends Controller
         $user = User::find($id);
 
         $this->validate($request, [
-            'name' => 'required|min:5'
+            'name' => 'required|min:5',
+            'address' => 'required',
+            'phone' => 'required|regex:/(09)[0-9]{8}/',
+            'facebook' => 'required|url|regex:/http(?:s):\/\/(?:www\.)facebook\.com\/.+/i',
+            'password' => 'same:confirmPassword|min:8'
         ], [
             'name.required' => 'You have to enter the student title',
             'name.min' => 'You must input more than 5 characters',
         ]);
 
         $user->name = $request->name;
-        //$user -> email = $request -> email;
-        //$user -> password = bcrypt($request -> password);
-        //$user -> idRole = $request -> idRole;
         $user->facebook = $request->facebook;
         $user->phone = $request->phone;
-        //$user -> dateOfBirth = $request -> dateOfBirth;
         $user->address = $request->address;
         if ($request->checkpassword == "1") {
             $user->password = bcrypt($request->password);
         }
-//        if($request -> hasFile('image'))
-//        {
-//            $file = $request -> file('image');
-//            $image = $file ->getClientOriginalName();
-//            $file -> move('admin_asset/upload/image/student', $image);
-//            $user -> image = $image;
-//        }
-        //$user -> gender = $request -> gender;
-        //$user -> status = $request -> status;
-//        if ($request -> status == 1){
-//            $user -> status = 1;
-//        } else {
-//            $user -> status = 0;
-//        }
-        //echo $student -> status;
         $user->save();
         return redirect('client/tutor/profile')->with('notificate', 'Update successfully');
     }
@@ -130,7 +103,11 @@ class ClientController extends Controller
         $user = User::find($id);
 
         $this->validate($request, [
-            'name' => 'required|min:5'
+            'name' => 'required|min:5',
+            'address' => 'required',
+            'phone' => 'required|regex:/(09)[0-9]{8}/',
+            'facebook' => 'required|url|regex:/http(?:s):\/\/(?:www\.)facebook\.com\/.+/i',
+            'password' => 'same:confirmPassword|min:8'
         ], [
             'name.required' => 'You have to enter the student title',
             'name.min' => 'You must input more than 5 characters',
@@ -144,25 +121,6 @@ class ClientController extends Controller
             $user->password = bcrypt($request->password);
             echo "success";
         }
-//        if($request -> hasFile('image'))
-//        {
-//            $file = $request -> file('image');
-//            $image = $file ->getClientOriginalName();
-//            $file -> move('admin_asset/upload/image/student', $image);
-//            $user -> image = $image;
-//        }
-        //$user -> gender = $request -> gender;
-        //$user -> status = $request -> status;
-//        if ($request -> status == 1){
-//            $user -> status = 1;
-//        } else {
-//            $user -> status = 0;
-//        }
-        //echo $student -> status;
-        //$user -> email = $request -> email;
-        //$user -> password = bcrypt($request -> password);
-        //$user -> idRole = $request -> idRole;
-        //$user -> dateOfBirth = $request -> dateOfBirth;
         $user->save();
         return redirect('client/staff/profile')->with('notificate', 'Update successfully');
     }
@@ -225,7 +183,22 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        return view('client.student.message', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course]);
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idStudent) {
+                foreach ($course as $co) {
+                    if ($cd->idCourse == $co->id) {
+                        $array_course[] = $co->id;
+                    }
+                }
+            }
+        }
+        if (!isset($array_course)) {
+            $unique_course = 0;
+        } else {
+            $unique_course = array_unique($array_course);
+        }
+        return view('client.student.message',
+            ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
     //GET() Method: Get list of course for messages in tutor site
@@ -234,16 +207,22 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        foreach ($coursedetail as $cd){
-            if (Auth::user()->id == $cd -> idTutor)
-                foreach ($course as $co){
-                    if ($cd -> idCourse == $co -> id){
-                        $array_course[] = $co -> id;
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idTutor) {
+                foreach ($course as $co) {
+                    if ($cd->idCourse == $co->id) {
+                        $array_course[] = $co->id;
                     }
                 }
+            }
         }
-        $unique_course = array_unique($array_course);
-        return view('client.tutor.message', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
+        if (!isset($array_course)) {
+            $unique_course = 0;
+        } else {
+            $unique_course = array_unique($array_course);
+        }
+        return view('client.tutor.message',
+            ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
     //GET() Method: view coursedetail of staff site
@@ -398,7 +377,7 @@ class ClientController extends Controller
             coursedetail::insert($coursedetail_records);
         }
 
-        return view('client/staff/course', ['course' => $course, 'user' => $user, 'subject' => $subject]);
+        return redirect('client/staff/course')->with('notificate', 'Add successfully');
     }
 
     //POST() Method: function edit(REALLOCATE) a tutor for student
@@ -503,8 +482,7 @@ class ClientController extends Controller
 
         }
 
-        return view('client.staff.editcourse',
-            ['course' => $course, 'user' => $user, 'subject' => $subject])->with('notificate', 'Changed success');
+        return redirect('client/staff/editcourse')->with('notificate', 'Changed success');
     }
 
     //GET() Method: Get list of course for information course in tutor site
@@ -513,16 +491,22 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        foreach ($coursedetail as $cd){
-            if (Auth::user()->id == $cd -> idTutor)
-            foreach ($course as $co){
-                if ($cd -> idCourse == $co -> id){
-                    $array_course[] = $co -> id;
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idTutor) {
+                foreach ($course as $co) {
+                    if ($cd->idCourse == $co->id) {
+                        $array_course[] = $co->id;
+                    }
                 }
             }
         }
-        $unique_course = array_unique($array_course);
-        return view('client.tutor.infoclass', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
+        if (!isset($array_course)) {
+            $unique_course = 0;
+        } else {
+            $unique_course = array_unique($array_course);
+        }
+        return view('client.tutor.infoclass',
+            ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
     //GET() Method: Get list of student for selected course in tutor site
@@ -534,7 +518,13 @@ class ClientController extends Controller
         $subject = subject::all();
         $user = user::all();
         return view('client.tutor.detailclass',
-            ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'uploaddoc' => $uploaddoc]);
+            [
+                'subject' => $subject,
+                'coursedetail' => $coursedetail,
+                'user' => $user,
+                'course' => $course,
+                'uploaddoc' => $uploaddoc
+            ]);
     }
 
     //GET() Method: Get the detail information of the selected student
@@ -546,7 +536,13 @@ class ClientController extends Controller
         $course = course::all();
         $role = role::all();
         return view('client.tutor.detailstudent',
-            ['subject' => $subject, 'coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'role' => $role]);
+            [
+                'subject' => $subject,
+                'coursedetail' => $coursedetail,
+                'user' => $user,
+                'course' => $course,
+                'role' => $role
+            ]);
     }
 
     //GET() Method: Get schedule for tutor site
@@ -557,7 +553,8 @@ class ClientController extends Controller
         $user = User::all();
         $schedule = schedule::all();
 
-        return view('client.tutor.schedule', ['scheduleslot' => $scheduleslot, 'user' => $user, 'course' => $course, 'schedule' => $schedule]);
+        return view('client.tutor.schedule',
+            ['scheduleslot' => $scheduleslot, 'user' => $user, 'course' => $course, 'schedule' => $schedule]);
     }
 
     //GET() Method: Get list of schedule for tutor site
@@ -566,24 +563,31 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        foreach ($coursedetail as $cd){
-            if (Auth::user()->id == $cd -> idTutor)
-                foreach ($course as $co){
-                    if ($cd -> idCourse == $co -> id){
-                        $array_course[] = $co -> id;
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idTutor) {
+                foreach ($course as $co) {
+                    if ($cd->idCourse == $co->id) {
+                        $array_course[] = $co->id;
                     }
                 }
+            }
         }
-        $unique_course = array_unique($array_course);
-        return view('client.tutor.schedulelist', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
+        if (!isset($array_course)) {
+            $unique_course = 0;
+        } else {
+            $unique_course = array_unique($array_course);
+        }
+        return view('client.tutor.schedulelist',
+            ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
+
     //GET() Method: Get blogging for tutor site
     public function getBlogging($id)
     {
         $subject = subject::find($id);
         $blogging = blogging::all();
         $user = User::all();
-        return view('client.tutor.blogging', [ 'subject' => $subject, 'user' => $user, 'blogging' => $blogging]);
+        return view('client.tutor.blogging', ['subject' => $subject, 'user' => $user, 'blogging' => $blogging]);
     }
 
     //GET() Method: Get list of blogging for tutor site
@@ -592,16 +596,26 @@ class ClientController extends Controller
         $coursedetail = coursedetail::all();
         $subject = subject::all();
         $user = User::all();
-        foreach ($coursedetail as $cd){
-            if (Auth::user()->id == $cd -> idTutor)
-                foreach ($subject as $sb){
-                    if ($cd -> idSubject == $sb -> id){
-                        $unique_subject[] = $sb -> id;
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idTutor) {
+                foreach ($subject as $sb) {
+                    if ($cd->idSubject == $sb->id) {
+                        $unique_subject[] = $sb->id;
                     }
                 }
+            }
         }
-        $unique_subject = array_unique($unique_subject);
-        return view('client.tutor.blogginglist', ['coursedetail' => $coursedetail, 'user' => $user, 'subject' => $subject, 'unique_subject' => $unique_subject]);
+        if (!isset($unique_subject)) {
+            $unique_subject = 0;
+        } else {
+            $unique_subject = array_unique($unique_subject);
+        }
+        return view('client.tutor.blogginglist', [
+            'coursedetail' => $coursedetail,
+            'user' => $user,
+            'subject' => $subject,
+            'unique_subject' => $unique_subject
+        ]);
     }
 
     public function getBlogging2($id)
@@ -609,25 +623,35 @@ class ClientController extends Controller
         $subject = subject::find($id);
         $blogging = blogging::all();
         $user = User::all();
-        return view('client.student.blogging', [ 'subject' => $subject, 'user' => $user, 'blogging' => $blogging]);
+        return view('client.student.blogging', ['subject' => $subject, 'user' => $user, 'blogging' => $blogging]);
     }
 
-    //GET() Method: Get list of blogging for tutor site
+    //GET() Method: Get list of blogging for student site
     public function getListBlogging2()
     {
         $coursedetail = coursedetail::all();
         $subject = subject::all();
         $user = User::all();
-        foreach ($coursedetail as $cd){
-            if (Auth::user()->id == $cd -> idStudent)
-                foreach ($subject as $sb){
-                    if ($cd -> idSubject == $sb -> id){
-                        $unique_subject[] = $sb -> id;
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idStudent) {
+                foreach ($subject as $sb) {
+                    if ($cd->idSubject == $sb->id) {
+                        $unique_subject[] = $sb->id;
                     }
                 }
+            }
         }
-        $unique_subject = array_unique($unique_subject);
-        return view('client.student.blogginglist', ['coursedetail' => $coursedetail, 'user' => $user, 'subject' => $subject, 'unique_subject' => $unique_subject]);
+        if (!isset($unique_subject)) {
+            $unique_subject = 0;
+        } else {
+            $unique_subject = array_unique($unique_subject);
+        }
+        return view('client.student.blogginglist', [
+            'coursedetail' => $coursedetail,
+            'user' => $user,
+            'subject' => $subject,
+            'unique_subject' => $unique_subject
+        ]);
     }
 
     public function getSchedule2($id)
@@ -637,29 +661,38 @@ class ClientController extends Controller
         $user = User::all();
         $schedule = schedule::all();
 
-        return view('client.student.schedule', ['scheduleslot' => $scheduleslot, 'user' => $user, 'course' => $course, 'schedule' => $schedule]);
+        return view('client.student.schedule',
+            ['scheduleslot' => $scheduleslot, 'user' => $user, 'course' => $course, 'schedule' => $schedule]);
     }
 
-    //GET() Method: Get list of schedule for tutor site
+    //GET() Method: Get list of schedule for student site
     public function getListSchedule2()
     {
         $coursedetail = coursedetail::all();
         $course = course::all();
         $user = User::all();
-        foreach ($coursedetail as $cd){
-            if (Auth::user()->id == $cd -> idStudent)
-                foreach ($course as $co){
-                    if ($cd -> idCourse == $co -> id){
-                        $array_course[] = $co -> id;
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idStudent) {
+                foreach ($course as $co) {
+                    if ($cd->idCourse == $co->id) {
+                        $array_course[] = $co->id;
                     }
                 }
+            }
         }
-        $unique_course = array_unique($array_course);
-        return view('client.student.schedulelist', ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
+
+        if (!isset($array_course)) {
+            $unique_course = 0;
+        } else {
+            $unique_course = array_unique($array_course);
+        }
+        return view('client.student.schedulelist',
+            ['coursedetail' => $coursedetail, 'user' => $user, 'course' => $course, 'unique_course' => $unique_course]);
     }
 
     //GET() Method: Get the uploaded document of the student
-    public function getAllUploadDoc(){
+    public function getAllUploadDoc()
+    {
         $uploaddoc = uploaddoc::all();
         $subject = subject::all();
         $user = User::all();
@@ -667,25 +700,37 @@ class ClientController extends Controller
     }
 
     //GET() Method: Get the subject of the student
-    public function getUploadStudent(){
+    public function getUploadStudent()
+    {
         $coursedetail = coursedetail::all();
         $course = course::all();
         $subject = subject::all();
         $user = User::all();
-        foreach ($coursedetail as $cd){
-            if (Auth::user()->id == $cd -> idStudent)
-                foreach ($subject as $sj){
-                    if ($cd -> idSubject == $sj -> id){
-                        $array_course[] = $sj -> id;
+        foreach ($coursedetail as $cd) {
+            if (Auth::user()->id == $cd->idStudent) {
+                foreach ($subject as $sj) {
+                    if ($cd->idSubject == $sj->id) {
+                        $array_course[] = $sj->id;
                     }
                 }
+            }
         }
-        $unique_subject = array_unique($array_course);
-        return view('client.student.uploaddoc', ['coursedetail' => $coursedetail, 'user' => $user, 'subject' => $subject, 'unique_subject' => $unique_subject]);
+        if (!isset($array_course)) {
+            $unique_subject = 0;
+        } else {
+            $unique_subject = array_unique($array_course);
+        }
+        return view('client.student.uploaddoc', [
+            'coursedetail' => $coursedetail,
+            'user' => $user,
+            'subject' => $subject,
+            'unique_subject' => $unique_subject
+        ]);
     }
 
     //GET() Method: Get the detail information of the selected student upload document
-    public function getUploadDetailStudent($id){
+    public function getUploadDetailStudent($id)
+    {
         $coursedetail = coursedetail::all();
         $subjectA = subject::all();
         $subject = subject::find($id);
@@ -694,89 +739,92 @@ class ClientController extends Controller
     }
 
     //POST() Method: Upload the link to the database
-    public function postUploadDetailStudent(Request $request, $id){
-        $this -> validate($request,[
+    public function postUploadDetailStudent(Request $request, $id)
+    {
+        $this->validate($request, [
             'link' => 'required'
-        ],[
+        ], [
             'link.required' => 'You need to post a link of your document from Google Drive'
         ]);
 
         $coursedetail = coursedetail::all();
         foreach ($coursedetail as $item) {
-            if ($item -> idStudent == Auth::user() -> id && $item -> idSubject == $id){
-                $idCourse = $item -> idCourse;
+            if ($item->idStudent == Auth::user()->id && $item->idSubject == $id) {
+                $idCourse = $item->idCourse;
             }
         }
 
         $Uploaddoc = uploaddoc::all();
         $uploaddoc = new uploaddoc;
 
-        $count = $Uploaddoc -> count();
+        $count = $Uploaddoc->count();
 
-        if ($count == 0)
-        {
-            $uploaddoc -> id = 1;
-        }else{
-            $array = $Uploaddoc[$count - 1] -> id + 1;
-            $uploaddoc -> id = $array;
+        if ($count == 0) {
+            $uploaddoc->id = 1;
+        } else {
+            $array = $Uploaddoc[$count - 1]->id + 1;
+            $uploaddoc->id = $array;
         }
 
-        $uploaddoc -> idStudent = Auth::user() -> id;
-        $uploaddoc -> idSubject = $id;
-        $uploaddoc -> link = $request -> link;
-        $uploaddoc -> idCourse = $idCourse;
-        $uploaddoc -> comment = "";
+        $uploaddoc->idStudent = Auth::user()->id;
+        $uploaddoc->idSubject = $id;
+        $uploaddoc->link = $request->link;
+        $uploaddoc->idCourse = $idCourse;
+        $uploaddoc->comment = "";
 
-        $uploaddoc -> save();
+        $uploaddoc->save();
 
-        return redirect('client/student/uploaddoc') -> with('notificate', 'Add successfully');
+        return redirect('client/student/uploaddoc')->with('notificate', 'Add successfully');
     }
 
     //POST() Method: Add the comment to student upload
-    public function postAddCommentStudent(Request $request, $id){
-        $this -> validate($request,[
+    public function postAddCommentStudent(Request $request, $id)
+    {
+        $this->validate($request, [
             'comment' => 'required'
-        ],[
+        ], [
             'comment.required' => 'You need to add a comment'
         ]);
 
         $uploaddoc = uploaddoc::find($id);
-        $uploaddoc -> comment = $request -> comment;
+        $uploaddoc->comment = $request->comment;
 
-        $idCourse = $request -> idCourse;
+        $idCourse = $request->idCourse;
 
-        $uploaddoc -> save();
+        $uploaddoc->save();
 
-        return redirect('client/tutor/detailclass/'.$idCourse) -> with('notificate', 'Add successfully');
+        return redirect('client/tutor/detailclass/' . $idCourse)->with('notificate', 'Add successfully');
     }
 
     //GET() Method: Get the detail information of the selected student upload document
-    public function getEditUploadDetailStudent($id){
+    public function getEditUploadDetailStudent($id)
+    {
         $uploaddoc = uploaddoc::find($id);
         $subject = subject::all();
         foreach ($subject as $item) {
-            if ($uploaddoc -> idSubject == $item -> id){
-                $subName = $item -> nameSubject;
+            if ($uploaddoc->idSubject == $item->id) {
+                $subName = $item->nameSubject;
             }
         }
         return view('client.student.edituploaddetail', ['subName' => $subName, 'uploaddoc' => $uploaddoc]);
     }
 
     //POST() Method: Upload the link to the database
-    public function postEditUploadDetailStudent(Request $request, $id){
+    public function postEditUploadDetailStudent(Request $request, $id)
+    {
 
-        $this -> validate($request,[
+        $this->validate($request, [
             'link' => 'required'
-        ],[
+        ], [
             'link.required' => 'You need to post a link of your document from Google Drive'
         ]);
 
         $uploaddoc = uploaddoc::find($id);
 
-        $uploaddoc -> link = $request -> link;
+        $uploaddoc->link = $request->link;
 
-        $uploaddoc -> save();
+        $uploaddoc->save();
 
-        return redirect('client/student/viewdoc') -> with('notificate', 'Add successfully');
+        return redirect('client/student/viewdoc')->with('notificate', 'Add successfully');
     }
 }
