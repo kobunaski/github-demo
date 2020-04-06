@@ -11,9 +11,9 @@
                     <!-- profile -->
                     <!-- ============================================================== -->
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
-                      <div class="section-block">
-                          <h3 class="section-title">My Profile</h3>
-                      </div>
+                        <div class="section-block">
+                            <h3 class="section-title">My Profile</h3>
+                        </div>
                         <!-- ============================================================== -->
                         <!-- card profile -->
                         <!-- ============================================================== -->
@@ -56,14 +56,19 @@
                                         <li class="mb-1"><a target="_blank" href="{{$user_login-> facebook}}"><i
                                                     class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>Facebook
                                             </a></li>
-                                        <li class="mb-1"><a href="#"><i
+                                        <li class="mb-1"><a><i
                                                     class="fab fa-fw far fa-map mr-1 rss-color"></i>{{$user_login-> address}}
                                             </a></li>
-                                        <li class="mb-1"><a href="#"><i
-                                                    class="fab fa-fw fas fa-birthday-cake mr-1 pinterest-color"></i>{{$user_login-> dayOfBirth}}
+                                        <li class="mb-1"><a><i
+                                                    class="fab fa-fw fas fa-birthday-cake mr-1 pinterest-color"></i>{{$user_login-> dateOfBirth}}
                                             </a></li>
-                                        <li class="mb-1"><a href="#"><i
-                                                    class="fab fa-fw fas fa-transgender mr-1 instagram-color"></i>{{$user_login-> gender}}
+                                        <li class="mb-1"><a><i
+                                                    class="fab fa-fw fas fa-transgender mr-1 instagram-color"></i>
+                                                @if($user_login -> gender == "M")
+                                                    Male
+                                                @else
+                                                    Female
+                                                @endif
                                             </a></li>
                                     </ul>
                                 </div>

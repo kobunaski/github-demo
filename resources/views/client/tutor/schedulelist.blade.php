@@ -10,15 +10,22 @@
                     <ul class="list-unstyled">
                         <li class="media">
                             {{--<img class=" mr-3 user-avatar-lg rounded" src="../assets/images/avatar-3.jpg" alt="Generic placeholder image">--}}
-                            @foreach ($unique_course as $uc)
-                                @foreach ($course as $co)
-                                    @if($co -> id == $uc)
-                                        <div class="media-body">
-                                            <a href="client/tutor/schedule/{{$uc}}" class="mt-0 mb-1">{{$co -> courseName}}</a>
-                                        </div>
-                                    @endif
+                            @if($unique_course != 0)
+                                @foreach ($unique_course as $uc)
+                                    @foreach ($course as $co)
+                                        @if($co -> id == $uc)
+                                            <div class="media-body">
+                                                <a href="client/tutor/schedule/{{$uc}}"
+                                                   class="mt-0 mb-1">{{$co -> courseName}}</a>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                            @endforeach
+                            @else
+                                <div class="media-body">
+                                    <span class="mt-0 mb-1">You are not teaching any course.</span>
+                                </div>
+                            @endif
                         </li>
                     </ul>
                 </div>

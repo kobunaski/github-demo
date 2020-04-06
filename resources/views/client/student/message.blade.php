@@ -11,17 +11,34 @@
                     <ul class="list-unstyled">
                         <li class="media">
                             {{--<img class=" mr-3 user-avatar-lg rounded" src="../assets/images/avatar-3.jpg" alt="Generic placeholder image">--}}
-                            @foreach($coursedetail as $cd)
-                                @if($cd -> idStudent == Auth::User() -> id)
+                            @if($unique_course != 0)
+                                @foreach ($unique_course as $uc)
                                     @foreach ($course as $co)
-                                        @if($cd -> idCourse == $co -> id)
+                                        @if($co -> id == $uc)
                                             <div class="media-body">
-                                                <a href="client/student/messagecourse/{{$co -> id}}" class="mt-0 mb-1">{{$co -> courseName}}</a>
+                                                <a href="client/student/messagecourse/{{$uc}}"
+                                                   class="mt-0 mb-1">{{$co -> courseName}}</a>
                                             </div>
                                         @endif
                                     @endforeach
-                                @endif
-                            @endforeach
+                                @endforeach
+                            @else
+                                <div class="media-body">
+                                    <span class="mt-0 mb-1">You are not enrolled in any class.</span>
+                                </div>
+                            @endif
+
+                            {{--@foreach($coursedetail as $cd)--}}
+                                {{--@if($cd -> idStudent == Auth::User() -> id)--}}
+                                    {{--@foreach ($course as $co)--}}
+                                        {{--@if($cd -> idCourse == $co -> id)--}}
+                                            {{--<div class="media-body">--}}
+                                                {{--<a href="client/student/messagecourse/{{$co -> id}}" class="mt-0 mb-1">{{$co -> courseName}}</a>--}}
+                                            {{--</div>--}}
+                                        {{--@endif--}}
+                                    {{--@endforeach--}}
+                                {{--@endif--}}
+                            {{--@endforeach--}}
                         </li>
                     </ul>
                 </div>
