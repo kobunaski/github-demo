@@ -240,6 +240,10 @@
                 </div>
             </div>
         </div>
+
+@endif
+@endsection
+
 @section('script')
     <script>
         $(document).ready(function () {
@@ -254,7 +258,4 @@
             });
         });
     </script>
-@endsection
-
-@endif
 @endsection

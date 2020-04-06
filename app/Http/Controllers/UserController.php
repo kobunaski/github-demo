@@ -25,7 +25,7 @@ class UserController extends Controller
 
         $this -> validate($request, [
             'name' => 'required|min:5',
-            'email' => 'required|min:5',
+            'email' => 'required|min:5|email',
             'password' => 'required|min:8',
             'idRole' => 'required',
             'facebook' => 'required',
@@ -52,7 +52,9 @@ class UserController extends Controller
 
         $user -> name = $request -> name;
         $user -> email = $request -> email;
-        $user -> password = bcrypt($request -> password);
+        if ($request -> password != $user -> password){
+            $user -> password = bcrypt($request -> password);
+        }
         $user -> idRole = $request -> idRole;
         $user -> facebook = $request -> facebook;
         $user -> phone = $request -> phone;
@@ -85,7 +87,7 @@ class UserController extends Controller
 
         $this -> validate($request, [
             'name' => 'required|min:5',
-            'email' => 'required|min:5',
+            'email' => 'required|min:5|email|unique:users',
             'password' => 'required|min:8',
             'idRole' => 'required',
             'facebook' => 'required',
@@ -148,7 +150,7 @@ class UserController extends Controller
             $user -> status = 0;
         }
         //echo $student -> status;
-        $user -> save();
+        //$user -> save();
         return redirect('admin/user/add') -> with('notificate','Add successfully');
     }
 
