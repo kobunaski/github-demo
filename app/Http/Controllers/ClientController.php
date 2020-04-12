@@ -20,7 +20,6 @@ class ClientController extends Controller
     //GET() FUNCTION: get information of student
     public function getStudentProfile()
     {
-        //$user = User::all();
         $role = role::all();
         return view('client.student.profile', ['role' => $role]);
     }
@@ -44,8 +43,9 @@ class ClientController extends Controller
     //POST() Method: Edit information of student
     public function postEditStudentProfile(Request $request, $id)
     {
+        // Get the id of the user we want to edit
         $user = User::find($id);
-
+        // This is validation that I set to support the user can edit the data easier than ever
         $this->validate($request, [
             'name' => 'required|min:5',
             'address' => 'required',
@@ -57,17 +57,20 @@ class ClientController extends Controller
             'name.required' => 'You have to enter the student title',
             'name.min' => 'You must input more than 5 characters',
         ]);
-
+        // Assign the value what user input from the HTML form
+        // To data fields of user table.
         $user->name = $request->name;
         $user->facebook = $request->facebook;
         $user->phone = $request->phone;
         $user->address = $request->address;
-
+        // This if-else statement help the user can tick
+        // on the box when they want to change the password
         if ($request->checkpassword == "1") {
             $user->password = bcrypt($request->password);
         }
-
+        // Use a save() function to save the date
         $user->save();
+        // And redirect to profile page and show notification
         return redirect('client/student/profile')->with('notificate', 'Update successfully');
     }
 
