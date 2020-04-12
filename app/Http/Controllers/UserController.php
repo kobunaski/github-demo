@@ -202,9 +202,9 @@ class UserController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
             if (Auth::user() -> idRole == 4){
-                return redirect('client/student/profile');
+                return redirect('client/student/schedulelist');
             } else if (Auth::user() -> idRole == 2 || Auth::user() -> idRole == 5) {
-                return redirect('client/tutor/profile');
+                return redirect('client/tutor/infoclass');
             } else if (Auth::user() -> idRole == 3) {
                 return redirect('client/staff/profile');
             }

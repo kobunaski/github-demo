@@ -11,36 +11,17 @@
                     <li class="nav-divider">
                         Menu
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ (request()->is('client/student/profile')) || (request()->is('client/tutor/profile')) || (request()->is('client/staff/profile')) ? 'active' : '' }}"
-                           @if(isset($user_login))
-                           @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
-                           href="client/tutor/profile"
-                           @elseif($user_login -> idRole == 4)
-                           href="client/student/profile"
-                           @elseif($user_login -> idRole == 3)
-                           href="client/staff/profile"
-                           @endif
-                           @endif
-                           aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
-                            <i class="fa fa-fw fa-user-circle"></i>Profile
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link {{ (request()->is('client/student/news')) || (request()->is('client/tutor/news')) || (request()->is('client/staff/news')) ? 'active' : '' }}"
-                           @if(isset($user_login))
-                           @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
-                           href="client/tutor/news"
-                           @elseif($user_login -> idRole == 4)
-                           href="client/student/news"
-                           @elseif($user_login -> idRole == 3)
-                           href="client/staff/news"
-                           @endif
-                           @endif
-                           aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
-                            <i class="fab fa-fw fa-wpforms"></i>News</a>
-                    </li>
 
+                    @if(isset($user_login))
+                        @if($user_login -> idRole == 2 || $user_login -> idRole == 5)
+                            <li class="nav-item">
+                                <a class="nav-link {{ (request()->is('client/tutor/infoclass')) ? 'active' : '' }}"
+                                   href="client/tutor/infoclass" aria-expanded="false"
+                                   data-target="#submenu-8" aria-controls="submenu-8">
+                                    <i class="fas fa-book"></i>Information Class</a>
+                            </li>
+                        @endif
+                    @endif
 
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole ==5 || $user_login -> idRole == 4)
@@ -59,6 +40,21 @@
                             </li>
                         @endif
                     @endif
+
+                    <li class="nav-item ">
+                        <a class="nav-link {{ (request()->is('client/student/news')) || (request()->is('client/tutor/news')) || (request()->is('client/staff/news')) ? 'active' : '' }}"
+                           @if(isset($user_login))
+                           @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                           href="client/tutor/news"
+                           @elseif($user_login -> idRole == 4)
+                           href="client/student/news"
+                           @elseif($user_login -> idRole == 3)
+                           href="client/staff/news"
+                           @endif
+                           @endif
+                           aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">
+                            <i class="fab fa-fw fa-wpforms"></i>News</a>
+                    </li>
 
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
@@ -81,24 +77,6 @@
                             </li>
                         @endif
                     @endif
-                    {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"--}}
-                    {{--data-target="#submenu-7" aria-controls="submenu-7">--}}
-                    {{--<i class="fas fa-fw fa-inbox"></i>Email</a>--}}
-                    {{--<div id="submenu-7" class="collapse submenu" style="">--}}
-                    {{--<ul class="nav flex-column">--}}
-                    {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="student-inbox.html">Inbox</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="student-email-details.html">Email Detail</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="student-email-compose.html">Email Compose</a>--}}
-                    {{--</li>--}}
-                    {{--</ul>--}}
-                    {{--</div>--}}
-                    {{--</li>--}}
 
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole ==5 || $user_login -> idRole == 4)
@@ -114,16 +92,6 @@
                                    data-target="#submenu-5"
                                    aria-controls="submenu-5">
                                     <i class="fas fa-book"></i>Document for subject</a>
-                            </li>
-                        @endif
-                    @endif
-                    @if(isset($user_login))
-                        @if($user_login -> idRole == 2 || $user_login -> idRole == 5)
-                            <li class="nav-item">
-                                <a class="nav-link {{ (request()->is('client/tutor/infoclass')) ? 'active' : '' }}"
-                                   href="client/tutor/infoclass" aria-expanded="false"
-                                   data-target="#submenu-8" aria-controls="submenu-8">
-                                    <i class="fas fa-book"></i>Information Class</a>
                             </li>
                         @endif
                     @endif
@@ -160,6 +128,22 @@
                             </li>
                         @endif
                     @endif
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('client/student/profile')) || (request()->is('client/tutor/profile')) || (request()->is('client/staff/profile')) ? 'active' : '' }}"
+                           @if(isset($user_login))
+                           @if($user_login -> idRole == 2 || $user_login -> idRole ==5)
+                           href="client/tutor/profile"
+                           @elseif($user_login -> idRole == 4)
+                           href="client/student/profile"
+                           @elseif($user_login -> idRole == 3)
+                           href="client/staff/profile"
+                           @endif
+                           @endif
+                           aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
+                            <i class="fa fa-fw fa-user-circle"></i>Profile
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

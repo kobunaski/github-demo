@@ -1,7 +1,7 @@
 @extends('client.layout.index')
 @section('contentClient')
     <div class="container-fluid  dashboard-content">
-        <div><h3>Select class to view student and details</h3></div>
+        <div><h3>Select class to view schedule for that class</h3></div>
 
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
             <div class="card">
