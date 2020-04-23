@@ -9,7 +9,7 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
                     <li>
-                        <a href="index.html" >
+                        <a href="admin/dashboard/index" >
                             <span class="educate-icon educate-home icon-wrap" aria-hidden="true"></span>
                             <span class="mini-click-non">Education</span>
                         </a>

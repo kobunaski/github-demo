@@ -105,10 +105,10 @@ class UserController extends Controller
             'idRole.required' =>'You have to select Role',
             'facebook.required' =>'You have to enter Facebook link',
             'phone.required' =>'You have to enter the phone number',
-            'phone.min'=>'You must input more than 10 number',
+            'phone.min'=>'You must input phone number more than 10 number',
             'dateOfBirth.required' =>'You have to enter date of birth',
             'address.required' =>'You have to enter the address',
-            'address.min'=>'You must input more than 10 characters',
+            'address.min'=>'You must input address more than 10 characters',
             'gender.required' =>'You have to select gender',
         ]);
 
@@ -150,7 +150,7 @@ class UserController extends Controller
             $user -> status = 0;
         }
         //echo $student -> status;
-        //$user -> save();
+        $user -> save();
         return redirect('admin/user/add') -> with('notificate','Add successfully');
     }
 
@@ -175,7 +175,7 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
-            return redirect('admin/user/list');
+            return redirect('admin/dashboard/index');
         } else {
             return redirect('admin/login') -> with('notificate', 'Login Fail');
         }
@@ -202,9 +202,9 @@ class UserController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
             if (Auth::user() -> idRole == 4){
-                return redirect('client/student/schedulelist');
+                return redirect('client/student/index1');
             } else if (Auth::user() -> idRole == 2 || Auth::user() -> idRole == 5) {
-                return redirect('client/tutor/infoclass');
+                return redirect('client/tutor/index2');
             } else if (Auth::user() -> idRole == 3) {
                 return redirect('client/staff/profile');
             }

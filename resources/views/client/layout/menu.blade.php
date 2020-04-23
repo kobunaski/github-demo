@@ -12,6 +12,30 @@
                         Menu
                     </li>
 
+
+                    @if(isset($user_login))
+                        @if($user_login -> idRole == 2 || $user_login -> idRole == 5)
+                            <li class="nav-item">
+                                <a class="nav-link {{ (request()->is('client/tutor/index2')) ? 'active' : '' }}"
+                                   href="client/tutor/index2" aria-expanded="false"
+                                   data-target="#submenu-8" aria-controls="submenu-8">
+                                    <i class="fas fa-book"></i>Dashboard</a>
+                            </li>
+                        @endif
+                    @endif
+
+                    @if(isset($user_login))
+                        @if($user_login -> idRole == 4)
+                            <li class="nav-item">
+                                <a class="nav-link {{ (request()->is('client/student/index1')) ? 'active' : '' }}"
+                                   href="client/student/index1" aria-expanded="false"
+                                   data-target="#submenu-8" aria-controls="submenu-8">
+                                    <i class="fas fa-book"></i>Dashboard</a>
+                            </li>
+                        @endif
+                    @endif
+
+
                     @if(isset($user_login))
                         @if($user_login -> idRole == 2 || $user_login -> idRole == 5)
                             <li class="nav-item">

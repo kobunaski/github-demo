@@ -22,6 +22,10 @@ Route::post('admin/login', 'UserController@postLoginAdmin');
 Route::get('admin/logout', 'UserController@getLogoutAdmin');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function(){
+    Route::group(['prefix' => 'dashboard'], function(){
+        Route::get('index', 'DashboardController@getIndex');
+    });
+
     Route::group(['prefix' => 'role'], function(){
         Route::get('list', 'RoleController@getList');
 
@@ -33,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function(){
 
         Route::get('delete/{id}', 'RoleController@getDelete');
     });
+
     Route::group(['prefix' => 'staff'], function(){
         Route::get('list', 'StaffController@getList');
 
@@ -187,6 +192,8 @@ Route::get('client/logout', 'UserController@getLogoutClient');
 
 Route::group(['prefix' => 'client'], function(){
     Route::group(['prefix' => 'student', 'middleware' => 'studentLogin'], function(){
+        Route::get('index1', 'DashboardController@getIndex1');
+
         Route::get('profile', 'ClientController@getStudentProfile');
 
         Route::get('edit/{id}', 'ClientController@getEdit');
@@ -223,6 +230,10 @@ Route::group(['prefix' => 'client'], function(){
 
 
     Route::group(['prefix' => 'tutor', 'middleware' => 'tutorLogin'], function(){
+
+        Route::get('index2', 'DashboardController@getIndex2');
+
+
         Route::get('profile', 'ClientController@getTutorProfile');
 
         Route::get('edit/{id}', 'ClientController@getEdit');
