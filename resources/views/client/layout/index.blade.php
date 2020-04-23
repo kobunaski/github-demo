@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="client_asset/vendor/bootstrap/css/bootstrap.min.css">
     <link href="client_asset/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="client_asset/libs/css/style.css">
+    <link rel="stylesheet" href="admin_asset/css/card/main.css">
     <link rel="stylesheet" href="client_asset/vendor/fonts/fontawesome/css/fontawesome-all.css">
     @yield('header')
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
@@ -72,6 +73,7 @@
 <!-- end main wrapper -->
 <!-- ============================================================== -->
 <!-- Optional JavaScript -->
+<script src="https://kit.fontawesome.com/05bbfcd242.js" crossorigin="anonymous"></script>
 <!-- jquery 3.3.1  -->
 <script src="client_asset/vendor/jquery/jquery-3.3.1.min.js"></script>
 <!-- bootstap bundle js -->

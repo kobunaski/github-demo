@@ -7,7 +7,7 @@
                     <div class="card mb-3 widget-content bg-midnight-bloom">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
-                                <div style="font-size: 30px" class="widget-heading text-dark">Course: {{$count}}</div>
+                                <div style="font-size: 30px" class="widget-heading ">Course: {{$count}}</div>
                             </div>
                             <div class="widget-content-right">
                                 <i style="font-size: 35px;" class="fas fa-chalkboard-teacher"></i>
@@ -22,7 +22,7 @@
                     <div class="card mb-3 widget-content bg-midnight-bloom">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
-                                <div style="font-size: 30px" class="widget-heading text-dark">Subject: {{$count}}</div>
+                                <div style="font-size: 30px" class="widget-heading ">Subject: {{$count}}</div>
                             </div>
                             <div class="widget-content-right">
                                 <i style="font-size: 35px;" class="fas fa-book"></i>

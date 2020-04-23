@@ -18,9 +18,11 @@
     <!-- Bootstrap CSS
 		============================================ -->
         {{--../../../../public/admin_asset/css/--}}
+    <link rel="stylesheet" href="admin_asset/css/card/main.css">
     <link rel="stylesheet" href="admin_asset/css/bootstrap.min.css">
-    <!-- Bootstrap CSS
-		============================================ -->
+
+
+
     <link rel="stylesheet" href="admin_asset/css/font-awesome.min.css">
     <!-- owl.carousel CSS
 		============================================ -->
@@ -75,6 +77,7 @@
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="admin_asset/css/responsive.css">
+
     <!-- modernizr JS
 		============================================ -->
 
@@ -100,7 +103,7 @@
     @yield('content')
 
 
-    <div class="footer-copyright-area">
+    <div style="position:absolute; bottom:0; width:100%; height:60px; margin: 0 auto -142px;" class="footer-copyright-area">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
