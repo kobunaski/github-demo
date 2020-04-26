@@ -3,7 +3,7 @@
     <div style="padding-bottom: 5px;" class="container-fluid  dashboard-content">
         <div class="row">
             <div class="col-md-6 col-xl-4">
-                <a href="">
+                <a href="client/student/schedulelist">
                     <div class="card mb-3 widget-content bg-midnight-bloom">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-md-6 col-xl-4">
-                <a href="">
+                <a href="client/student/blogginglist">
                     <div class="card mb-3 widget-content bg-midnight-bloom">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">

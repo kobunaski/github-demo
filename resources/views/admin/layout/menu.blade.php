@@ -29,11 +29,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow"  aria-expanded="false"><span class="educate-icon educate-message icon-wrap"></span> <span class="mini-click-non">Email</span></a>
-                        <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="All Students" href="admin/email/list"><span class="mini-sub-pro">All email</span></a></li>
-                            <li><a title="Add Students" href="admin/email/add"><span class="mini-sub-pro">Add email</span></a></li>
-                        </ul>
+                        <a href="admin/email/list" >
+                            <span class="educate-icon educate-message icon-wrap"></span>
+                            <span class="mini-sub-pro">Email</span>
+                        </a>
                     </li>
                     <li>
                         <a class="has-arrow"  aria-expanded="false"><span class="fas fa-user-tag"></span> <span class="mini-click-non">Role</span></a>

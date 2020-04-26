@@ -34,23 +34,25 @@ class DashboardController extends Controller
 
     public function getIndex2()
     {
-        $count2 = 0;
-        $id = Auth::user()->id;
-        $coursedetail = coursedetail::all();
-        foreach ($coursedetail as $item) {
-            if ($item->idTutor == $id) {
-                $count2++;
-            }
-        }
+        $count2 = array();
         $course_array = array();
         $id = Auth::user()->id;
         $coursedetail = coursedetail::all();
+
         foreach ($coursedetail as $item) {
             if ($item->idTutor == $id) {
-                $course_array[] = $item -> idTutor;
+                $count2[] = $item -> idStudent;
             }
         }
+
+        foreach ($coursedetail as $item) {
+            if ($item->idTutor == $id) {
+                $course_array[] = $item -> idCourse;
+            }
+        }
+
+        $unique_student = array_unique($count2);
         $unique_course = array_unique($course_array);
-        return view('client.tutor.index2', ['count' => $unique_course, 'count2' => $count2]);
+        return view('client.tutor.index2', ['count' => $unique_course, 'count2' => $unique_student]);
     }
 }
